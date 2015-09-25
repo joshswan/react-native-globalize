@@ -9,7 +9,6 @@
 
 const Cldr = require('cldrjs');
 const Globalize = require('globalize');
-const loader = require('./loader');
 
 // Load all required supplemental files
 function supplementalFiles() {
@@ -56,16 +55,6 @@ export default class {
     this.locale = locale;
     this.currencyCode = currencyCode || 'USD';
 
-    // Load Cldr info for given locale
-    let localeData = new Cldr(locale);
-
-    if (!localeData || !localeData.attributes.bundle) {
-      throw new Error('ERROR: Could not load language data for locale: ' + locale);
-    }
-
-    // Load required locale files using helper
-    Globalize.load(loader(localeData.attributes.bundle));
-
     // Create Globalize object
     this.globalize = new Globalize(locale);
 
@@ -78,9 +67,27 @@ export default class {
     this._numberParsers = {};
     this._pluralGenerators = {};
     this._relativeTimeFormatters = {};
+  }
 
-    // Cldr instance not required
-    localeData = null;
+  static load(cldrData) {
+    Globalize.load(cldrData);
+  }
+
+  /**
+   * Load ICU MessageFormat strings into Globalize for formatting
+   *
+   * const messages = {
+   *   en: {
+   *     hello: 'Hello {name}'
+   *   },
+   *   pt: {
+   *     hello: 'Olá {name}'
+   *   }
+   * };
+   * EN.loadMessages(messages);
+   */
+  static loadMessages(messageData) {
+    return Globalize.loadMessages(messageData);
   }
 
   /**
@@ -136,23 +143,6 @@ export default class {
     }
 
     return this._dateParsers[key];
-  }
-
-  /**
-   * Load ICU MessageFormat strings into Globalize for formatting
-   *
-   * const messages = {
-   *   en: {
-   *     hello: 'Hello {name}'
-   *   },
-   *   pt: {
-   *     hello: 'Olá {name}'
-   *   }
-   * };
-   * EN.loadMessages(messages);
-   */
-  loadMessages(messageData) {
-    return Globalize.loadMessages(messageData);
   }
 
   /**

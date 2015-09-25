@@ -27,10 +27,10 @@ export default class FormattedRelativeTime extends Component {
 
     if (value instanceof Date) {
       let momentValue = moment(value);
-      value = moment().diff(momentValue, this.props.unit);
+      value = momentValue.diff(moment(), this.props.unit);
     }
 
-    let formattedRelativeTime = formatRelativeTime(this.props.value);
+    let formattedRelativeTime = formatRelativeTime(value);
 
     return (
       <Text>{formattedRelativeTime}</Text>

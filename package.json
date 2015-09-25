@@ -30,7 +30,6 @@
     "prepublish": "npm run clean && npm run build"
   },
   "dependencies": {
-    "cldr-data": ">=27",
     "cldrjs": "^0.4.0",
     "globalize": "^1.1.0-rc.2",
     "moment": "^2.10.6"
@@ -41,10 +40,10 @@
     "eslint-plugin-react": "^3.4.2",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.2.1",
-    "gulp-replace": "^0.5.4",
     "rimraf": "^2.4.3"
   },
   "peerDependencies": {
+    "cldr-data": ">=27",
     "react-native": "^0.11.0"
   },
   "license": "MIT"

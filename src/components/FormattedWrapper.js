@@ -7,7 +7,7 @@
  */
 'use strict';
 
-import {Component} from 'react-native';
+import {Component, PropTypes} from 'react-native';
 import {globalizeShape, globalizePropTypes} from '../types';
 import Globalize from '../globalize';
 
@@ -15,11 +15,15 @@ export default class FormattedWrapper extends Component {
   constructor(props) {
     super(props);
 
-    let instance = new Globalize(props.locale, props.currency);
+    if (props.cldr) {
+      Globalize.load(props.cldr);
+    }
 
     if (props.messages) {
-      instance.loadMessages(props.messages);
+      Globalize.loadMessages(props.messages);
     }
+
+    let instance = new Globalize(props.locale, props.currency);
 
     this.state = {
       globalize: instance,
@@ -37,7 +41,11 @@ export default class FormattedWrapper extends Component {
   }
 }
 
-FormattedWrapper.propTypes = globalizePropTypes;
+FormattedWrapper.propTypes = {
+  ...globalizePropTypes,
+  cldr: PropTypes.array,
+  messages: PropTypes.object,
+};
 
 FormattedWrapper.defaultProps = {
   locale: 'en',
