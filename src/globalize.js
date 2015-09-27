@@ -10,6 +10,17 @@
 const Cldr = require('cldrjs');
 const Globalize = require('globalize');
 
+// Load all main files for default languages
+function mainFiles() {
+  // Performance compromise: React Native bundles all JS/JSON into one bundle,
+  // which grows rather large if all CLDR data is included. A short(er) list
+  // of languages is loaded by default and additional CLDR data can be passed
+  // via the `load` method below.
+  return [
+    require('./cldr.json'),
+  ];
+}
+
 // Load all required supplemental files
 function supplementalFiles() {
   return [
@@ -42,6 +53,9 @@ Cldr.setAvailableBundlesHack(require('cldr-data/availableLocales.json').availabl
 // Load the supplemental files
 Globalize.load(supplementalFiles());
 
+// Load the main files
+Globalize.load(mainFiles());
+
 export default class {
   /**
    * Create a new Globalize instance for internal use using
@@ -55,8 +69,14 @@ export default class {
     this.locale = locale;
     this.currencyCode = currencyCode || 'USD';
 
-    // Create Globalize object
-    this.globalize = new Globalize(locale);
+    try {
+      // Create Globalize object
+      this.globalize = new Globalize(locale);
+    } catch (err) {
+      console.error('Only certain CLDR data is included! Be sure to add your own data if using a less common language/locale!');
+
+      throw err;
+    }
 
     // Set up caches for generated formatters
     this._currencyFormatters = {};
@@ -68,9 +88,14 @@ export default class {
     this._pluralGenerators = {};
     this._relativeTimeFormatters = {};
   }
-
+  
+  /**
+   * Load additional CLDR data into Globalize
+   *
+   * EN.load(CLDR_DATA);
+   */
   static load(cldrData) {
-    Globalize.load(cldrData);
+    return Globalize.load(cldrData);
   }
 
   /**

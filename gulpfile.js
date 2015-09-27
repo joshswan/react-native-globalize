@@ -9,10 +9,90 @@
 
 var gulp = require('gulp');
 var babel = require('gulp-babel');
+var filter = require('gulp-filter');
+var merge = require('gulp-merge-json');
+var path = require('path');
+
+var locales = [
+  'am',           // Amharic
+  'ar',           // Arabic
+  'bg',           // Bulgarian
+  'bn',           // Bengali
+  'ca',           // Catalan
+  'cs',           // Czech
+  'da',           // Danish
+  'de',           // German
+  'el',           // Greek
+  'en',           // English
+  'en-GB',        // English (Great Britain)
+  'en-US-POSIX',  // English (United States)
+  'es',           // Spanish
+  'es-419',       // Spanish (Latin America & Caribbean)
+  'et',           // Estonian
+  'fa',           // Persian
+  'fi',           // Finnish
+  'fil',          // Filipino
+  'fr',           // French
+  'gu',           // Gujarati
+  'he',           // Hebrew
+  'hi',           // Hindi
+  'hr',           // Croatian
+  'hu',           // Hungarian
+  'id',           // Indonesian
+  'it',           // Italian
+  'ja',           // Japanese
+  'kn',           // Kannada
+  'ko',           // Korean
+  'lt',           // Lithuanian
+  'lv',           // Latvian
+  'ml',           // Malayalam
+  'mr',           // Marathi
+  'ms',           // Malay
+  'nb',           // Norwegian
+  'nl',           // Dutch
+  'pl',           // Polish
+  'pt',           // Portuguese
+  'pt-PT',        // Portuguese (Portugal)
+  'ro',           // Romanian
+  'ru',           // Russian
+  'sk',           // Slovak
+  'sl',           // Slovenian
+  'sr',           // Serbian
+  'sv',           // Swedish
+  'sw',           // Swahili
+  'ta',           // Tamil
+  'te',           // Telugu
+  'th',           // Thai
+  'tr',           // Turkish
+  'uk',           // Ukrainian
+  'vi',           // Vietnamese
+  'zh',           // Chinese
+  'zh-Hans',      // Chinese (Simplified)
+  'zh-Hant',      // Chinese (Traditional)
+];
+
+var files = ['ca-gregorian', 'currencies', 'dateFields', 'numbers', 'timeZoneNames'];
 
 gulp.task('build', function() {
   gulp.src(['src/*.js', 'src/**/*.js'])
     .pipe(babel())
+    .pipe(gulp.dest('lib'));
+
+  var cldrFilter = filter(function(file) {
+    return locales.indexOf(path.dirname(file.path).split(path.sep).pop()) > -1 && files.indexOf(path.basename(file.path, '.json')) > -1;
+  });
+
+  gulp.src(['./node_modules/cldr-data/main/**/*.json'])
+    .pipe(cldrFilter)
+    .pipe(merge('cldr.json', function(obj) {
+      if (obj.main['en-US-POSIX']) {
+        obj.main['en-US'] = obj.main['en-US-POSIX'];
+        delete obj.main['en-US-POSIX'];
+        delete obj.main['en-US'].identity.variant;
+      }
+
+      return obj;
+    }))
     .pipe(gulp.dest('lib'));
 });
 
