@@ -24,6 +24,12 @@ export default class FormattedMessage extends Component {
 
     let values = this.props.values || {};
 
+    for (let i in this.props) {
+      if (this.props.hasOwnProperty(i) && i !== 'values') {
+        values[i] = this.props[i];
+      }
+    }
+
     /**
      * Code adapted from https://github.com/yahoo/react-intl
      */

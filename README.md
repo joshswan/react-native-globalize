@@ -91,7 +91,6 @@ class MyApp extends Component {
 ```
 
 Then you can use the included components anywhere you like.
-
 ```javascript
 var RNGlobalize = require('react-native-globalize');
 var {
@@ -106,6 +105,36 @@ class MyComponent extends Component {
 			</View>
 		);
 	}
+}
+```
+
+FormattedMessage can even take components as replacement values. You can pass values as individual named props or pass a `values` object (or both - named props will override `values`).
+```javascript
+var RNGlobalize = require('react-native-globalize');
+var {
+  Globalize,
+  FormattedDate,
+  FormattedMessage,
+} = RNGlobalize;
+
+var messages = {
+  en: {
+    today: 'The date today is: {date}',
+  },
+};
+
+Globalize.loadMessages(messages);
+
+class MyComponent extends Component {
+  render() {
+    return (
+      <View style={styles.awesomeBackground}>
+        <FormattedMessage
+          message="today"
+          date={<FormattedDate value={new Date()} skeleton="yMMMdhm" />} />
+      </View>
+    );
+  }
 }
 ```
 

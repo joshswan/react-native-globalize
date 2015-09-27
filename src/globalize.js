@@ -88,7 +88,7 @@ export default class {
     this._pluralGenerators = {};
     this._relativeTimeFormatters = {};
   }
-  
+
   /**
    * Load additional CLDR data into Globalize
    *
