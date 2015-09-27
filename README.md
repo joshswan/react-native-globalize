@@ -129,7 +129,7 @@ See https://github.com/jquery/globalize for all available formatting options.
 [build-url]: https://travis-ci.org/joshswan/react-native-globalize
 [build-image]: https://travis-ci.org/joshswan/react-native-globalize.svg?branch=master
 [depstat-url]: https://david-dm.org/joshswan/react-native-globalize
-[depstat-image]: https://david-dm.org/joshswan/react-native-globalize
+[depstat-image]: https://david-dm.org/joshswan/react-native-globalize.svg
 [devdepstat-url]: https://david-dm.org/joshswan/react-native-globalize#info=devDependencies
 [devdepstat-image]: https://david-dm.org/joshswan/react-native-globalize/dev-status.svg
 [npm-url]: https://www.npmjs.com/package/react-native-globalize
