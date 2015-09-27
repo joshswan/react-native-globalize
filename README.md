@@ -1,4 +1,5 @@
 #React Native Globalize
+[![NPM Version][npm-image]][npm-url] [![Build Status][build-image]][build-url] [![Dependency Status][depstat-image]][depstat-url] [![Dev Dependency Status][devdepstat-image]][devdepstat-url]
 
 Simple globalization library for React Native. Provides access to all formatting options as well as easy-to-use React Native components.
 
@@ -124,3 +125,12 @@ class MyComponent extends Component {
 ```
 
 See https://github.com/jquery/globalize for all available formatting options.
+
+[build-url]: https://travis-ci.org/joshswan/react-native-globalize
+[build-image]: https://travis-ci.org/joshswan/react-native-globalize.svg?branch=master
+[depstat-url]: https://david-dm.org/joshswan/react-native-globalize
+[depstat-image]: https://david-dm.org/joshswan/react-native-globalize
+[devdepstat-url]: https://david-dm.org/joshswan/react-native-globalize#info=devDependencies
+[devdepstat-image]: https://david-dm.org/joshswan/react-native-globalize/dev-status.svg
+[npm-url]: https://www.npmjs.com/package/react-native-globalize
+[npm-image]: https://badge.fury.io/js/react-native-globalize.svg
