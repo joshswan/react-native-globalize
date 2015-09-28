@@ -108,7 +108,7 @@ class MyComponent extends Component {
 }
 ```
 
-FormattedMessage can even take components as replacement values. You can pass values as individual named props or pass a `values` object (or both - named props will override `values`).
+FormattedMessage can even take components as replacement values. You can pass values as individual named props or pass a `values` object prop (or both - named props will override `values`).
 ```javascript
 var RNGlobalize = require('react-native-globalize');
 var {
