@@ -30,6 +30,16 @@ export default class FormattedWrapper extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.locale !== nextProps.locale || this.props.currency !== nextProps.currency) {
+      let instance = new Globalize(nextProps.locale, nextProps.currency);
+
+      this.setState({
+        globalize: instance,
+      });
+    }
+  }
+
   getChildContext() {
     return {
       globalize: this.state.globalize,
