@@ -78,6 +78,11 @@ gulp.task('build', function() {
     .pipe(babel())
     .pipe(gulp.dest('lib'));
 
+  gulp.src(['src/*.json'])
+    .pipe(gulp.dest('lib'));
+});
+
+gulp.task('cldr', function() {
   var cldrFilter = filter(function(file) {
     return locales.indexOf(path.dirname(file.path).split(path.sep).pop()) > -1 && files.indexOf(path.basename(file.path, '.json')) > -1;
   });
@@ -93,7 +98,7 @@ gulp.task('build', function() {
 
       return obj;
     }))
-    .pipe(gulp.dest('lib'));
+    .pipe(gulp.dest('src'));
 });
 
 gulp.task('default', ['build']);
