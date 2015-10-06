@@ -26,7 +26,7 @@ export default class FormattedPlural extends Component {
     let formattedPlural = this.props[pluralCategory] || this.props.other;
 
     return (
-      <Text>{formattedPlural}</Text>
+      <Text style={this.props.style}>{formattedPlural}</Text>
     );
   }
 }
@@ -40,6 +40,7 @@ FormattedPlural.propTypes = {
   two: PropTypes.node,
   few: PropTypes.node,
   many: PropTypes.node,
+  style: Text.propTypes.style,
 };
 
 FormattedPlural.contextTypes = {

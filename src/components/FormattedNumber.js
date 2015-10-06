@@ -25,7 +25,7 @@ export default class FormattedNumber extends Component {
     let formattedNumber = formatNumber(this.props.value);
 
     return (
-      <Text>{formattedNumber}</Text>
+      <Text style={this.props.style}>{formattedNumber}</Text>
     );
   }
 }
@@ -33,6 +33,7 @@ export default class FormattedNumber extends Component {
 FormattedNumber.propTypes = {
   ...numberFormatPropTypes,
   value: PropTypes.any.isRequired,
+  style: Text.propTypes.style,
 };
 
 FormattedNumber.contextTypes = {

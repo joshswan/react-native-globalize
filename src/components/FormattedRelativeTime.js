@@ -33,7 +33,7 @@ export default class FormattedRelativeTime extends Component {
     let formattedRelativeTime = formatRelativeTime(value);
 
     return (
-      <Text>{formattedRelativeTime}</Text>
+      <Text style={this.props.style}>{formattedRelativeTime}</Text>
     );
   }
 }
@@ -42,6 +42,7 @@ FormattedRelativeTime.propTypes = {
   ...relativeTimeFormatPropTypes,
   unit: PropTypes.oneOf(['second', 'minute', 'hour', 'day', 'week', 'month', 'year']).isRequired,
   value: PropTypes.any.isRequired,
+  style: Text.propTypes.style,
 };
 
 FormattedRelativeTime.contextTypes = {

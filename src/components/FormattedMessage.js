@@ -75,7 +75,7 @@ export default class FormattedMessage extends Component {
         .filter((part) => !!part)
         .map((part) => elements[part] || part);
 
-    return createElement(Text, null, ...nodes);
+    return createElement(Text, {style: this.props.style}, ...nodes);
   }
 }
 
@@ -83,6 +83,7 @@ FormattedMessage.propTypes = {
   ...messageFormatPropTypes,
   message: PropTypes.string.isRequired,
   values: PropTypes.object,
+  style: Text.propTypes.style,
 };
 
 FormattedMessage.contextTypes = {

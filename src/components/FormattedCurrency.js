@@ -25,7 +25,7 @@ export default class FormattedCurrency extends Component {
     let formattedCurrency = formatCurrency(this.props.value);
 
     return (
-      <Text>{formattedCurrency}</Text>
+      <Text style={this.props.style}>{formattedCurrency}</Text>
     );
   }
 }
@@ -34,6 +34,7 @@ FormattedCurrency.propTypes = {
   ...currencyFormatPropTypes,
   currency: PropTypes.string,
   value: PropTypes.any.isRequired,
+  style: Text.propTypes.style,
 };
 
 FormattedCurrency.contextTypes = {
