@@ -20,6 +20,10 @@ export default class FormattedRelativeTime extends Component {
     super(props, context);
   }
 
+  setNativeProps(nativeProps) {
+    this._root.setNativeProps(nativeProps);
+  }
+
   render() {
     const formatRelativeTime = this.context.globalize.getRelativeTimeFormatter(this.props.unit, this.props);
 
@@ -33,7 +37,11 @@ export default class FormattedRelativeTime extends Component {
     let formattedRelativeTime = formatRelativeTime(value);
 
     return (
-      <Text style={this.props.style}>{formattedRelativeTime}</Text>
+      <Text
+        ref={(component) => { this._root = component; }}
+        style={this.props.style}>
+          {formattedRelativeTime}
+      </Text>
     );
   }
 }

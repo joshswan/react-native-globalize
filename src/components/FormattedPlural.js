@@ -19,6 +19,10 @@ export default class FormattedPlural extends Component {
     super(props, context);
   }
 
+  setNativeProps(nativeProps) {
+    this._root.setNativeProps(nativeProps);
+  }
+
   render() {
     const formatPlural = this.context.globalize.getPluralGenerator(this.props);
 
@@ -26,7 +30,11 @@ export default class FormattedPlural extends Component {
     let formattedPlural = this.props[pluralCategory] || this.props.other;
 
     return (
-      <Text style={this.props.style}>{formattedPlural}</Text>
+      <Text
+        ref={(component) => { this._root = component; }}
+        style={this.props.style}>
+          {formattedPlural}
+      </Text>
     );
   }
 }

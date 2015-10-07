@@ -19,13 +19,21 @@ export default class FormattedNumber extends Component {
     super(props, context);
   }
 
+  setNativeProps(nativeProps) {
+    this._root.setNativeProps(nativeProps);
+  }
+
   render() {
     const formatNumber = this.context.globalize.getNumberFormatter(this.props);
 
     let formattedNumber = formatNumber(this.props.value);
 
     return (
-      <Text style={this.props.style}>{formattedNumber}</Text>
+      <Text
+        ref={(component) => { this._root = component; }}
+        style={this.props.style}>
+          {formattedNumber}
+      </Text>
     );
   }
 }

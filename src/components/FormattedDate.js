@@ -19,13 +19,21 @@ export default class FormattedDate extends Component {
     super(props, context);
   }
 
+  setNativeProps(nativeProps) {
+    this._root.setNativeProps(nativeProps);
+  }
+
   render() {
     const formatDate = this.context.globalize.getDateFormatter(this.props);
 
     let formattedDate = formatDate(this.props.value);
 
     return (
-      <Text style={this.props.style}>{formattedDate}</Text>
+      <Text
+        ref={(component) => { this._root = component; }}
+        style={this.props.style}>
+          {formattedDate}
+      </Text>
     );
   }
 }

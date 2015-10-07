@@ -19,6 +19,10 @@ export default class FormattedMessage extends Component {
     super(props, context);
   }
 
+  setNativeProps(nativeProps) {
+    this._root.setNativeProps(nativeProps);
+  }
+
   render() {
     const formatMessage = this.context.globalize.getMessageFormatter(this.props.message);
 
@@ -75,7 +79,7 @@ export default class FormattedMessage extends Component {
         .filter((part) => !!part)
         .map((part) => elements[part] || part);
 
-    return createElement(Text, {style: this.props.style}, ...nodes);
+    return createElement(Text, {ref: (component) => { this._root = component; }, style: this.props.style}, ...nodes);
   }
 }
 

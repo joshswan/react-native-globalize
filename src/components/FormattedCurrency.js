@@ -19,13 +19,21 @@ export default class FormattedCurrency extends Component {
     super(props, context);
   }
 
+  setNativeProps(nativeProps) {
+    this._root.setNativeProps(nativeProps);
+  }
+
   render() {
     const formatCurrency = this.context.globalize.getCurrencyFormatter(this.props.currency, this.props);
 
     let formattedCurrency = formatCurrency(this.props.value);
 
     return (
-      <Text style={this.props.style}>{formattedCurrency}</Text>
+      <Text
+        ref={(component) => { this._root = component; }}
+        style={this.props.style}>
+          {formattedCurrency}
+      </Text>
     );
   }
 }
