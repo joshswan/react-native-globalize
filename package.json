@@ -31,12 +31,12 @@
   },
   "dependencies": {
     "cldrjs": "^0.4.0",
+    "cldr-data": ">=27",
     "globalize": "^1.1.0-rc.2",
     "moment": "^2.10.6"
   },
   "devDependencies": {
     "babel-eslint": "^4.0.5",
-    "cldr-data": ">=27",
     "eslint": "^1.4.3",
     "eslint-plugin-react": "^3.4.2",
     "gulp": "^3.9.0",
@@ -46,7 +46,7 @@
     "rimraf": "^2.4.3"
   },
   "peerDependencies": {
-    "react-native": "^0.11.0"
+    "react-native": "^0.14.1"
   },
   "license": "MIT"
 }
