@@ -25,14 +25,36 @@ export default class FormattedRelativeTime extends Component {
   }
 
   render() {
-    const formatRelativeTime = this.context.globalize.getRelativeTimeFormatter(this.props.unit, this.props);
-
     let value = this.props.value;
+    let unit = this.props.unit;
 
     if (value instanceof Date) {
       let momentValue = moment(value);
-      value = momentValue.diff(moment(), this.props.unit);
+      let now = moment();
+
+      if (unit === 'best') {
+        let units = ['year', 'month', 'week', 'day', 'hour', 'minute', 'second'];
+
+        for (let i = 0, l = units.length; i < l; i++) {
+          let diff = momentValue.diff(now, units[i]);
+
+          if (diff >= 1 || diff <= -1 || units[i] === 'second') {
+            value = diff;
+            unit = units[i];
+            break;
+          }
+        }
+      } else {
+        value = momentValue.diff(now, unit);
+      }
     }
+
+    // Globalize really doesn't like incorrect values
+    if (unit === 'best') {
+      unit = 'second';
+    }
+
+    const formatRelativeTime = this.context.globalize.getRelativeTimeFormatter(unit, {form: this.props.form});
 
     let formattedRelativeTime = formatRelativeTime(value);
 
@@ -48,8 +70,9 @@ export default class FormattedRelativeTime extends Component {
 
 FormattedRelativeTime.propTypes = {
   ...relativeTimeFormatPropTypes,
-  unit: PropTypes.oneOf(['second', 'minute', 'hour', 'day', 'week', 'month', 'year']).isRequired,
+  unit: PropTypes.oneOf(['second', 'minute', 'hour', 'day', 'week', 'month', 'year', 'best']).isRequired,
   value: PropTypes.any.isRequired,
+  form: PropTypes.oneOf(['short', 'narrow', 0, false]),
   style: Text.propTypes.style,
 };
 
