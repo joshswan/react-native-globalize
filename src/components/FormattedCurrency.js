@@ -24,14 +24,21 @@ export default class FormattedCurrency extends Component {
   }
 
   render() {
-    const formatCurrency = this.context.globalize.getCurrencyFormatter(this.props.currency, this.props);
+    let {
+      currency,
+      style,
+      value,
+      ...other,
+    } = this.props;
 
-    let formattedCurrency = formatCurrency(this.props.value);
+    const formatCurrency = this.context.globalize.getCurrencyFormatter(currency, other);
+
+    let formattedCurrency = formatCurrency(value);
 
     return (
       <Text
         ref={(component) => { this._root = component; }}
-        style={this.props.style}>
+        style={style}>
           {formattedCurrency}
       </Text>
     );
