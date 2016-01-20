@@ -46,7 +46,7 @@
     "rimraf": "^2.4.3"
   },
   "peerDependencies": {
-    "react-native": "^0.17.0"
+    "react-native": ">=0.18.0"
   },
   "license": "MIT"
 }
