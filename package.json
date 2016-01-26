@@ -30,8 +30,8 @@
     "prepublish": "npm run clean && npm run build"
   },
   "dependencies": {
-    "cldrjs": "^0.4.0",
-    "globalize": "^1.1.0-rc.7",
+    "cldrjs": "^0.4.4",
+    "globalize": "joshswan/globalize",
     "moment": "^2.10.6"
   },
   "devDependencies": {
@@ -40,9 +40,9 @@
     "eslint": "^1.4.3",
     "eslint-plugin-react": "^3.4.2",
     "gulp": "^3.9.0",
-    "gulp-babel": "^5.2.1",
+    "gulp-babel": "^6.1.1",
     "gulp-filter": "^3.0.1",
-    "gulp-merge-json": "^0.1.0",
+    "gulp-merge-json": "^0.2.0",
     "rimraf": "^2.4.3"
   },
   "peerDependencies": {
