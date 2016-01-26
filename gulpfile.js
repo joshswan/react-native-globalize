@@ -72,6 +72,7 @@ var locales = [
 ];
 
 var files = ['ca-gregorian', 'currencies', 'dateFields', 'numbers', 'timeZoneNames'];
+var supplemental = ['currencyData', 'likelySubtags', 'numberingSystems', 'ordinals', 'plurals', 'timeData', 'weekData'];
 
 gulp.task('build', function() {
   gulp.src(['src/*.js', 'src/**/*.js'])
@@ -84,13 +85,13 @@ gulp.task('build', function() {
 
 gulp.task('cldr', function() {
   var cldrFilter = filter(function(file) {
-    return locales.indexOf(path.dirname(file.path).split(path.sep).pop()) > -1 && files.indexOf(path.basename(file.path, '.json')) > -1;
+    return (locales.indexOf(path.dirname(file.path).split(path.sep).pop()) > -1 && files.indexOf(path.basename(file.path, '.json')) > -1) || (path.dirname(file.path).split(path.sep).pop() === 'supplemental' && supplemental.indexOf(path.basename(file.path, '.json')) > -1);
   });
 
-  gulp.src(['./node_modules/cldr-data/main/**/*.json'])
+  gulp.src(['./node_modules/cldr-data/supplemental/*.json', './node_modules/cldr-data/main/**/*.json'])
     .pipe(cldrFilter)
     .pipe(merge('cldr.json', function(obj) {
-      if (obj.main['en-US-POSIX']) {
+      if (obj.main && obj.main['en-US-POSIX']) {
         obj.main['en-US'] = obj.main['en-US-POSIX'];
         delete obj.main['en-US-POSIX'];
         delete obj.main['en-US'].identity.variant;

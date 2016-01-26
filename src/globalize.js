@@ -10,27 +10,14 @@
 const Cldr = require('cldrjs');
 const Globalize = require('globalize');
 
-// Load all main files for default languages
-function mainFiles() {
+// Load compiled CLDR data
+function load() {
   // Performance compromise: React Native bundles all JS/JSON into one bundle,
   // which grows rather large if all CLDR data is included. A short(er) list
   // of languages is loaded by default and additional CLDR data can be passed
   // via the `load` method below.
   return [
     require('./cldr.json'),
-  ];
-}
-
-// Load all required supplemental files
-function supplementalFiles() {
-  return [
-    require('cldr-data/supplemental/currencyData.json'),
-    require('cldr-data/supplemental/likelySubtags.json'),
-    require('cldr-data/supplemental/numberingSystems.json'),
-    require('cldr-data/supplemental/ordinals.json'),
-    require('cldr-data/supplemental/plurals.json'),
-    require('cldr-data/supplemental/timeData.json'),
-    require('cldr-data/supplemental/weekData.json'),
   ];
 }
 
@@ -50,11 +37,8 @@ Cldr.setAvailableBundlesHack = function(availableLocales) {
 Cldr.load(require('cldr-data/supplemental/likelySubtags.json'));
 Cldr.setAvailableBundlesHack(require('cldr-data/availableLocales.json').availableLocales);
 
-// Load the supplemental files
-Globalize.load(supplementalFiles());
-
-// Load the main files
-Globalize.load(mainFiles());
+// Load the Cldr data
+Globalize.load(load());
 
 export default class {
   /**
