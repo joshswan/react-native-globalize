@@ -95,6 +95,11 @@ gulp.task('cldr', function() {
         obj.main['en-US'] = obj.main['en-US-POSIX'];
         delete obj.main['en-US-POSIX'];
         delete obj.main['en-US'].identity.variant;
+
+        // Fix for en-US currency formatting
+        if (obj.main['en-US'].numbers && obj.main['en-US'].numbers['currencyFormats-numberSystem-latn']) {
+          obj.main['en-US'].numbers['currencyFormats-numberSystem-latn'].standard = '¤#,##0.00';
+        }
       }
 
       return obj;
