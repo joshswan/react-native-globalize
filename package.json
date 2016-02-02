@@ -32,7 +32,7 @@
   "dependencies": {
     "cldrjs": "^0.4.4",
     "globalize": "joshswan/globalize",
-    "moment": "^2.10.6"
+    "moment": "^2.11.1"
   },
   "devDependencies": {
     "babel-eslint": "^4.0.5",
