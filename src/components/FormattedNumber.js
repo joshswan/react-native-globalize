@@ -26,7 +26,7 @@ export default class FormattedNumber extends Component {
   render() {
     const formatNumber = this.context.globalize.getNumberFormatter(this.props);
 
-    let formattedNumber = formatNumber(this.props.value);
+    let formattedNumber = (typeof this.props.value === 'number') ? formatNumber(this.props.value) : '';
 
     return (
       <Text

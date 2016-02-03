@@ -33,7 +33,7 @@ export default class FormattedCurrency extends Component {
 
     const formatCurrency = this.context.globalize.getCurrencyFormatter(currency, other);
 
-    let formattedCurrency = formatCurrency(value);
+    let formattedCurrency = (typeof value === 'number') ? formatCurrency(value) : '';
 
     return (
       <Text

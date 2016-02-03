@@ -56,7 +56,7 @@ export default class FormattedRelativeTime extends Component {
 
     const formatRelativeTime = this.context.globalize.getRelativeTimeFormatter(unit, {form: this.props.form});
 
-    let formattedRelativeTime = formatRelativeTime(value);
+    let formattedRelativeTime = (this.props.value instanceof Date) ? formatRelativeTime(value) : '';
 
     return (
       <Text

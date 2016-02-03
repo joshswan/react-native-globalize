@@ -26,7 +26,7 @@ export default class FormattedDate extends Component {
   render() {
     const formatDate = this.context.globalize.getDateFormatter(this.props);
 
-    let formattedDate = formatDate(this.props.value);
+    let formattedDate = (this.props.value instanceof Date) ? formatDate(this.props.value) : '';
 
     return (
       <Text

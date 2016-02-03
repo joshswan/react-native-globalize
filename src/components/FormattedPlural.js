@@ -26,7 +26,7 @@ export default class FormattedPlural extends Component {
   render() {
     const formatPlural = this.context.globalize.getPluralGenerator(this.props);
 
-    let pluralCategory = formatPlural(this.props.value);
+    let pluralCategory = (typeof this.props.value === 'number') ? formatPlural(this.props.value) : '';
     let formattedPlural = this.props[pluralCategory] || this.props.other;
 
     return (
