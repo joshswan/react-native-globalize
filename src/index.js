@@ -7,6 +7,8 @@
  */
 'use strict';
 
+import * as PropTypes from './types';
+
 export {default as Globalize} from './globalize';
 export {default as FormattedCurrency} from './components/FormattedCurrency';
 export {default as FormattedDate} from './components/FormattedDate';
@@ -16,3 +18,4 @@ export {default as FormattedPlural} from './components/FormattedPlural';
 export {default as FormattedRelativeTime} from './components/FormattedRelativeTime';
 export {default as FormattedTime} from './components/FormattedTime';
 export {default as FormattedWrapper} from './components/FormattedWrapper';
+export {PropTypes};
