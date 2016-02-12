@@ -74,10 +74,10 @@ var locales = [
 Use the included wrapper at the root of your application to propagate the required context to all components. Alternatively, include `getChildContext()` in your own component (see FormattedWrapper for an example).
 
 ```javascript
-var RNGlobalize = require('react-native-globalize');
-var {
+const Globalize = require('react-native-globalize');
+const {
 	FormattedWrapper,	
-} = RNGlobalize;
+} = Globalize;
 
 class MyApp extends Component {
 	render() {
@@ -92,10 +92,10 @@ class MyApp extends Component {
 
 Then you can use the included components anywhere you like.
 ```javascript
-var RNGlobalize = require('react-native-globalize');
-var {
+const Globalize = require('react-native-globalize');
+const {
 	FormattedDate,
-} = RNGlobalize;
+} = Globalize;
 
 class MyComponent extends Component {
 	render() {
@@ -110,14 +110,14 @@ class MyComponent extends Component {
 
 FormattedMessage can even take components as replacement values. You can pass values as individual named props or pass a `values` object prop (or both - named props will override `values`).
 ```javascript
-var RNGlobalize = require('react-native-globalize');
-var {
+const Globalize = require('react-native-globalize');
+const {
   Globalize,
   FormattedDate,
   FormattedMessage,
-} = RNGlobalize;
+} = Globalize;
 
-var messages = {
+const messages = {
   en: {
     today: 'The date today is: {date}',
   },
@@ -138,9 +138,11 @@ class MyComponent extends Component {
 }
 ```
 
-You can also access the formatting functions directly from the context.
+You can also access the formatting functions directly from the context (be sure to add globalize to your component's `contextTypes`).
 
 ```javascript
+const Globalize = require('react-native-globalize');
+
 class MyComponent extends Component {
 	doStuff() {
 		// Do stuff
@@ -151,6 +153,10 @@ class MyComponent extends Component {
 		// Do other stuff
 	}
 }
+
+MyComponent.contextTypes = {
+  globalize: Globalize.PropTypes.globalizeShape,
+};
 ```
 
 See https://github.com/jquery/globalize for all available formatting options.
