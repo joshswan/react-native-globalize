@@ -85,7 +85,7 @@ export default class FormattedMessage extends Component {
 
 FormattedMessage.propTypes = {
   ...messageFormatPropTypes,
-  message: PropTypes.string.isRequired,
+  message: PropTypes.oneOfType([PropTypes.array, PropTypes.string]).isRequired,
   values: PropTypes.object,
   style: Text.propTypes.style,
 };
