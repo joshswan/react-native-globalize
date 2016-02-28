@@ -30,6 +30,12 @@ export default class FormattedWrapper extends Component {
     };
   }
 
+  getChildContext() {
+    return {
+      globalize: this.state.globalize,
+    };
+  }
+
   componentWillReceiveProps(nextProps) {
     if (this.props.locale !== nextProps.locale || this.props.currency !== nextProps.currency) {
       let instance = new Globalize(nextProps.locale, nextProps.currency);
@@ -40,12 +46,6 @@ export default class FormattedWrapper extends Component {
     }
   }
 
-  getChildContext() {
-    return {
-      globalize: this.state.globalize,
-    };
-  }
-
   render() {
     return this.props.children;
   }
@@ -54,14 +54,17 @@ export default class FormattedWrapper extends Component {
 FormattedWrapper.propTypes = {
   ...globalizePropTypes,
   cldr: PropTypes.array,
+  children: PropTypes.node,
+  currency: PropTypes.string,
+  locale: PropTypes.string,
   messages: PropTypes.object,
+};
+
+FormattedWrapper.childContextTypes = {
+  globalize: globalizeShape,
 };
 
 FormattedWrapper.defaultProps = {
   locale: 'en',
   currency: 'USD',
-};
-
-FormattedWrapper.childContextTypes = {
-  globalize: globalizeShape,
 };
