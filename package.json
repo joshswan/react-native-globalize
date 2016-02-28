@@ -1,6 +1,6 @@
 {
   "name": "react-native-globalize",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Globalization helper for React Native",
   "author": "Josh Swan <josh@sportifik.com>",
   "main": "lib/index.js",
