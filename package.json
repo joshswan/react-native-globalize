@@ -45,7 +45,7 @@
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.1",
     "gulp-filter": "^3.0.1",
-    "gulp-merge-json": "^0.3.0",
+    "gulp-merge-json": "^0.4.0",
     "rimraf": "^2.4.3"
   },
   "peerDependencies": {
