@@ -7,7 +7,7 @@
  */
 'use strict';
 
-import {PropTypes} from 'react-native';
+import {PropTypes} from 'react';
 
 export const globalizePropTypes = {
   locale: PropTypes.string,

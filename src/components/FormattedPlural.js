@@ -7,12 +7,9 @@
  */
 'use strict';
 
-import React, {Component, PropTypes} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {Text} from 'react-native';
 import {globalizeShape, pluralFormatPropTypes} from '../types';
-
-const {
-  Text,
-} = React;
 
 export default class FormattedPlural extends Component {
   constructor(props, context) {

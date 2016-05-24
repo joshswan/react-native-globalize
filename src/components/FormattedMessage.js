@@ -7,12 +7,9 @@
  */
 'use strict';
 
-import React, {Component, PropTypes, createElement, isValidElement} from 'react-native';
+import {Component, PropTypes, createElement, isValidElement} from 'react';
+import {Text} from 'react-native';
 import {globalizeShape, messageFormatPropTypes} from '../types';
-
-const {
-  Text,
-} = React;
 
 export default class FormattedMessage extends Component {
   constructor(props, context) {

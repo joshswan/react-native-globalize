@@ -7,13 +7,10 @@
  */
 'use strict';
 
-import React, {Component, PropTypes} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {Text} from 'react-native';
 import {globalizeShape, relativeTimeFormatPropTypes} from '../types';
 import moment from 'moment';
-
-const {
-  Text,
-} = React;
 
 export default class FormattedRelativeTime extends Component {
   constructor(props, context) {

@@ -7,7 +7,7 @@
  */
 'use strict';
 
-import {Component, PropTypes} from 'react-native';
+import {Component, PropTypes} from 'react';
 import {globalizeShape, globalizePropTypes} from '../types';
 import Globalize from '../globalize';
 

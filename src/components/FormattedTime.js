@@ -7,12 +7,9 @@
  */
 'use strict';
 
-import React, {Component, PropTypes} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {Text} from 'react-native';
 import {globalizeShape, dateFormatPropTypes} from '../types';
-
-const {
-  Text,
-} = React;
 
 export default class FormattedTime extends Component {
   constructor(props, context) {

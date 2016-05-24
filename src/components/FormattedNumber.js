@@ -7,12 +7,9 @@
  */
 'use strict';
 
-import React, {Component, PropTypes} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {Text} from 'react-native';
 import {globalizeShape, numberFormatPropTypes} from '../types';
-
-const {
-  Text,
-} = React;
 
 export default class FormattedNumber extends Component {
   constructor(props, context) {
