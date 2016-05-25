@@ -7,14 +7,15 @@
  */
 'use strict';
 
-var gulp = require('gulp');
-var babel = require('gulp-babel');
-var filter = require('gulp-filter');
-var merge = require('gulp-merge-json');
-var path = require('path');
-var Cldr = require('cldrjs');
+const gulp = require('gulp');
+const babel = require('gulp-babel');
+const filter = require('gulp-filter');
+const merge = require('gulp-merge-json');
+const mergeStream = require('merge-stream');
+const path = require('path');
+const Cldr = require('cldrjs');
 
-var locales = [
+const locales = [
   'am',           // Amharic
   'ar',           // Arabic
   'bg',           // Bulgarian
@@ -72,24 +73,25 @@ var locales = [
   'zh-Hant',      // Chinese (Traditional)
 ];
 
-var files = ['ca-gregorian', 'currencies', 'dateFields', 'numbers', 'timeZoneNames'];
-var supplemental = ['currencyData', 'likelySubtags', 'numberingSystems', 'ordinals', 'plurals', 'timeData', 'weekData'];
-var cldrs = locales.map((x) => new Cldr(x));
-var languages = cldrs.map((x) => x.attributes.language);
- 
+const files = ['ca-gregorian', 'currencies', 'dateFields', 'numbers', 'timeZoneNames'];
+const supplemental = ['currencyData', 'likelySubtags', 'numberingSystems', 'ordinals', 'plurals', 'timeData', 'weekData'];
+const cldrs = locales.map((x) => new Cldr(x));
+const languages = cldrs.map((x) => x.attributes.language);
 
 gulp.task('build', function() {
-  gulp.src(['src/*.js', 'src/**/*.js'])
+  const js = gulp.src(['src/*.js', 'src/**/*.js'])
     .pipe(babel())
     .pipe(gulp.dest('lib'));
 
-  gulp.src(['src/*.json'])
+  const json = gulp.src(['src/*.json'])
     .pipe(gulp.dest('lib'));
+
+  return mergeStream(js, json);
 });
 
 function removeUnusedLanguages(dict) {
   if (dict) {
-    Object.keys(dict).forEach(function (key) {
+    Object.keys(dict).forEach(function(key) {
       if (languages.indexOf(key) === -1) {
         delete dict[key];
       }
@@ -98,7 +100,7 @@ function removeUnusedLanguages(dict) {
 }
 
 gulp.task('cldr', function() {
-  var cldrFilter = filter(function(file) {
+  const cldrFilter = filter(function(file) {
     return (locales.indexOf(path.dirname(file.path).split(path.sep).pop()) > -1 && files.indexOf(path.basename(file.path, '.json')) > -1) || (path.dirname(file.path).split(path.sep).pop() === 'supplemental' && supplemental.indexOf(path.basename(file.path, '.json')) > -1);
   });
 
@@ -119,8 +121,8 @@ gulp.task('cldr', function() {
       // Cut out unused dates.timeZoneNames.zone and dates.timeZoneNames.metazone data
       if (obj.main) {
         // For language files, grab the first language, and filter stuff out
-        var key = Object.keys(obj.main)[0];
-        var data = obj.main[key];
+        let key = Object.keys(obj.main)[0];
+        let data = obj.main[key];
         if (data && data.dates && data.dates.timeZoneNames) {
           data.dates.timeZoneNames.zone = {};
           data.dates.timeZoneNames.metazone = {};
@@ -129,9 +131,9 @@ gulp.task('cldr', function() {
 
       // Cut out unused languages from our supplemental files?
       if (obj.supplemental) {
-        var languageDictKeys = ['plurals-type-ordinal', 'plurals-type-cardinal'];
-        for (var key in languageDictKeys) {
-          removeUnusedLanguages(obj.supplemental[languageDictKeys[key]]);
+        const languageDictKeys = ['plurals-type-ordinal', 'plurals-type-cardinal'];
+        for (let i = 0, l = languageDictKeys.length; i < l; i++) {
+          removeUnusedLanguages(obj.supplemental[languageDictKeys[i]]);
         }
       }
 
