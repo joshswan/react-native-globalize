@@ -168,7 +168,7 @@ Format a message based on the ICU message format pattern and variables.
 | `values` | `Object` | `{}` | Variables for replacement/formatting. |
 | `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
 
-* Values/variables can also be passed as props. Any additional props other than the 3 above will be merged with the `values` object (props will overwrite values in the object if both are given and key collide).
+* Values/variables can also be passed as props. Any additional props other than the 3 above will be merged with the `values` object (props will overwrite values in the object if both are given and keys collide).
 * Values ***can also be components***. See the last example below.
 * See [ICU message formatting guidelines](http://userguide.icu-project.org/formatparse/messages) for more info.
 
@@ -232,7 +232,7 @@ class MyComponent extends Component {
     );
   }
 }
-// Jennifer invites Micael to her party
+// Jennifer invites Michael to her party
 
 // Example 4
 import { FormattedMessage } from 'react-native-globalize';
@@ -329,7 +329,7 @@ class MyComponent extends Component {
   render() {
     return (
       <FormattedPlural
-        count={0}
+        value={0}
         zero={<Text>:(</Text>}
         other={<Text>:)</Text>} />
     );
@@ -366,7 +366,7 @@ class MyComponent extends Component {
 
 ### FormattedTime
 
-See `FormattedDate`. All props and functionality are identical.
+See [`FormattedDate`](#formatteddate). All props and functionality are identical.
 
 ### Context
 You can access formatting functions via the context should you need programmatic access to the results or if a component is not appropriate. For this to work, you must still have `FormattedWrapper` at the root of you application, or you must be providing an alternative `getChildContext` in a parent component.
@@ -387,6 +387,24 @@ class MyComponent extends Component {
 MyComponent.contextTypes = {
   globalize: PropTypes.globalizeShape,
 };
+```
+
+## License
+
+```
+ Copyright (c) 2015-2016 Josh Swan
+
+ Licensed under the The MIT License (MIT) (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+    https://raw.githubusercontent.com/joshswan/react-native-globalize/master/LICENSE
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
 ```
 
 [build-url]: https://travis-ci.org/joshswan/react-native-globalize
