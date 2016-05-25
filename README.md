@@ -71,95 +71,323 @@ var locales = [
 
 ## Usage
 
-Use the included wrapper at the root of your application to propagate the required context to all components. Alternatively, include `getChildContext()` in your own component (see FormattedWrapper for an example).
+Use `FormattedWrapper` at the root of your application to propagate the required context to all components. Alternatively, include `getChildContext()` in your own component (see [FormattedWrapper](https://github.com/joshswan/react-native-globalize/blob/master/src/components/FormattedWrapper.js) for an example). Then use any of the included components or access the formatting functions directly from the React Context (see below) anywhere in your application.
+
+### FormattedWrapper
+This component takes care of propagating the required context throughout your application when included at the root. You can also set your language/locale and currency via props on this component, and you can load your messages as well.
 
 ```javascript
-const Globalize = require('react-native-globalize');
-const {
-	FormattedWrapper,	
-} = Globalize;
+import { FormattedWrapper } from 'react-native-globalize';
 
-class MyApp extends Component {
-	render() {
-		return (
-			<FormattedWrapper locale="en" currency="USD">
-				<AppComponent />
-			</FormattedWrapper>
-		);
-	}
-}
-```
-
-Then you can use the included components anywhere you like.
-```javascript
-const Globalize = require('react-native-globalize');
-const {
-	FormattedDate,
-} = Globalize;
-
-class MyComponent extends Component {
-	render() {
-		return (
-			<View style={styles.awesomeBackground}>
-				<FormattedDate value={new Date()} skeleton="yMMMdhm" />
-			</View>
-		);
-	}
-}
-```
-
-FormattedMessage can even take components as replacement values. You can pass values as individual named props or pass a `values` object prop (or both - named props will override `values`).
-```javascript
-const Globalize = require('react-native-globalize');
-const {
-  Globalize,
-  FormattedDate,
-  FormattedMessage,
-} = Globalize;
-
-const messages = {
+const Messages = {
   en: {
-    today: 'The date today is: {date}',
+    hello: 'Hello',
+  },
+  es: {
+    hello: 'Hola',
   },
 };
 
-Globalize.loadMessages(messages);
-
-class MyComponent extends Component {
+class MyApp extends Component {
   render() {
     return (
-      <View style={styles.awesomeBackground}>
-        <FormattedMessage
-          message="today"
-          date={<FormattedDate value={new Date()} skeleton="yMMMdhm" />} />
-      </View>
-    );
+      <FormattedWrapper locale="en" currency="USD" messages={Messages}>
+        <App />
+      </FormattedWrapper>
+    )
   }
 }
 ```
 
-You can also access the formatting functions directly from the context (be sure to add globalize to your component's `contextTypes`).
+### FormattedCurrency
+
+#### Props
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `value` | `Number` | | ***Required.*** The number you want to format. |
+| `currency` | `String` | | Defaults to currency set on `FormattedWrapper`. |
+| `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
+| `minimumFractionDigits` | `Int` | | Non-negative integer indicating the minimum fraction digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. *This overrides the default minimum fraction digits derived from CLDR.* |
+| `maximumFractionDigits` | `Int` | | Non-negative integer indicating the maximum fraction digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. *This overrides the default maximum fraction digits derived from CLDR.* |
+| `round` | `String` | `round` | Rounding method: `ceil`, `floor`, `round`, or `truncate`.
+| `useGrouping` | `Boolean` | true | Whether a grouping separator should be used. *This overrides the language default derived from CLDR.* |
 
 ```javascript
-const Globalize = require('react-native-globalize');
+import { FormattedCurrency } from 'react-native-globalize';
 
 class MyComponent extends Component {
-	doStuff() {
-		// Do stuff
+  render() {
+    return (
+      <FormattedCurrency
+        value={9.99}
+        currency="USD"
+        style={{ color: 'red' }} />
+    );
+  }
+}
+// $9.99
+```
 
-		var dateFormatter = this.context.globalize.getDateFormatter({skeleton: "yMMMdhm"});
-		var formattedDate = dateFormatter(new Date());
+### FormattedDate
 
-		// Do other stuff
-	}
+#### Props
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `value` | `Date` | | ***Required.*** The date object you want to format. |
+| `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
+| `skeleton` | `String` | | Date format skeleton. See the [CLDR documentation](http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table). *Not all options work* |
+| `date` | `String` | | One of: `full`, `long`, `medium`, `short`. Outputs just a date (e.g. `Monday, November 1, 2010`). |
+| `time` | `String` | | One of: `full`, `long`, `medium`, `short`. Outputs just a time (e.g. `5:55:00 PM GMT-02:00`). |
+| `datetime` | `String` | | One of: `full`, `long`, `medium`, `short`. Outputs a datetime (e.g. `Monday, November 1, 2010 at 5:55:00 PM GMT-02:00`). |
+
+***Only ONE of `skeleton`, `date`, `time`, and `datetime` should be specified.***
+
+```javascript
+import { FormattedDate } from 'react-native-globalize';
+
+class MyComponent extends Component {
+  render() {
+    return (
+      <FormattedDate
+        value={new Date()}
+        style={{ color: 'red' }}
+        skeleton="yMd" />
+    );
+  }
+}
+// 12/31/2015
+```
+
+### FormattedMessage
+Format a message based on the ICU message format pattern and variables.
+
+#### Props
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `message` | `Array/String` | | ***Required.*** The key of the message you want to format. Can be passed as a string (e.g. test/hello) or an array (e.g. ['test', 'hello']). |
+| `values` | `Object` | `{}` | Variables for replacement/formatting. |
+| `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
+
+* Values/variables can also be passed as props. Any additional props other than the 3 above will be merged with the `values` object (props will overwrite values in the object if both are given and key collide).
+* Values ***can also be components***. See the last example below.
+* See [ICU message formatting guidelines](http://userguide.icu-project.org/formatparse/messages) for more info.
+
+```javascript
+// Messages added via FormattedWrapper
+const Messages = {
+  en: {
+    hello: 'Hey {first} {middle} {last},',
+    test: {
+      select: '{gender, select, female {{host} invites {guest} to her party} male {{host} invites {guest} to his party} other {{host} invites {guest} to their party}}',
+      plural: 'You have {count, plural, one {one task} other {{count} tasks}} remaining',
+      component: 'Hey {name}, you asked me to remind you about {item} at {time}!',
+    },
+  },
+};
+
+// Example 1
+import { FormattedMessage } from 'react-native-globalize';
+
+class MyComponent extends Component {
+  render() {
+    return (
+      <FormattedMessage
+        message="hello"
+        first="John"
+        middle="William"
+        last="Smith"
+        style={{ color: 'red' }} />
+    );
+  }
+}
+// Hey John William Smith,
+
+// Example 2
+import { FormattedMessage } from 'react-native-globalize';
+
+class MyComponent extends Component {
+  render() {
+    return (
+      <FormattedMessage
+        message="test/select"
+        values={{ gender: 'male', host: 'Josh', guest: 'Andrea' }}
+        style={{ color: 'red' }} />
+    );
+  }
+}
+// Josh invites Andrea to his party
+
+// Example 3
+import { FormattedMessage } from 'react-native-globalize';
+
+class MyComponent extends Component {
+  render() {
+    return (
+      <FormattedMessage
+        message={['test', 'select']}
+        gender="female"
+        host="Jennifer"
+        guest="Michael"
+        style={{ color: 'red' }} />
+    );
+  }
+}
+// Jennifer invites Micael to her party
+
+// Example 4
+import { FormattedMessage } from 'react-native-globalize';
+
+class MyComponent extends Component {
+  render() {
+    return (
+      <FormattedMessage
+        message="test/plural"
+        values={{ count: 4 }}
+        style={{ color: 'red' }} />
+    );
+  }
+}
+// You have 4 tasks remaining
+
+// Example 5
+import { FormattedMessage } from 'react-native-globalize';
+
+class MyComponent extends Component {
+  render() {
+    return (
+      <FormattedMessage
+        message="test/component"
+        name="Josh"
+        item="buying groceries"
+        time={<FormattedDate value={new Date()} time="short" />} />
+    );
+  }
+}
+// Hey Josh, you asked me to remind you about buying groceries at 4:00 PM
+```
+
+### FormattedNumber
+
+#### Props
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `value` | `Number` | | ***Required.*** The number you want to format. |
+| `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
+| `minimumFractionDigits` | `Int` | | Non-negative integer indicating the minimum fraction digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. *This overrides the default minimum fraction digits derived from CLDR.* |
+| `maximumFractionDigits` | `Int` | | Non-negative integer indicating the maximum fraction digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. *This overrides the default maximum fraction digits derived from CLDR.* |
+| `round` | `String` | `round` | Rounding method: `ceil`, `floor`, `round`, or `truncate`.
+| `useGrouping` | `Boolean` | true | Whether a grouping separator should be used. *This overrides the language default derived from CLDR.* |
+
+```javascript
+import { FormattedNumber } from 'react-native-globalize';
+
+class MyComponent extends Component {
+  render() {
+    return (
+      <FormattedNumber
+        value={1.5}
+        minimumFractionDigits={2}
+        style={{ color: 'red' }} />
+    )
+  }
+}
+// 1.50
+
+// Arabic (ar) selected
+import { FormattedNumber } from 'react-native-globalize';
+
+class MyComponent extends Component {
+  render() {
+    return (
+      <FormattedNumber
+        value={3.141592}
+        style={{ color: 'red' }} />
+    )
+  }
+}
+// ٣٫١٤٢
+```
+
+### FormattedPlural
+
+#### Props
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `value` | `Number` | | ***Required.*** The value you want to base plural selection on. |
+| `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
+| `other` | `Node` | | Node to output when plural type is `other` or when node for type is not specified. |
+| `zero` | `Node` | | Node to output when plural type is `zero`. |
+| `one` | `Node` | | Node to output when plural type is `one`. |
+| `two` | `Node` | | Node to output when plural type is `two`. |
+| `few` | `Node` | | Node to output when plural type is `few`. |
+| `many` | `Node` | | Node to output when plural type is `many`. |
+
+```javascript
+import { FormattedPlural } from 'react-native-globalize';
+
+class MyComponent extends Component {
+  render() {
+    return (
+      <FormattedPlural
+        count={0}
+        zero={<Text>:(</Text>}
+        other={<Text>:)</Text>} />
+    );
+  }
+}
+// :(
+```
+
+### FormattedRelativeTime
+
+#### Props
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `value` | `Date` | | ***Required.*** The date you want to use to compute the difference from. |
+| `unit` | `String` | | *** Required.*** One of: `best`, `second`, `minute`, `hour`, `day`, `week`, `month`, `year`. |
+| `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
+| `form` | `Mixed`  | | One of: `short`, `narrow`, `0`, `false`. Change output type. |
+
+```javascript
+import { FormattedRelativeTime } from 'react-native-globalize';
+
+class MyComponent extends Component {
+  render() {
+    return (
+      <FormattedRelativeTime
+        value={myDateObject}
+        unit="best"
+        style={{ color: 'red' }} />
+    );
+  }
+}
+// 2 days ago
+```
+
+### FormattedTime
+
+See `FormattedDate`. All props and functionality are identical.
+
+### Context
+You can access formatting functions via the context should you need programmatic access to the results or if a component is not appropriate. For this to work, you must still have `FormattedWrapper` at the root of you application, or you must be providing an alternative `getChildContext` in a parent component.
+
+```javascript
+import { PropTypes } from 'react-native-globalize';
+
+class MyComponent extends Component {
+  myFunction() {
+    const dateFormatter = this.context.globalize.getDateFormatter({skeleton: 'yMd'});
+    const formattedDate = dateFormatter(new Date());
+
+    const currencyFormatter = this.context.globalize.getCurrencyFormatter('USD', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    const formattedCurrency = currencyFormatter(9.99);
+  }
 }
 
 MyComponent.contextTypes = {
-  globalize: Globalize.PropTypes.globalizeShape,
+  globalize: PropTypes.globalizeShape,
 };
 ```
-
-See https://github.com/jquery/globalize for all available formatting options.
 
 [build-url]: https://travis-ci.org/joshswan/react-native-globalize
 [build-image]: https://travis-ci.org/joshswan/react-native-globalize.svg?branch=master
