@@ -88,7 +88,7 @@ export default class {
 
     // Throw error if no locale
     if (!this.locale) {
-      throw new Error('Globalize: CLDR data for the selected langauge/locale has not been loaded! Check the locale you\'re using and remember that only certain data is included by default!');
+      throw new Error('Globalize: CLDR data for the selected language/locale has not been loaded! Check the locale you\'re using and remember that only certain data is included by default!');
     }
 
     // Set currency code
