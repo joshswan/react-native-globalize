@@ -23,7 +23,7 @@ export default class FormattedWrapper extends Component {
       Globalize.loadMessages(props.messages);
     }
 
-    let instance = new Globalize(props.locale, props.currency);
+    let instance = new Globalize(props.locale, props.currency, { fallback: props.localeFallback });
 
     this.state = {
       globalize: instance,
@@ -38,7 +38,7 @@ export default class FormattedWrapper extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.locale !== nextProps.locale || this.props.currency !== nextProps.currency) {
-      let instance = new Globalize(nextProps.locale, nextProps.currency);
+      let instance = new Globalize(nextProps.locale, nextProps.currency, { fallback: nextProps.localeFallback });
 
       this.setState({
         globalize: instance,
@@ -57,6 +57,7 @@ FormattedWrapper.propTypes = {
   children: PropTypes.node,
   currency: PropTypes.string,
   locale: PropTypes.string,
+  localeFallback: PropTypes.bool,
   messages: PropTypes.object,
 };
 
