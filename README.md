@@ -396,6 +396,31 @@ MyComponent.contextTypes = {
 };
 ```
 
+### Globalize
+A few static methods are also available on the Globalize class. You can check whether CLDR data has been loaded for a given locale, get an array of all loaded locales, load additional CLDR data, and load additional ICU-formatted messages. Check out the examples below.
+
+```javascript
+import { Globalize } from 'react-native-globalize';
+
+// Check if a locale has CLDR data
+Globalize.localeIsLoaded('en');
+// true
+
+// Get an array of all loaded locales
+Globalize.availableLocales();
+// [ 'am', 'ar', ... ]
+
+// Load additional CLDR data
+Globalize.load([require('path/to/cldr/file.json')]);
+
+// Load additional messages
+Globalize.loadMessages({
+  en: {
+    test: 'Hi Josh!',
+  },
+});
+```
+
 ## License
 
 ```
