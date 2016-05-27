@@ -26,16 +26,43 @@ function cacheKey(args) {
   return JSON.stringify(args || {});
 }
 
-// Initialize the Cldr loader
-// https://github.com/rxaviers/cldrjs/issues/30
-Cldr.setAvailableBundlesHack = function(availableLocales) {
-  availableLocales.splice(availableLocales.indexOf('root'), 1);
-  this._availableBundleMapQueue = availableLocales;
-};
+// Find a fallback locale
+function findFallbackLocale(locale) {
+  const locales = getAvailableLocales();
+  const localesCount = locales.length;
 
-// Assign availableLocales to Cldr
-Cldr.load(require('cldr-data/supplemental/likelySubtags.json'));
-Cldr.setAvailableBundlesHack(require('cldr-data/availableLocales.json').availableLocales);
+  for (let i = locale.length - 1; i > 1; i--) {
+    const key = locale.substring(0, i);
+
+    for (let n = 0; n < localesCount; n++) {
+      if (locales[n].indexOf(key) > -1) {
+        return locales[n];
+      }
+    }
+  }
+
+  return null;
+}
+
+// Get array of available locales
+function getAvailableLocales() {
+  if (Cldr._raw && Cldr._raw.main) {
+    return Object.keys(Cldr._raw.main);
+  }
+
+  return [];
+}
+
+// Helper to convert locale keys
+function getLocaleKey(locale) {
+  // iOS returns system locale info with underscores
+  return locale.replace(/_/g, '-');
+}
+
+// Check if CLDR data loaded for a given locale
+function localeIsLoaded(locale) {
+  return !!(Cldr._raw && Cldr._raw.main && Cldr._raw.main[getLocaleKey(locale)]);
+}
 
 // Load the Cldr data
 Globalize.load(load());
@@ -49,18 +76,26 @@ export default class {
    * const ReactNativeGlobalize = require('react-native-globalize');
    * const EN = new ReactNativeGlobalize('en');
    */
-  constructor(locale, currencyCode) {
-    this.locale = locale;
+  constructor(locale, currencyCode, options = {}) {
+    // Determine if locale data is loaded
+    if (localeIsLoaded(locale)) {
+      // Data is loaded, set the locale
+      this.locale = getLocaleKey(locale);
+    } else if (options.fallback) {
+      // Fallback mode: try to find appropriate fallback
+      this.locale = findFallbackLocale(locale);
+    }
+
+    // Throw error if no locale
+    if (!this.locale) {
+      throw new Error('Globalize: CLDR data for the selected langauge/locale has not been loaded! Check the locale you\'re using and remember that only certain data is included by default!');
+    }
+
+    // Set currency code
     this.currencyCode = currencyCode || 'USD';
 
-    try {
-      // Create Globalize object
-      this.globalize = new Globalize(locale);
-    } catch (err) {
-      console.error('Only certain CLDR data is included! Be sure to add your own data if using a less common language/locale!');
-
-      throw err;
-    }
+    // Create new Globalize instance
+    this.globalize = new Globalize(this.locale);
 
     // Set up caches for generated formatters
     this._currencyFormatters = {};
@@ -71,6 +106,15 @@ export default class {
     this._numberParsers = {};
     this._pluralGenerators = {};
     this._relativeTimeFormatters = {};
+  }
+
+  /**
+   * Get array of available locales
+   *
+   * EN.availableLocales();
+   */
+  static availableLocales() {
+    return getAvailableLocales();
   }
 
   /**
@@ -97,6 +141,15 @@ export default class {
    */
   static loadMessages(messageData) {
     return Globalize.loadMessages(messageData);
+  }
+
+  /**
+   * Check if a given locale is loaded
+   *
+   * EN.localeIsLoaded('en');
+   */
+  static localeIsLoaded(locale) {
+    return localeIsLoaded(locale);
   }
 
   /**
