@@ -74,7 +74,14 @@ var locales = [
 Use `FormattedWrapper` at the root of your application to propagate the required context to all components. Alternatively, include `getChildContext()` in your own component (see [FormattedWrapper](https://github.com/joshswan/react-native-globalize/blob/master/src/components/FormattedWrapper.js) for an example). Then use any of the included components or access the formatting functions directly from the React Context (see below) anywhere in your application.
 
 ### FormattedWrapper
-This component takes care of propagating the required context throughout your application when included at the root. You can also set your language/locale and currency via props on this component, and you can load your messages as well.
+#### Props
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `locale` | `String` | `en` | The language/locale to be used for formatting. |
+| `currency` | `String` | 'USD' | The default currency code to be used for currency formatting. |
+| `messages` | `Object` | | ICU-formatted messages for use with `FormattedMessage` and `getMessageFormatter`. |
+| `cldr` | `Array` | | Additional CLDR data to load (e.g. `cldr={[require('path/to/file.json'), require['path/to/anotherFile.json']]}`). |
+| `localeFallback` | `Boolean` | `false` | Automatically attempt to find a fallback when CLDR data for the selected locale is missing (e.g. `en_NZ` -> `en`). |
 
 ```javascript
 import { FormattedWrapper } from 'react-native-globalize';
@@ -110,7 +117,7 @@ class MyApp extends Component {
 | `minimumFractionDigits` | `Int` | | Non-negative integer indicating the minimum fraction digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. *This overrides the default minimum fraction digits derived from CLDR.* |
 | `maximumFractionDigits` | `Int` | | Non-negative integer indicating the maximum fraction digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. *This overrides the default maximum fraction digits derived from CLDR.* |
 | `round` | `String` | `round` | Rounding method: `ceil`, `floor`, `round`, or `truncate`.
-| `useGrouping` | `Boolean` | true | Whether a grouping separator should be used. *This overrides the language default derived from CLDR.* |
+| `useGrouping` | `Boolean` | `true` | Whether a grouping separator should be used. *This overrides the language default derived from CLDR.* |
 
 ```javascript
 import { FormattedCurrency } from 'react-native-globalize';
@@ -276,7 +283,7 @@ class MyComponent extends Component {
 | `minimumFractionDigits` | `Int` | | Non-negative integer indicating the minimum fraction digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. *This overrides the default minimum fraction digits derived from CLDR.* |
 | `maximumFractionDigits` | `Int` | | Non-negative integer indicating the maximum fraction digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. *This overrides the default maximum fraction digits derived from CLDR.* |
 | `round` | `String` | `round` | Rounding method: `ceil`, `floor`, `round`, or `truncate`.
-| `useGrouping` | `Boolean` | true | Whether a grouping separator should be used. *This overrides the language default derived from CLDR.* |
+| `useGrouping` | `Boolean` | `true` | Whether a grouping separator should be used. *This overrides the language default derived from CLDR.* |
 
 ```javascript
 import { FormattedNumber } from 'react-native-globalize';
