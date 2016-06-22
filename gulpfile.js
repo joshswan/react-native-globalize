@@ -73,6 +73,13 @@ const locales = [
   'zh-Hant',      // Chinese (Traditional)
 ];
 
+const currencies = [
+  'CAD',          // Canadian Dollar
+  'EUR',          // Euro
+  'GBP',          // British Pound
+  'USD',          // US Dollar
+];
+
 const files = ['ca-gregorian', 'currencies', 'dateFields', 'numbers', 'timeZoneNames'];
 const supplemental = ['currencyData', 'likelySubtags', 'numberingSystems', 'ordinals', 'plurals', 'timeData', 'weekData'];
 const cldrs = locales.map((x) => new Cldr(x));
@@ -118,22 +125,47 @@ gulp.task('cldr', function() {
         }
       }
 
-      // Cut out unused dates.timeZoneNames.zone and dates.timeZoneNames.metazone data
       if (obj.main) {
         // For language files, grab the first language, and filter stuff out
         let key = Object.keys(obj.main)[0];
         let data = obj.main[key];
+
+        // Cut out unused dates.timeZoneNames.zone and dates.timeZoneNames.metazone data
         if (data && data.dates && data.dates.timeZoneNames) {
           data.dates.timeZoneNames.zone = {};
           data.dates.timeZoneNames.metazone = {};
         }
+
+        // Only include above currencies in each language
+        if (data && data.numbers && data.numbers.currencies) {
+          const codes = Object.keys(data.numbers.currencies);
+
+          for (let i = 0, l = codes.length; i < l; i++) {
+            if (currencies.indexOf(codes[i]) === -1) {
+              delete data.numbers.currencies[codes[i]];
+            }
+          }
+        }
       }
 
-      // Cut out unused languages from our supplemental files?
+      // Cut out unused languages from our supplemental files
       if (obj.supplemental) {
         const languageDictKeys = ['plurals-type-ordinal', 'plurals-type-cardinal'];
         for (let i = 0, l = languageDictKeys.length; i < l; i++) {
           removeUnusedLanguages(obj.supplemental[languageDictKeys[i]]);
+        }
+
+        // Only include currencies above
+        if (obj.supplemental.currencyData) {
+          delete obj.supplemental.currencyData.region;
+
+          let codes = Object.keys(obj.supplemental.currencyData.fractions);
+
+          for (let i = 0, l = codes.length; i < l; i++) {
+            if (currencies.indexOf(codes[i]) === -1 && codes[i].toLowerCase() !== 'default') {
+              delete obj.supplemental.currencyData.fractions[codes[i]];
+            }
+          }
         }
       }
 
