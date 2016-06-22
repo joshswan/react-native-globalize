@@ -7,10 +7,10 @@ Simple globalization library for React Native. Provides access to all formatting
 
 Because it's based on the jQuery Globalize project, React Native Globalize can format and parse numbers, format and parse dates, format currency, and format messages (using the ICU message pattern) using the correct plural rules for the language/locale. Take a look at https://github.com/jquery/globalize for more information.
 
-The important thing to note is all this functionality depends entirely on CLDR data. While a huge number of languages and locales are available in this data, only some are loaded by default. This is done for performance reasons as React Native currently bundles everything into one large JS bundle, and with CLDR data being hundreds of megabytes, it causes some issues. The default languages are listed below, but you can always pass additional CLDR data if you need additional language/locale support:
+The important thing to note is all this functionality depends entirely on CLDR data. While a huge number of languages/locales and currencies are available in this data, only some are loaded by default. This is done for performance reasons as React Native currently bundles everything into one large JS bundle, and with CLDR data being hundreds of megabytes, it causes some issues. The default languages and currencies are listed below, but you can always pass additional CLDR data if you need additional language/locale or currency support:
 
 ```javascript
-var locales = [
+const locales = [
   'am',           // Amharic
   'ar',           // Arabic
   'bg',           // Bulgarian
@@ -66,6 +66,13 @@ var locales = [
   'zh',           // Chinese
   'zh-Hans',      // Chinese (Simplified)
   'zh-Hant',      // Chinese (Traditional)
+];
+
+const currencies = [
+  'CAD',          // Canadian Dollar
+  'EUR',          // Euro
+  'GBP',          // British Pound
+  'USD',          // US Dollar
 ];
 ```
 
