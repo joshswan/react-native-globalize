@@ -30,7 +30,7 @@
     "prepublish": "npm run clean && npm run build"
   },
   "dependencies": {
-    "cldrjs": "joshswan/cldrjs",
+    "cldrjs": "^0.4.8",
     "globalize": "joshswan/globalize",
     "moment": "^2.11.2"
   },
