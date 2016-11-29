@@ -5,38 +5,32 @@
  * Released under the MIT license
  * https://github.com/joshswan/react-native-globalize/blob/master/LICENSE
  */
-'use strict';
-
-import React, {Component, PropTypes} from 'react';
-import {Text} from 'react-native';
-import {globalizeShape, currencyFormatPropTypes} from '../types';
+import React, { Component, PropTypes } from 'react';
+import { Text } from 'react-native';
+import { globalizeShape, currencyFormatPropTypes } from '../types';
 
 export default class FormattedCurrency extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
-
   setNativeProps(nativeProps) {
     this._root.setNativeProps(nativeProps);
   }
 
   render() {
-    let {
+    const {
       currency,
       style,
       value,
-      ...other,
+      ...other
     } = this.props;
 
     const formatCurrency = this.context.globalize.getCurrencyFormatter(currency, other);
-
-    let formattedCurrency = (typeof value === 'number') ? formatCurrency(value) : '';
+    const formattedCurrency = (typeof value === 'number') ? formatCurrency(value) : '';
 
     return (
       <Text
         ref={(component) => { this._root = component; }}
-        style={style}>
-          {formattedCurrency}
+        style={style}
+      >
+        {formattedCurrency}
       </Text>
     );
   }
@@ -45,7 +39,7 @@ export default class FormattedCurrency extends Component {
 FormattedCurrency.propTypes = {
   ...currencyFormatPropTypes,
   currency: PropTypes.string,
-  value: PropTypes.any.isRequired,
+  value: PropTypes.number.isRequired,
   style: Text.propTypes.style,
 };
 

@@ -5,31 +5,25 @@
  * Released under the MIT license
  * https://github.com/joshswan/react-native-globalize/blob/master/LICENSE
  */
-'use strict';
-
-import React, {Component, PropTypes} from 'react';
-import {Text} from 'react-native';
-import {globalizeShape, dateFormatPropTypes} from '../types';
+import React, { Component, PropTypes } from 'react';
+import { Text } from 'react-native';
+import { globalizeShape, dateFormatPropTypes } from '../types';
 
 export default class FormattedDate extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
-
   setNativeProps(nativeProps) {
     this._root.setNativeProps(nativeProps);
   }
 
   render() {
     const formatDate = this.context.globalize.getDateFormatter(this.props);
-
-    let formattedDate = (this.props.value instanceof Date) ? formatDate(this.props.value) : '';
+    const formattedDate = (this.props.value instanceof Date) ? formatDate(this.props.value) : '';
 
     return (
       <Text
         ref={(component) => { this._root = component; }}
-        style={this.props.style}>
-          {formattedDate}
+        style={this.props.style}
+      >
+        {formattedDate}
       </Text>
     );
   }
@@ -37,7 +31,7 @@ export default class FormattedDate extends Component {
 
 FormattedDate.propTypes = {
   ...dateFormatPropTypes,
-  value: PropTypes.any.isRequired,
+  value: PropTypes.instanceOf(Date).isRequired,
   style: Text.propTypes.style,
 };
 

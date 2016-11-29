@@ -5,9 +5,7 @@
  * Released under the MIT license
  * https://github.com/joshswan/react-native-globalize/blob/master/LICENSE
  */
-'use strict';
-
-import {PropTypes} from 'react';
+import { PropTypes } from 'react';
 
 export const globalizePropTypes = {
   locale: PropTypes.string,

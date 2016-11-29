@@ -5,17 +5,11 @@
  * Released under the MIT license
  * https://github.com/joshswan/react-native-globalize/blob/master/LICENSE
  */
-'use strict';
-
-import {Component, PropTypes, createElement, isValidElement} from 'react';
-import {Text} from 'react-native';
-import {globalizeShape, messageFormatPropTypes} from '../types';
+import { Component, PropTypes, createElement, isValidElement } from 'react';
+import { Text } from 'react-native';
+import { globalizeShape, messageFormatPropTypes } from '../types';
 
 export default class FormattedMessage extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
-
   setNativeProps(nativeProps) {
     this._root.setNativeProps(nativeProps);
   }
@@ -23,13 +17,13 @@ export default class FormattedMessage extends Component {
   render() {
     const formatMessage = this.context.globalize.getMessageFormatter(this.props.message);
 
-    let values = this.props.values || {};
+    const values = this.props.values || {};
 
-    for (let i in this.props) {
-      if (this.props.hasOwnProperty(i) && i !== 'values') {
-        values[i] = this.props[i];
+    Object.keys(this.props).forEach((key) => {
+      if (key !== 'values') {
+        values[key] = this.props[key];
       }
-    }
+    });
 
     /**
      * Code adapted from https://github.com/yahoo/react-intl
@@ -37,53 +31,56 @@ export default class FormattedMessage extends Component {
 
     // Creates a token with a random UID that should not be guessable or
     // conflict with other parts of the `message` string.
-    let uid = Math.floor(Math.random() * 0x10000000000).toString(16);
-    let tokenRegexp = new RegExp(`(@__ELEMENT-${uid}-\\d+__@)`, 'g');
+    const uid = Math.floor(Math.random() * 0x10000000000).toString(16);
+    const tokenRegexp = new RegExp(`(@__ELEMENT-${uid}-\\d+__@)`, 'g');
 
-    let generateToken = (() => {
+    const generateToken = (() => {
       let counter = 0;
-      return () => `@__ELEMENT-${uid}-${counter += 1}__@`;
+      return () => `@__ELEMENT-${uid}-${counter += 1}__@`; // eslint-disable-line no-return-assign
     })();
 
-    let tokenizedValues = {};
-    let elements        = {};
+    const tokenizedValues = {};
+    const elements = {};
 
     // Iterates over the `props` to keep track of any React Element values
     // so they can be represented by the `token` as a placeholder when the
     // `message` is formatted. This allows the formatted message to then be
     // broken-up into parts with references to the React Elements inserted
     // back in.
-    Object.keys(values).forEach((name) => {
-      let value = values[name];
+    Object.keys(values).forEach((key) => {
+      const value = values[key];
 
       if (isValidElement(value)) {
-        let token = generateToken();
-        tokenizedValues[name] = token;
-        elements[token]       = value;
+        const token = generateToken();
+        tokenizedValues[key] = token;
+        elements[token] = value;
       } else {
-        tokenizedValues[name] = value;
+        tokenizedValues[key] = value;
       }
     });
 
-    let formattedMessage = formatMessage(tokenizedValues);
+    const formattedMessage = formatMessage(tokenizedValues);
 
     // Split the message into parts so the React Element values captured
     // above can be inserted back into the rendered message. This approach
     // allows messages to render with React Elements while keeping React's
     // virtual diffing working properly.
-    let nodes = formattedMessage
+    const nodes = formattedMessage
         .split(tokenRegexp)
-        .filter((part) => !!part)
-        .map((part) => elements[part] || part);
+        .filter(part => !!part)
+        .map(part => elements[part] || part);
 
-    return createElement(Text, {ref: (component) => { this._root = component; }, style: this.props.style}, ...nodes);
+    return createElement(Text, {
+      ref: (component) => { this._root = component; },
+      style: this.props.style,
+    }, ...nodes);
   }
 }
 
 FormattedMessage.propTypes = {
   ...messageFormatPropTypes,
   message: PropTypes.oneOfType([PropTypes.array, PropTypes.string]).isRequired,
-  values: PropTypes.object,
+  values: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   style: Text.propTypes.style,
 };
 

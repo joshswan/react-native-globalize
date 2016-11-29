@@ -5,8 +5,6 @@
  * Released under the MIT license
  * https://github.com/joshswan/react-native-globalize/blob/master/LICENSE
  */
-'use strict';
-
 const Cldr = require('cldrjs');
 const Globalize = require('globalize');
 
@@ -17,31 +15,13 @@ function load() {
   // of languages is loaded by default and additional CLDR data can be passed
   // via the `load` method below.
   return [
-    require('./cldr.json'),
+    require('./cldr.json'), // eslint-disable-line global-require
   ];
 }
 
 // Helper to create cache key from formatter arguments
 function cacheKey(args) {
   return JSON.stringify(args || {});
-}
-
-// Find a fallback locale
-function findFallbackLocale(locale) {
-  const locales = getAvailableLocales();
-  const localesCount = locales.length;
-
-  for (let i = locale.length - 1; i > 1; i--) {
-    const key = locale.substring(0, i);
-
-    for (let n = 0; n < localesCount; n++) {
-      if (locales[n].indexOf(key) > -1) {
-        return locales[n];
-      }
-    }
-  }
-
-  return null;
 }
 
 // Get array of available locales
@@ -51,6 +31,24 @@ function getAvailableLocales() {
   }
 
   return [];
+}
+
+// Find a fallback locale
+function findFallbackLocale(locale) {
+  const locales = getAvailableLocales();
+  const localesCount = locales.length;
+
+  for (let i = locale.length - 1; i > 1; i -= 1) {
+    const key = locale.substring(0, i);
+
+    for (let n = 0; n < localesCount; n += 1) {
+      if (locales[n].indexOf(key) > -1) {
+        return locales[n];
+      }
+    }
+  }
+
+  return null;
 }
 
 // Helper to convert locale keys
@@ -160,8 +158,8 @@ export default class {
    * let formatted = formatUSD(25);
    */
   getCurrencyFormatter(currencyCode, options) {
-    let key = cacheKey(options);
-    let currency = currencyCode || this.currencyCode;
+    const key = cacheKey(options);
+    const currency = currencyCode || this.currencyCode;
 
     if (!this._currencyFormatters[currency]) {
       this._currencyFormatters[currency] = {};
@@ -181,7 +179,7 @@ export default class {
    * let formatted = mediumDate(new Date()); // Sep 24, 2015
    */
   getDateFormatter(options) {
-    let key = cacheKey(options);
+    const key = cacheKey(options);
 
     if (!this._dateFormatters[key]) {
       this._dateFormatters[key] = this.globalize.dateFormatter(options);
@@ -198,7 +196,7 @@ export default class {
    * let dateObject = mediumDateParser('Nov 1, 2015'); // new Date(2015, 10, 1, 0, 0, 0)
    */
   getDateParser(options) {
-    let key = cacheKey(options);
+    const key = cacheKey(options);
 
     if (!this._dateParsers[key]) {
       this._dateParsers[key] = this.globalize.dateParser(options);
@@ -226,11 +224,14 @@ export default class {
   /**
    * Get a number formatter with the given formatting options
    *
-   * let fiveDecimalNumber = EN.getNumberFormatter({minimumFractionDigits: 5, maxiumumFractionDigits: 5});
+   * let fiveDecimalNumber = EN.getNumberFormatter({
+   *   minimumFractionDigits: 5,
+   *   maxiumumFractionDigits: 5,
+   * });
    * let formatted = fiveDecimalNumber(Math.PI); // "3.14159"
    */
   getNumberFormatter(options) {
-    let key = cacheKey(options);
+    const key = cacheKey(options);
 
     if (!this._numberFormatters[key]) {
       this._numberFormatters[key] = this.globalize.numberFormatter(options);
@@ -247,7 +248,7 @@ export default class {
    * let number = percentParser('50%'); // 0.5
    */
   getNumberParser(options) {
-    let key = cacheKey(options);
+    const key = cacheKey(options);
 
     if (!this._numberParsers[key]) {
       this._numberParsers[key] = this.globalize.numberParser(options);
@@ -263,7 +264,7 @@ export default class {
    * let pluralGroupName = pluralGenerator(5); // "other"
    */
   getPluralGenerator(options) {
-    let key = cacheKey(options);
+    const key = cacheKey(options);
 
     if (!this._pluralGenerators[key]) {
       this._pluralGenerators[key] = this.globalize.pluralGenerator(options);
@@ -280,7 +281,7 @@ export default class {
    * let formatted = relativeDateInMonths(-3); // "3 months ago"
    */
   getRelativeTimeFormatter(unit, options) {
-    let key = cacheKey(options);
+    const key = cacheKey(options);
 
     if (!this._relativeTimeFormatters[unit]) {
       this._relativeTimeFormatters[unit] = {};

@@ -5,10 +5,8 @@
  * Released under the MIT license
  * https://github.com/joshswan/react-native-globalize/blob/master/LICENSE
  */
-'use strict';
-
-import {Component, PropTypes} from 'react';
-import {globalizeShape, globalizePropTypes} from '../types';
+import { Component, PropTypes } from 'react';
+import { globalizeShape, globalizePropTypes } from '../types';
 import Globalize from '../globalize';
 
 export default class FormattedWrapper extends Component {
@@ -23,7 +21,9 @@ export default class FormattedWrapper extends Component {
       Globalize.loadMessages(props.messages);
     }
 
-    let instance = new Globalize(props.locale, props.currency, { fallback: props.localeFallback });
+    const instance = new Globalize(props.locale, props.currency, {
+      fallback: props.localeFallback,
+    });
 
     this.state = {
       globalize: instance,
@@ -38,7 +38,9 @@ export default class FormattedWrapper extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.locale !== nextProps.locale || this.props.currency !== nextProps.currency) {
-      let instance = new Globalize(nextProps.locale, nextProps.currency, { fallback: nextProps.localeFallback });
+      const instance = new Globalize(nextProps.locale, nextProps.currency, {
+        fallback: nextProps.localeFallback,
+      });
 
       this.setState({
         globalize: instance,
@@ -53,12 +55,12 @@ export default class FormattedWrapper extends Component {
 
 FormattedWrapper.propTypes = {
   ...globalizePropTypes,
-  cldr: PropTypes.array,
+  cldr: PropTypes.array, // eslint-disable-line react/forbid-prop-types
   children: PropTypes.node,
   currency: PropTypes.string,
   locale: PropTypes.string,
   localeFallback: PropTypes.bool,
-  messages: PropTypes.object,
+  messages: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
 
 FormattedWrapper.childContextTypes = {

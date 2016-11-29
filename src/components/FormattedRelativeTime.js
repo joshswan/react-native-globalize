@@ -5,18 +5,12 @@
  * Released under the MIT license
  * https://github.com/joshswan/react-native-globalize/blob/master/LICENSE
  */
-'use strict';
-
-import React, {Component, PropTypes} from 'react';
-import {Text} from 'react-native';
-import {globalizeShape, relativeTimeFormatPropTypes} from '../types';
 import moment from 'moment';
+import React, { Component, PropTypes } from 'react';
+import { Text } from 'react-native';
+import { globalizeShape, relativeTimeFormatPropTypes } from '../types';
 
 export default class FormattedRelativeTime extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
-
   setNativeProps(nativeProps) {
     this._root.setNativeProps(nativeProps);
   }
@@ -26,14 +20,14 @@ export default class FormattedRelativeTime extends Component {
     let unit = this.props.unit;
 
     if (value instanceof Date) {
-      let momentValue = moment(value);
-      let now = moment();
+      const momentValue = moment(value);
+      const now = moment();
 
       if (unit === 'best') {
-        let units = ['year', 'month', 'week', 'day', 'hour', 'minute', 'second'];
+        const units = ['year', 'month', 'week', 'day', 'hour', 'minute', 'second'];
 
-        for (let i = 0, l = units.length; i < l; i++) {
-          let diff = momentValue.diff(now, units[i]);
+        for (let i = 0, l = units.length; i < l; i += 1) {
+          const diff = momentValue.diff(now, units[i]);
 
           if (diff >= 1 || diff <= -1 || units[i] === 'second') {
             value = diff;
@@ -51,15 +45,17 @@ export default class FormattedRelativeTime extends Component {
       unit = 'second';
     }
 
-    const formatRelativeTime = this.context.globalize.getRelativeTimeFormatter(unit, {form: this.props.form});
-
-    let formattedRelativeTime = (this.props.value instanceof Date) ? formatRelativeTime(value) : '';
+    const formatRelativeTime = this.context.globalize.getRelativeTimeFormatter(unit, {
+      form: this.props.form,
+    });
+    const formattedRelativeTime = (this.props.value instanceof Date) ? formatRelativeTime(value) : '';
 
     return (
       <Text
         ref={(component) => { this._root = component; }}
-        style={this.props.style}>
-          {formattedRelativeTime}
+        style={this.props.style}
+      >
+        {formattedRelativeTime}
       </Text>
     );
   }
@@ -68,7 +64,7 @@ export default class FormattedRelativeTime extends Component {
 FormattedRelativeTime.propTypes = {
   ...relativeTimeFormatPropTypes,
   unit: PropTypes.oneOf(['second', 'minute', 'hour', 'day', 'week', 'month', 'year', 'best']).isRequired,
-  value: PropTypes.any.isRequired,
+  value: PropTypes.instanceOf(Date).isRequired,
   form: PropTypes.oneOf(['short', 'narrow', 0, false]),
   style: Text.propTypes.style,
 };
