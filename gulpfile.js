@@ -7,10 +7,8 @@
  */
 
 const gulp = require('gulp');
-const babel = require('gulp-babel');
 const filter = require('gulp-filter');
 const merge = require('gulp-merge-json');
-const mergeStream = require('merge-stream');
 const path = require('path');
 const Cldr = require('cldrjs');
 
@@ -84,17 +82,6 @@ const supplemental = ['currencyData', 'likelySubtags', 'numberingSystems', 'ordi
 const cldrs = locales.map(x => new Cldr(x));
 const languages = cldrs.map(x => x.attributes.language);
 
-gulp.task('build', () => {
-  const js = gulp.src(['src/*.js', 'src/**/*.js'])
-    .pipe(babel())
-    .pipe(gulp.dest('lib'));
-
-  const json = gulp.src(['src/*.json'])
-    .pipe(gulp.dest('lib'));
-
-  return mergeStream(js, json);
-});
-
 function removeUnusedLanguages(dict) {
   if (dict) {
     Object.keys(dict).forEach((key) => {
@@ -167,7 +154,5 @@ gulp.task('cldr', () => {
 
       return obj;
     }))
-    .pipe(gulp.dest('src'));
+    .pipe(gulp.dest('lib'));
 });
-
-gulp.task('default', ['build']);

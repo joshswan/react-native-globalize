@@ -78,7 +78,7 @@ const currencies = [
 
 ## Usage
 
-Use `FormattedWrapper` at the root of your application to propagate the required context to all components. Alternatively, include `getChildContext()` in your own component (see [FormattedWrapper](https://github.com/joshswan/react-native-globalize/blob/master/src/components/FormattedWrapper.js) for an example). Then use any of the included components or access the formatting functions directly from the React Context (see below) anywhere in your application.
+Use `FormattedWrapper` at the root of your application to propagate the required context to all components. Alternatively, include `getChildContext()` in your own component (see [FormattedWrapper](https://github.com/joshswan/react-native-globalize/blob/master/lib/components/FormattedWrapper.js) for an example). Then use any of the included components or access the formatting functions directly from the React Context (see below) anywhere in your application.
 
 ### FormattedWrapper
 #### Props
