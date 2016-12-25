@@ -6,9 +6,15 @@
     "node": true
   },
   "rules": {
-    "no-underscore-dangle": 0,
-    "import/extensions": 0,
-    "import/no-unresolved": 0,
-    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx"] }]
+    "no-param-reassign": ["error", { "props": false }],
+    "no-underscore-dangle": "off",
+    "import/extensions": "off",
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": ["gulpfile.js"],
+      "optionalDependencies": false,
+      "peerDependencies": false
+    }],
+    "import/no-unresolved": "off",
+    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }]
   }
 }
