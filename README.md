@@ -358,7 +358,7 @@ class MyComponent extends Component {
 | Prop | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
 | `value` | `Date` | | ***Required.*** The date you want to use to compute the difference from. |
-| `unit` | `String` | | *** Required.*** One of: `best`, `second`, `minute`, `hour`, `day`, `week`, `month`, `year`. |
+| `unit` | `String` | | ***Required.*** One of: `best`, `second`, `minute`, `hour`, `day`, `week`, `month`, `year`. |
 | `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
 | `form` | `Mixed`  | | One of: `short`, `narrow`, `0`, `false`. Change output type. |
 
