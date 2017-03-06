@@ -87,7 +87,7 @@ Use `FormattedWrapper` at the root of your application to propagate the required
 | `locale` | `String` | `en` | The language/locale to be used for formatting. |
 | `currency` | `String` | 'USD' | The default currency code to be used for currency formatting. |
 | `messages` | `Object` | | ICU-formatted messages for use with `FormattedMessage` and `getMessageFormatter`. |
-| `cldr` | `Array` | | Additional CLDR data to load (e.g. `cldr={[require('path/to/file.json'), require['path/to/anotherFile.json']]}`). |
+| `cldr` | `Array` | | Additional CLDR data to load (e.g. `cldr={[require('path/to/file.json'), require('path/to/anotherFile.json')]}`). |
 | `localeFallback` | `Boolean` | `false` | Automatically attempt to find a fallback when CLDR data for the selected locale is missing (e.g. `en_NZ` -> `en`). |
 
 ```javascript
