@@ -20,9 +20,8 @@ const locales = [
   'da',           // Danish
   'de',           // German
   'el',           // Greek
-  'en',           // English
+  'en',           // English (United States)
   'en-GB',        // English (Great Britain)
-  'en-US',        // English (United States)
   'es',           // Spanish
   'es-419',       // Spanish (Latin America & Caribbean)
   'et',           // Estonian

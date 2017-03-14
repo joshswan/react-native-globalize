@@ -22,9 +22,8 @@ const locales = [
   'da',           // Danish
   'de',           // German
   'el',           // Greek
-  'en',           // English
+  'en',           // English (United States)
   'en-GB',        // English (Great Britain)
-  'en-US-POSIX',  // English (United States)
   'es',           // Spanish
   'es-419',       // Spanish (Latin America & Caribbean)
   'et',           // Estonian
@@ -100,17 +99,6 @@ gulp.task('cldr', () => {
   return gulp.src(['./node_modules/cldr-data/supplemental/*.json', './node_modules/cldr-data/main/**/*.json'])
     .pipe(cldrFilter)
     .pipe(merge('cldr.json', (obj) => {
-      if (obj.main && obj.main['en-US-POSIX']) {
-        obj.main['en-US'] = obj.main['en-US-POSIX'];
-        delete obj.main['en-US-POSIX'];
-        delete obj.main['en-US'].identity.variant;
-
-        // Fix for en-US currency formatting
-        if (obj.main['en-US'].numbers && obj.main['en-US'].numbers['currencyFormats-numberSystem-latn']) {
-          obj.main['en-US'].numbers['currencyFormats-numberSystem-latn'].standard = '¤#,##0.00';
-        }
-      }
-
       if (obj.main) {
         // For language files, grab the first language, and filter stuff out
         const key = Object.keys(obj.main)[0];
