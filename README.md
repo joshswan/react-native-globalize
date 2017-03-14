@@ -1,4 +1,4 @@
-#React Native Globalize
+# React Native Globalize
 [![NPM Version][npm-image]][npm-url] [![Build Status][build-image]][build-url] [![Dependency Status][depstat-image]][depstat-url] [![Dev Dependency Status][devdepstat-image]][devdepstat-url]
 
 Simple globalization library for React Native. Provides access to all formatting options as well as easy-to-use React Native components.
