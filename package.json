@@ -32,19 +32,19 @@
   "dependencies": {
     "cldrjs": "^0.4.8",
     "globalize": "joshswan/globalize",
-    "moment": "^2.17.1"
+    "moment": "^2.18.1"
   },
   "devDependencies": {
-    "babel-eslint": "^7.1.1",
+    "babel-eslint": "^7.2.3",
     "cldr-data": ">=27",
-    "eslint": "^3.12.2",
-    "eslint-config-airbnb": "^13.0.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^2.2.3",
-    "eslint-plugin-react": "^6.8.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
     "gulp": "^3.9.1",
-    "gulp-filter": "^4.0.0",
-    "gulp-merge-json": "^0.6.0",
+    "gulp-filter": "^5.0.0",
+    "gulp-merge-json": "^1.0.0",
     "rimraf": "^2.5.2"
   },
   "peerDependencies": {
