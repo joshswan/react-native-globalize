@@ -7,8 +7,11 @@ Simple globalization library for React Native. Provides access to all formatting
 
 Because it's based on the jQuery Globalize project, React Native Globalize can format and parse numbers, format and parse dates, format currency, and format messages (using the ICU message pattern) using the correct plural rules for the language/locale. Take a look at https://github.com/jquery/globalize for more information.
 
-The important thing to note is all this functionality depends entirely on CLDR data. While a huge number of languages/locales and currencies are available in this data, only some are loaded by default. This is done for performance reasons as React Native currently bundles everything into one large JS bundle, and with CLDR data being hundreds of megabytes, it causes some issues. The default languages and currencies are listed below, but you can always pass additional CLDR data if you need additional language/locale or currency support:
+The important thing to note is all this functionality depends entirely on CLDR data. While a huge number of languages/locales and currencies are available in this data, only some are loaded by default. This is done for performance reasons as loading hundreds of megabytes of CLDR data would massively inflate app bundle sizes and startup times. The default languages and currencies are listed below, and you can always [pass additional CLDR data](#formattedwrapper) directly if you need additional language/locale or currency support. Using the default configuration should only increase your bundle size by about 1MB and negligibly affect startup time, but if you want more control, customize!
 
+**Want to customize the included locales and/or currencies?** Just fork the repo, edit the two arrays in `gulpfile.js` to suit your needs, run `gulp cldr`, and you've got your own custom version with only what you need.
+
+#### Default Locales & Currencies
 ```javascript
 const locales = [
   'am',           // Amharic
@@ -77,7 +80,7 @@ const currencies = [
 
 ## Usage
 
-Use `FormattedWrapper` at the root of your application to propagate the required context to all components. Alternatively, include `getChildContext()` in your own component (see [FormattedWrapper](https://github.com/joshswan/react-native-globalize/blob/master/lib/components/FormattedWrapper.js) for an example). Then use any of the included components or access the formatting functions directly from the React Context (see below) anywhere in your application.
+Use `FormattedWrapper` at the root of your application to propagate the required context to all components. Alternatively, include `getChildContext()` in your own component (see [FormattedWrapper](lib/components/FormattedWrapper.js) for an example). Then use any of the included components or access the formatting functions directly from the React Context (see below) anywhere in your application.
 
 ### FormattedWrapper
 #### Props
