@@ -88,6 +88,7 @@ Use `FormattedWrapper` at the root of your application to propagate the required
 | `messages` | `Object` | | ICU-formatted messages for use with `FormattedMessage` and `getMessageFormatter`. |
 | `cldr` | `Array` | | Additional CLDR data to load (e.g. `cldr={[require('path/to/file.json'), require('path/to/anotherFile.json')]}`). |
 | `localeFallback` | `Boolean` | `false` | Automatically attempt to find a fallback when CLDR data for the selected locale is missing (e.g. `en_NZ` -> `en`). |
+| `warnOnMissingMessage` | `Boolean` | `true` | Display a warning message when a message key is missing. |
 
 ```javascript
 import { FormattedWrapper } from 'react-native-globalize';
@@ -179,6 +180,7 @@ Format a message based on the ICU message format pattern and variables.
 | ---- | ---- | ------- | ----------- |
 | `message` | `Array/String` | | ***Required.*** The key of the message you want to format. Can be passed as a string (e.g. test/hello) or an array (e.g. ['test', 'hello']). |
 | `values` | `Object` | `{}` | Variables for replacement/formatting. |
+| `defaultMessage` | `String` | | A string to display if the message key does not exist. Otherwise, the message key itself will be displayed. |
 | `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
 
 * Values/variables can also be passed as props. Any additional props other than the 3 above will be merged with the `values` object (props will overwrite values in the object if both are given and keys collide).
