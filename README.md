@@ -186,7 +186,7 @@ Format a message based on the ICU message format pattern and variables.
 | `defaultMessage` | `String` | | A string to display if the message key does not exist. Otherwise, the message key itself will be displayed. |
 | `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
 
-* Values/variables can also be passed as props. Any additional props other than the 3 above will be merged with the `values` object (props will overwrite values in the object if both are given and keys collide).
+* Values/variables can also be passed as props. Any additional props other than the 4 above will be merged with the `values` object. *Note: Specific props will override the `values` object if both are given and keys collide.*
 * Values ***can also be components***. See the last example below.
 * See [ICU message formatting guidelines](http://userguide.icu-project.org/formatparse/messages) for more info.
 
