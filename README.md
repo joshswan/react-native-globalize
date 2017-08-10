@@ -126,6 +126,7 @@ class MyApp extends Component {
 | `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
 | `minimumFractionDigits` | `Int` | | Non-negative integer indicating the minimum fraction digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. *This overrides the default minimum fraction digits derived from CLDR.* |
 | `maximumFractionDigits` | `Int` | | Non-negative integer indicating the maximum fraction digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. *This overrides the default maximum fraction digits derived from CLDR.* |
+| `numberStyle` | `String` | `symbol` | Formatting style to use when displaying currency. Values: `symbol` ($1.00), `accounting`, `code` (1.00 USD), or `name` (1.00 US dollar). |
 | `round` | `String` | `round` | Rounding method: `ceil`, `floor`, `round`, or `truncate`.
 | `useGrouping` | `Boolean` | `true` | Whether a grouping separator should be used. *This overrides the language default derived from CLDR.* |
 
@@ -293,6 +294,7 @@ class MyComponent extends Component {
 | `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
 | `minimumFractionDigits` | `Int` | | Non-negative integer indicating the minimum fraction digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. *This overrides the default minimum fraction digits derived from CLDR.* |
 | `maximumFractionDigits` | `Int` | | Non-negative integer indicating the maximum fraction digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. *This overrides the default maximum fraction digits derived from CLDR.* |
+| `numberStyle` | `String` | `decimal` | Formatting style to use for displaying number. Values: `decimal` (0.5), `percent` (50%). |
 | `round` | `String` | `round` | Rounding method: `ceil`, `floor`, `round`, or `truncate`.
 | `useGrouping` | `Boolean` | `true` | Whether a grouping separator should be used. *This overrides the language default derived from CLDR.* |
 
