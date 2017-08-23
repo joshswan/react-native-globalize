@@ -32,7 +32,8 @@
   "dependencies": {
     "cldrjs": "^0.4.8",
     "globalize": "joshswan/globalize",
-    "moment": "^2.18.1"
+    "moment": "^2.18.1",
+    "prop-types": "^15.5.10"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
