@@ -32,7 +32,7 @@
   "dependencies": {
     "cldrjs": "^0.4.8",
     "globalize": "joshswan/globalize",
-    "moment": "^2.18.1",
+    "moment": "^2.19.3",
     "prop-types": "^15.5.10"
   },
   "devDependencies": {
