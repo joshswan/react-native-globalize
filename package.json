@@ -30,14 +30,14 @@
     "test": "npm run lint"
   },
   "dependencies": {
-    "cldrjs": "^0.4.8",
+    "cldrjs": "^0.5.0",
     "globalize": "joshswan/globalize",
     "moment": "^2.19.3",
     "prop-types": "^15.5.10"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
-    "cldr-data": ">=27",
+    "cldr-data": "^32.0.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",

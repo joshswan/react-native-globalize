@@ -1,8 +1,7 @@
-cache: yarn
 language: node_js
 node_js:
-  - '6.12.3'
-  - '8.9.4'
-  - '9.4.0'
+  - '6.14.1'
+  - '8.11.1'
+  - '9.11.1'
 script:
-  - yarn run lint
+  - npm run lint
