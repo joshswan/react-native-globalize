@@ -5,9 +5,9 @@ Simple globalization library for React Native. Provides access to all formatting
 
 ## How does it work?
 
-Because it's based on the jQuery Globalize project, React Native Globalize can format and parse numbers, format and parse dates, format currency, and format messages (using the ICU message pattern) using the correct plural rules for the language/locale. Take a look at https://github.com/jquery/globalize for more information.
+Because it's based on the jQuery Globalize project, React Native Globalize can format and parse numbers, format and parse dates, format currency, and format messages (using the ICU message pattern) using the correct plural rules for the language/locale.
 
-The important thing to note is all this functionality depends entirely on CLDR data. While a huge number of languages/locales and currencies are available in this data, only some are loaded by default. This is done for performance reasons as loading hundreds of megabytes of CLDR data would massively inflate app bundle sizes and startup times. The default languages and currencies are listed below, and you can always [pass additional CLDR data](#formattedwrapper) directly if you need additional language/locale or currency support. Using the default configuration should only increase your bundle size by about 1MB and negligibly affect startup time, but if you want more control, customize!
+The important thing to note is all this functionality depends entirely on CLDR data. While a huge number of languages/locales and currencies are available in this data, only some are loaded by default. This is done for performance reasons as loading hundreds of megabytes of CLDR data would massively inflate app bundle sizes and startup times. The default languages and currencies are listed below, and you can always [pass additional CLDR data](#formattedprovider) directly if you need additional language/locale or currency support. Using the default configuration should only increase your bundle size slightly and negligibly affect startup time, but if you want more control, customize!
 
 **Want to customize the included locales and/or currencies?** Just fork the repo, edit the two arrays in `gulpfile.js` to suit your needs, run `gulp cldr`, and you've got your own custom version with only what you need.
 
@@ -80,9 +80,11 @@ const currencies = [
 
 ## Usage
 
-Use `FormattedWrapper` at the root of your application to propagate the required context to all components. Alternatively, include `getChildContext()` in your own component (see [FormattedWrapper](lib/components/FormattedWrapper.js) for an example). Then use any of the included components or access the formatting functions directly from the React Context (see below) anywhere in your application.
+Place `FormattedProvider` at the root of your application to propagate the required context to all components. Then use any of the included components or access the formatting functions directly from the React Context (see below) anywhere in your application.
 
-### FormattedWrapper
+**NOTE:** Version 2.0.0 and up requires React `>= 16.3.0`!
+
+### FormattedProvider
 #### Props
 | Prop | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
@@ -94,7 +96,7 @@ Use `FormattedWrapper` at the root of your application to propagate the required
 | `warnOnMissingMessage` | `Boolean` | `true` | Display a warning message when a message key is missing. |
 
 ```javascript
-import { FormattedWrapper } from 'react-native-globalize';
+import { FormattedProvider } from 'react-native-globalize';
 
 const Messages = {
   en: {
@@ -105,12 +107,12 @@ const Messages = {
   },
 };
 
-class MyApp extends Component {
+class MyApp extends PureComponent {
   render() {
     return (
-      <FormattedWrapper locale="en" currency="USD" messages={Messages}>
+      <FormattedProvider locale="en" currency="USD" messages={Messages}>
         <App />
-      </FormattedWrapper>
+      </FormattedProvider>
     )
   }
 }
@@ -124,16 +126,21 @@ class MyApp extends Component {
 | `value` | `Number` | | ***Required.*** The number you want to format. |
 | `currency` | `String` | | Defaults to currency set on `FormattedWrapper`. |
 | `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
-| `minimumFractionDigits` | `Int` | | Non-negative integer indicating the minimum fraction digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. *This overrides the default minimum fraction digits derived from CLDR.* |
-| `maximumFractionDigits` | `Int` | | Non-negative integer indicating the maximum fraction digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. *This overrides the default maximum fraction digits derived from CLDR.* |
+| `maximumFractionDigits` | `Int` | | Non-negative integer indicating the maximum fraction digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. |
+| `minimumFractionDigits` | `Int` | | Non-negative integer indicating the minimum fraction digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. |
+| `minimumIntegerDigits` | `Int` | | Non-negative integer indicating the minimum integer digits to be shown. Numbers will be padded with leading zeroes as necessary. |
+| `maximumSignificantDigits` | `Int` | | Non-negative integer indicating the maximum significant digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. |
+| `minimumSignificantDigits` | `Int` | | Non-negative integer indicating the minimum significant digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. |
 | `numberStyle` | `String` | `symbol` | Formatting style to use when displaying currency. Values: `symbol` ($1.00), `accounting`, `code` (1.00 USD), or `name` (1.00 US dollar). |
-| `round` | `String` | `round` | Rounding method: `ceil`, `floor`, `round`, or `truncate`.
-| `useGrouping` | `Boolean` | `true` | Whether a grouping separator should be used. *This overrides the language default derived from CLDR.* |
+| `round` | `String` | `round` | Controls the rounding method used when rouding required (e.g. when using `maximumFractionDigits`). Values: `ceil`, `floor`, `round`, or `truncate`.  |
+| `useGrouping` | `Boolean` | `true` | Whether a grouping separator should be used. |
+
+*Note: Using `maximumFractionDigits`, `minimumFractionDigits`, ..., `useGrouping` overrides the language default derived from CLDR.*
 
 ```javascript
 import { FormattedCurrency } from 'react-native-globalize';
 
-class MyComponent extends Component {
+class MyComponent extends PureComponent {
   render() {
     return (
       <FormattedCurrency
@@ -152,18 +159,18 @@ class MyComponent extends Component {
 | Prop | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
 | `value` | `Date` | | ***Required.*** The date object you want to format. |
-| `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
-| `skeleton` | `String` | | Date format skeleton. See the [CLDR documentation](http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table). *Not all options work* |
 | `date` | `String` | | One of: `full`, `long`, `medium`, `short`. Outputs just a date (e.g. `Monday, November 1, 2010`). |
-| `time` | `String` | | One of: `full`, `long`, `medium`, `short`. Outputs just a time (e.g. `5:55:00 PM GMT-02:00`). |
 | `datetime` | `String` | | One of: `full`, `long`, `medium`, `short`. Outputs a datetime (e.g. `Monday, November 1, 2010 at 5:55:00 PM GMT-02:00`). |
+| `skeleton` | `String` | | Date format skeleton. See the [CLDR documentation](http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table). *Not all options work* |
+| `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
+| `time` | `String` | | One of: `full`, `long`, `medium`, `short`. Outputs just a time (e.g. `5:55:00 PM GMT-02:00`). |
 
 ***Only ONE of `skeleton`, `date`, `time`, and `datetime` should be specified.***
 
 ```javascript
 import { FormattedDate } from 'react-native-globalize';
 
-class MyComponent extends Component {
+class MyComponent extends PureComponent {
   render() {
     return (
       <FormattedDate
@@ -183,9 +190,9 @@ Format a message based on the ICU message format pattern and variables.
 | Prop | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
 | `message` | `Array/String` | | ***Required.*** The key of the message you want to format. Can be passed as a string (e.g. test/hello) or an array (e.g. ['test', 'hello']). |
-| `values` | `Object` | `{}` | Variables for replacement/formatting. |
 | `defaultMessage` | `String` | | A string to display if the message key does not exist. Otherwise, the message key itself will be displayed. |
 | `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
+| `values` | `Object` | `{}` | Variables for replacement/formatting. |
 
 * Values/variables can also be passed as props. Any additional props other than the 4 above will be merged with the `values` object. *Note: Specific props will override the `values` object if both are given and keys collide.*
 * Values ***can also be components***. See the last example below.
@@ -207,7 +214,7 @@ const Messages = {
 // Example 1
 import { FormattedMessage } from 'react-native-globalize';
 
-class MyComponent extends Component {
+class MyComponent extends PureComponent {
   render() {
     return (
       <FormattedMessage
@@ -224,7 +231,7 @@ class MyComponent extends Component {
 // Example 2
 import { FormattedMessage } from 'react-native-globalize';
 
-class MyComponent extends Component {
+class MyComponent extends PureComponent {
   render() {
     return (
       <FormattedMessage
@@ -239,7 +246,7 @@ class MyComponent extends Component {
 // Example 3
 import { FormattedMessage } from 'react-native-globalize';
 
-class MyComponent extends Component {
+class MyComponent extends PureComponent {
   render() {
     return (
       <FormattedMessage
@@ -256,7 +263,7 @@ class MyComponent extends Component {
 // Example 4
 import { FormattedMessage } from 'react-native-globalize';
 
-class MyComponent extends Component {
+class MyComponent extends PureComponent {
   render() {
     return (
       <FormattedMessage
@@ -271,7 +278,7 @@ class MyComponent extends Component {
 // Example 5
 import { FormattedMessage } from 'react-native-globalize';
 
-class MyComponent extends Component {
+class MyComponent extends PureComponent {
   render() {
     return (
       <FormattedMessage
@@ -292,16 +299,21 @@ class MyComponent extends Component {
 | ---- | ---- | ------- | ----------- |
 | `value` | `Number` | | ***Required.*** The number you want to format. |
 | `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
-| `minimumFractionDigits` | `Int` | | Non-negative integer indicating the minimum fraction digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. *This overrides the default minimum fraction digits derived from CLDR.* |
-| `maximumFractionDigits` | `Int` | | Non-negative integer indicating the maximum fraction digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. *This overrides the default maximum fraction digits derived from CLDR.* |
-| `numberStyle` | `String` | `decimal` | Formatting style to use for displaying number. Values: `decimal` (0.5), `percent` (50%). |
-| `round` | `String` | `round` | Rounding method: `ceil`, `floor`, `round`, or `truncate`.
-| `useGrouping` | `Boolean` | `true` | Whether a grouping separator should be used. *This overrides the language default derived from CLDR.* |
+| `maximumFractionDigits` | `Int` | | Non-negative integer indicating the maximum fraction digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. |
+| `minimumFractionDigits` | `Int` | | Non-negative integer indicating the minimum fraction digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. |
+| `minimumIntegerDigits` | `Int` | | Non-negative integer indicating the minimum integer digits to be shown. Numbers will be padded with leading zeroes as necessary. |
+| `maximumSignificantDigits` | `Int` | | Non-negative integer indicating the maximum significant digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. |
+| `minimumSignificantDigits` | `Int` | | Non-negative integer indicating the minimum significant digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. |
+| `numberStyle` | `String` | `symbol` | Formatting style to use when displaying currency. Values: `symbol` ($1.00), `accounting`, `code` (1.00 USD), or `name` (1.00 US dollar). |
+| `round` | `String` | `round` | Controls the rounding method used when rouding required (e.g. when using `maximumFractionDigits`). Values: `ceil`, `floor`, `round`, or `truncate`.  |
+| `useGrouping` | `Boolean` | `true` | Whether a grouping separator should be used. |
+
+*Note: Using `maximumFractionDigits`, `minimumFractionDigits`, ..., `useGrouping` overrides the language default derived from CLDR.*
 
 ```javascript
 import { FormattedNumber } from 'react-native-globalize';
 
-class MyComponent extends Component {
+class MyComponent extends PureComponent {
   render() {
     return (
       <FormattedNumber
@@ -316,7 +328,7 @@ class MyComponent extends Component {
 // Arabic (ar) selected
 import { FormattedNumber } from 'react-native-globalize';
 
-class MyComponent extends Component {
+class MyComponent extends PureComponent {
   render() {
     return (
       <FormattedNumber
@@ -335,6 +347,7 @@ class MyComponent extends Component {
 | ---- | ---- | ------- | ----------- |
 | `value` | `Number` | | ***Required.*** The value you want to base plural selection on. |
 | `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
+| `type` | `String` | `cardinal` | Control plural type. Values: `cardinal` or `ordinal`. |
 | `other` | `Node` | | Node to output when plural type is `other` or when node for type is not specified. |
 | `zero` | `Node` | | Node to output when plural type is `zero`. |
 | `one` | `Node` | | Node to output when plural type is `one`. |
@@ -345,7 +358,7 @@ class MyComponent extends Component {
 ```javascript
 import { FormattedPlural } from 'react-native-globalize';
 
-class MyComponent extends Component {
+class MyComponent extends PureComponent {
   render() {
     return (
       <FormattedPlural
@@ -365,13 +378,13 @@ class MyComponent extends Component {
 | ---- | ---- | ------- | ----------- |
 | `value` | `Date` | | ***Required.*** The date you want to use to compute the difference from. |
 | `unit` | `String` | | ***Required.*** One of: `best`, `second`, `minute`, `hour`, `day`, `week`, `month`, `year`. |
-| `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
 | `form` | `Mixed`  | | One of: `short`, `narrow`, `0`, `false`. Change output type. |
+| `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
 
 ```javascript
 import { FormattedRelativeTime } from 'react-native-globalize';
 
-class MyComponent extends Component {
+class MyComponent extends PureComponent {
   render() {
     return (
       <FormattedRelativeTime
@@ -388,25 +401,23 @@ class MyComponent extends Component {
 
 See [`FormattedDate`](#formatteddate). All props and functionality are identical.
 
-### Context
-You can access formatting functions via the context should you need programmatic access to the results or if a component is not appropriate. For this to work, you must still have `FormattedWrapper` at the root of you application, or you must be providing an alternative `getChildContext` in a parent component.
+### withGlobalize
+You can access formatting functions directly should you need programmatic access to the results or if a component is not appropriate. The `withGlobalize` HOC will inject a `globalize` prop into your component, allowing you to access the same methods the `Formatted*` components use. For this to work, you must still have `FormattedProvider` at the root of you application.
 
 ```javascript
-import { PropTypes } from 'react-native-globalize';
+import { withGlobalize } from 'react-native-globalize';
 
-class MyComponent extends Component {
+class MyComponent extends PureComponent {
   myFunction() {
-    const dateFormatter = this.context.globalize.getDateFormatter({skeleton: 'yMd'});
+    const dateFormatter = this.props.globalize.getDateFormatter({skeleton: 'yMd'});
     const formattedDate = dateFormatter(new Date());
 
-    const currencyFormatter = this.context.globalize.getCurrencyFormatter('USD', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    const currencyFormatter = this.props.globalize.getCurrencyFormatter('USD', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
     const formattedCurrency = currencyFormatter(9.99);
   }
 }
 
-MyComponent.contextTypes = {
-  globalize: PropTypes.globalizeShape,
-};
+export default withGlobalize(MyComponent);
 ```
 
 ### Globalize
