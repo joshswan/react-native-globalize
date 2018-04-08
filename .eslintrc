@@ -15,6 +15,7 @@
       "peerDependencies": true
     }],
     "import/no-unresolved": "off",
-    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
+    "react/require-default-props": "off"
   }
 }
