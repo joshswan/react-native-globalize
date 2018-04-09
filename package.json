@@ -26,8 +26,9 @@
   ],
   "scripts": {
     "cldr": "gulp cldr",
+    "coverage": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "lint": "eslint lib/**/*.js",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "dependencies": {
     "cldrjs": "^0.5.0",
@@ -39,6 +40,7 @@
     "babel-eslint": "^7.2.3",
     "babel-jest": "^22.4.3",
     "cldr-data": "^32.0.1",
+    "coveralls": "^3.0.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",

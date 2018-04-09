@@ -1,5 +1,5 @@
 # React Native Globalize
-[![NPM Version][npm-image]][npm-url] [![Build Status][build-image]][build-url] [![Dependency Status][depstat-image]][depstat-url] [![Dev Dependency Status][devdepstat-image]][devdepstat-url]
+[![NPM Version][npm-image]][npm-url] [![Build Status][build-image]][build-url] [![Coverage Status][coverage-image]][coverage-url] [![Dependency Status][depstat-image]][depstat-url] [![Dev Dependency Status][devdepstat-image]][devdepstat-url]
 
 Simple globalization library for React Native. Provides access to all formatting options as well as easy-to-use React Native components.
 
@@ -465,6 +465,8 @@ Globalize.loadMessages({
 
 [build-url]: https://travis-ci.org/joshswan/react-native-globalize
 [build-image]: https://travis-ci.org/joshswan/react-native-globalize.svg?branch=master
+[coverage-url]: https://coveralls.io/github/joshswan/react-native-globalize?branch=master
+[coverage-image]: https://coveralls.io/repos/github/joshswan/react-native-globalize/badge.svg?branch=master
 [depstat-url]: https://david-dm.org/joshswan/react-native-globalize
 [depstat-image]: https://david-dm.org/joshswan/react-native-globalize.svg
 [devdepstat-url]: https://david-dm.org/joshswan/react-native-globalize#info=devDependencies
