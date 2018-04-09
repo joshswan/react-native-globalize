@@ -28,7 +28,7 @@ const locales = [
   'es',           // Spanish
   'es-419',       // Spanish (Latin America & Caribbean)
   'et',           // Estonian
-  'fa',           // Persian
+  'fa',           // Farsi
   'fi',           // Finnish
   'fil',          // Filipino
   'fr',           // French
