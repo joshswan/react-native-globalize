@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FormattedMessage /> renders correctly 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={null}
+>
+  Test
+</Text>
+`;
+
+exports[`<FormattedMessage /> values renders component values 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={null}
+>
+  Todays date is 
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+  >
+    1/1/2018
+  </Text>
+</Text>
+`;
+
+exports[`<FormattedMessage /> values replaces variables using values prop 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={null}
+>
+  Hey Josh!
+</Text>
+`;
+
+exports[`<FormattedMessage /> values uses props passed directly to component 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={null}
+>
+  Hey Josh!
+</Text>
+`;

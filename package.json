@@ -27,7 +27,7 @@
   "scripts": {
     "cldr": "gulp cldr",
     "lint": "eslint lib/**/*.js",
-    "test": "npm run lint"
+    "test": "jest"
   },
   "dependencies": {
     "cldrjs": "^0.5.0",
@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
+    "babel-jest": "^22.4.3",
     "cldr-data": "^32.0.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
@@ -46,11 +47,18 @@
     "gulp": "^3.9.1",
     "gulp-filter": "^5.0.0",
     "gulp-merge-json": "^1.0.0",
+    "jest": "^22.4.3",
+    "react": "^16.3.1",
+    "react-native": "^0.55.1",
+    "react-test-renderer": "^16.3.1",
     "rimraf": "^2.5.2"
   },
   "peerDependencies": {
     "react": ">=16.3.0",
     "react-native": ">=0.54.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "jest": {
+    "preset": "react-native"
+  }
 }

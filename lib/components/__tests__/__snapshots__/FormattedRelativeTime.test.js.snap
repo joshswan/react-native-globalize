@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FormattedRelativeTime /> renders correctly 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={null}
+>
+  in 5 minutes
+</Text>
+`;
+
+exports[`<FormattedRelativeTime /> unit renders when best unit selected and non-date value used 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={null}
+>
+  in 10 seconds
+</Text>
+`;
+
+exports[`<FormattedRelativeTime /> unit supports best unit option 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={null}
+>
+  2 years ago
+</Text>
+`;
+
+exports[`<FormattedRelativeTime /> value supports date instances for value 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={null}
+>
+  364 days ago
+</Text>
+`;

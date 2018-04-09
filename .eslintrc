@@ -3,6 +3,7 @@
   "parser": "babel-eslint",
   "env": {
     "browser": false,
+    "jest": true,
     "node": true
   },
   "rules": {
@@ -10,7 +11,7 @@
     "no-underscore-dangle": "off",
     "import/extensions": "off",
     "import/no-extraneous-dependencies": ["error", {
-      "devDependencies": ["gulpfile.js"],
+      "devDependencies": ["gulpfile.js", "**/*.test.js"],
       "optionalDependencies": false,
       "peerDependencies": true
     }],

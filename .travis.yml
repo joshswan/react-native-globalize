@@ -5,3 +5,4 @@ node_js:
   - '9.11.1'
 script:
   - npm run lint
+  - npm test
