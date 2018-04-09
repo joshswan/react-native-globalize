@@ -29,7 +29,7 @@ exports[`<FormattedRelativeTime /> unit supports best unit option 1`] = `
   ellipsizeMode="tail"
   style={null}
 >
-  2 years ago
+  3 years ago
 </Text>
 `;
 
@@ -40,6 +40,6 @@ exports[`<FormattedRelativeTime /> value supports date instances for value 1`] =
   ellipsizeMode="tail"
   style={null}
 >
-  364 days ago
+  365 days ago
 </Text>
 `;
