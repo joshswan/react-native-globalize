@@ -4,6 +4,11 @@ logs
 *.log
 npm-debug.log
 
+# Only apps should have lockfiles
+yarn.lock
+package-lock.json
+npm-shrinkwrap.json
+
 # Runtime data
 pids
 *.pid
