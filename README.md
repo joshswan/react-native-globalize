@@ -82,7 +82,7 @@ const currencies = [
 
 Place `FormattedProvider` at the root of your application to propagate the required context to all components. Then use any of the included components or access the formatting functions directly from the React Context (see below) anywhere in your application.
 
-**NOTE:** Version 2.0.0 and up requires React `>= 16.3.0`!
+**NOTE:** Version 2.0.0 and up requires React `>= 16.3.1` & React Native `>= 0.55.0`!
 
 ### FormattedProvider
 #### Props
