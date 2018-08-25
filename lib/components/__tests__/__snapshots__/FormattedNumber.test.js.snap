@@ -2,6 +2,7 @@
 
 exports[`<FormattedNumber /> renders correctly 1`] = `
 <Text
+  accessibilityLabel=""
   accessible={true}
   allowFontScaling={true}
   ellipsizeMode="tail"

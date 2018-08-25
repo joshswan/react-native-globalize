@@ -2,6 +2,7 @@
 
 exports[`<FormattedRelativeTime /> renders correctly 1`] = `
 <Text
+  accessibilityLabel=""
   accessible={true}
   allowFontScaling={true}
   ellipsizeMode="tail"
@@ -13,6 +14,7 @@ exports[`<FormattedRelativeTime /> renders correctly 1`] = `
 
 exports[`<FormattedRelativeTime /> unit renders when best unit selected and non-date value used 1`] = `
 <Text
+  accessibilityLabel=""
   accessible={true}
   allowFontScaling={true}
   ellipsizeMode="tail"
@@ -24,6 +26,7 @@ exports[`<FormattedRelativeTime /> unit renders when best unit selected and non-
 
 exports[`<FormattedRelativeTime /> unit supports best unit option 1`] = `
 <Text
+  accessibilityLabel=""
   accessible={true}
   allowFontScaling={true}
   ellipsizeMode="tail"
@@ -35,6 +38,7 @@ exports[`<FormattedRelativeTime /> unit supports best unit option 1`] = `
 
 exports[`<FormattedRelativeTime /> value supports date instances for value 1`] = `
 <Text
+  accessibilityLabel=""
   accessible={true}
   allowFontScaling={true}
   ellipsizeMode="tail"

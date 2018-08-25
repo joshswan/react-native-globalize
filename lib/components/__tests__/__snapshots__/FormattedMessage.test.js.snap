@@ -2,6 +2,7 @@
 
 exports[`<FormattedMessage /> renders correctly 1`] = `
 <Text
+  accessibilityLabel=""
   accessible={true}
   allowFontScaling={true}
   ellipsizeMode="tail"
@@ -13,6 +14,7 @@ exports[`<FormattedMessage /> renders correctly 1`] = `
 
 exports[`<FormattedMessage /> values renders component values 1`] = `
 <Text
+  accessibilityLabel=""
   accessible={true}
   allowFontScaling={true}
   ellipsizeMode="tail"
@@ -31,6 +33,7 @@ exports[`<FormattedMessage /> values renders component values 1`] = `
 
 exports[`<FormattedMessage /> values replaces variables using values prop 1`] = `
 <Text
+  accessibilityLabel=""
   accessible={true}
   allowFontScaling={true}
   ellipsizeMode="tail"
@@ -42,6 +45,7 @@ exports[`<FormattedMessage /> values replaces variables using values prop 1`] = 
 
 exports[`<FormattedMessage /> values uses props passed directly to component 1`] = `
 <Text
+  accessibilityLabel=""
   accessible={true}
   allowFontScaling={true}
   ellipsizeMode="tail"
