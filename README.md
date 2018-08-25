@@ -125,7 +125,6 @@ class MyApp extends PureComponent {
 | ---- | ---- | ------- | ----------- |
 | `value` | `Number` | | ***Required.*** The number you want to format. |
 | `currency` | `String` | | Defaults to currency set on `FormattedWrapper`. |
-| `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
 | `maximumFractionDigits` | `Int` | | Non-negative integer indicating the maximum fraction digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. |
 | `minimumFractionDigits` | `Int` | | Non-negative integer indicating the minimum fraction digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. |
 | `minimumIntegerDigits` | `Int` | | Non-negative integer indicating the minimum integer digits to be shown. Numbers will be padded with leading zeroes as necessary. |
@@ -133,7 +132,9 @@ class MyApp extends PureComponent {
 | `minimumSignificantDigits` | `Int` | | Non-negative integer indicating the minimum significant digits to be shown. Numbers will be rounded or padded with trailing zeroes as necessary. |
 | `numberStyle` | `String` | `symbol` | Formatting style to use when displaying currency. Values: `symbol` ($1.00), `accounting`, `code` (1.00 USD), or `name` (1.00 US dollar). |
 | `round` | `String` | `round` | Controls the rounding method used when rouding required (e.g. when using `maximumFractionDigits`). Values: `ceil`, `floor`, `round`, or `truncate`.  |
+| `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
 | `useGrouping` | `Boolean` | `true` | Whether a grouping separator should be used. |
+| `accessibilityLabel` | `String` | | Accessibility label for screen readers. |
 
 *Note: Using `maximumFractionDigits`, `minimumFractionDigits`, ..., `useGrouping` overrides the language default derived from CLDR.*
 
@@ -164,6 +165,7 @@ class MyComponent extends PureComponent {
 | `skeleton` | `String` | | Date format skeleton. See the [CLDR documentation](http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table). *Not all options work* |
 | `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
 | `time` | `String` | | One of: `full`, `long`, `medium`, `short`. Outputs just a time (e.g. `5:55:00 PM GMT-02:00`). |
+| `accessibilityLabel` | `String` | | Accessibility label for screen readers. |
 
 ***Only ONE of `skeleton`, `date`, `time`, and `datetime` should be specified.***
 
@@ -193,6 +195,7 @@ Format a message based on the ICU message format pattern and variables.
 | `defaultMessage` | `String` | | A string to display if the message key does not exist. Otherwise, the message key itself will be displayed. |
 | `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
 | `values` | `Object` | `{}` | Variables for replacement/formatting. |
+| `accessibilityLabel` | `String` | | Accessibility label for screen readers. |
 
 * Values/variables can also be passed as props. Any additional props other than the 4 above will be merged with the `values` object. *Note: Specific props will override the `values` object if both are given and keys collide.*
 * Values ***can also be components***. See the last example below.
@@ -307,6 +310,7 @@ class MyComponent extends PureComponent {
 | `numberStyle` | `String` | `symbol` | Formatting style to use when displaying currency. Values: `symbol` ($1.00), `accounting`, `code` (1.00 USD), or `name` (1.00 US dollar). |
 | `round` | `String` | `round` | Controls the rounding method used when rouding required (e.g. when using `maximumFractionDigits`). Values: `ceil`, `floor`, `round`, or `truncate`.  |
 | `useGrouping` | `Boolean` | `true` | Whether a grouping separator should be used. |
+| `accessibilityLabel` | `String` | | Accessibility label for screen readers. |
 
 *Note: Using `maximumFractionDigits`, `minimumFractionDigits`, ..., `useGrouping` overrides the language default derived from CLDR.*
 
@@ -354,6 +358,7 @@ class MyComponent extends PureComponent {
 | `two` | `Node` | | Node to output when plural type is `two`. |
 | `few` | `Node` | | Node to output when plural type is `few`. |
 | `many` | `Node` | | Node to output when plural type is `many`. |
+| `accessibilityLabel` | `String` | | Accessibility label for screen readers. |
 
 ```javascript
 import { FormattedPlural } from 'react-native-globalize';
@@ -380,6 +385,7 @@ class MyComponent extends PureComponent {
 | `unit` | `String` | | ***Required.*** One of: `best`, `second`, `minute`, `hour`, `day`, `week`, `month`, `year`. |
 | `form` | `Mixed`  | | One of: `short`, `narrow`, `0`, `false`. Change output type. |
 | `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
+| `accessibilityLabel` | `String` | | Accessibility label for screen readers. |
 
 ```javascript
 import { FormattedRelativeTime } from 'react-native-globalize';
