@@ -135,6 +135,8 @@ class MyApp extends PureComponent {
 | `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
 | `useGrouping` | `Boolean` | `true` | Whether a grouping separator should be used. |
 | `accessibilityLabel` | `String` | | Accessibility label for screen readers. |
+| `adjustsFontSizeToFit` | `Boolean` | `false` | Whether font size should be scaled down to fit. |
+| `allowFontScaling` | `Boolean` | `true` | Whether fonts should scale to respect Text Size accessibility settings. |
 
 *Note: Using `maximumFractionDigits`, `minimumFractionDigits`, ..., `useGrouping` overrides the language default derived from CLDR.*
 
@@ -166,6 +168,8 @@ class MyComponent extends PureComponent {
 | `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
 | `time` | `String` | | One of: `full`, `long`, `medium`, `short`. Outputs just a time (e.g. `5:55:00 PM GMT-02:00`). |
 | `accessibilityLabel` | `String` | | Accessibility label for screen readers. |
+| `adjustsFontSizeToFit` | `Boolean` | `false` | Whether font size should be scaled down to fit. |
+| `allowFontScaling` | `Boolean` | `true` | Whether fonts should scale to respect Text Size accessibility settings. |
 
 ***Only ONE of `skeleton`, `date`, `time`, and `datetime` should be specified.***
 
@@ -196,6 +200,8 @@ Format a message based on the ICU message format pattern and variables.
 | `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
 | `values` | `Object` | `{}` | Variables for replacement/formatting. |
 | `accessibilityLabel` | `String` | | Accessibility label for screen readers. |
+| `adjustsFontSizeToFit` | `Boolean` | `false` | Whether font size should be scaled down to fit. |
+| `allowFontScaling` | `Boolean` | `true` | Whether fonts should scale to respect Text Size accessibility settings. |
 
 * Values/variables can also be passed as props. Any additional props other than the 4 above will be merged with the `values` object. *Note: Specific props will override the `values` object if both are given and keys collide.*
 * Values ***can also be components***. See the last example below.
@@ -311,6 +317,8 @@ class MyComponent extends PureComponent {
 | `round` | `String` | `round` | Controls the rounding method used when rouding required (e.g. when using `maximumFractionDigits`). Values: `ceil`, `floor`, `round`, or `truncate`.  |
 | `useGrouping` | `Boolean` | `true` | Whether a grouping separator should be used. |
 | `accessibilityLabel` | `String` | | Accessibility label for screen readers. |
+| `adjustsFontSizeToFit` | `Boolean` | `false` | Whether font size should be scaled down to fit. |
+| `allowFontScaling` | `Boolean` | `true` | Whether fonts should scale to respect Text Size accessibility settings. |
 
 *Note: Using `maximumFractionDigits`, `minimumFractionDigits`, ..., `useGrouping` overrides the language default derived from CLDR.*
 
@@ -359,6 +367,8 @@ class MyComponent extends PureComponent {
 | `few` | `Node` | | Node to output when plural type is `few`. |
 | `many` | `Node` | | Node to output when plural type is `many`. |
 | `accessibilityLabel` | `String` | | Accessibility label for screen readers. |
+| `adjustsFontSizeToFit` | `Boolean` | `false` | Whether font size should be scaled down to fit. |
+| `allowFontScaling` | `Boolean` | `true` | Whether fonts should scale to respect Text Size accessibility settings. |
 
 ```javascript
 import { FormattedPlural } from 'react-native-globalize';
@@ -386,6 +396,8 @@ class MyComponent extends PureComponent {
 | `form` | `Mixed`  | | One of: `short`, `narrow`, `0`, `false`. Change output type. |
 | `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
 | `accessibilityLabel` | `String` | | Accessibility label for screen readers. |
+| `adjustsFontSizeToFit` | `Boolean` | `false` | Whether font size should be scaled down to fit. |
+| `allowFontScaling` | `Boolean` | `true` | Whether fonts should scale to respect Text Size accessibility settings. |
 
 ```javascript
 import { FormattedRelativeTime } from 'react-native-globalize';
