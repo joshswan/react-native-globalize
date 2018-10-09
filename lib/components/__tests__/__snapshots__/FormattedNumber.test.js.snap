@@ -4,6 +4,7 @@ exports[`<FormattedNumber /> renders correctly 1`] = `
 <Text
   accessibilityLabel=""
   accessible={true}
+  adjustsFontSizeToFit={false}
   allowFontScaling={true}
   ellipsizeMode="tail"
   style={null}
