@@ -432,6 +432,8 @@ class MyComponent extends PureComponent {
 
     const currencyFormatter = this.props.globalize.getCurrencyFormatter('USD', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
     const formattedCurrency = currencyFormatter(9.99);
+
+    const currencySymbol = this.props.globalize.getCurrencySymbol();
   }
 }
 
