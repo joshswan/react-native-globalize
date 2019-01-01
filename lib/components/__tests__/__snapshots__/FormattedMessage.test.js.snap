@@ -22,7 +22,7 @@ exports[`<FormattedMessage /> values renders component values 1`] = `
   ellipsizeMode="tail"
   style={null}
 >
-  Todays date is
+  Todays date is 
   <Text
     accessible={true}
     allowFontScaling={true}
