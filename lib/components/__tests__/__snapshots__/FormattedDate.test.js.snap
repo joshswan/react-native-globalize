@@ -9,6 +9,6 @@ exports[`<FormattedDate /> renders correctly 1`] = `
   ellipsizeMode="tail"
   style={null}
 >
-  1/1/2018
+  1/1/2019
 </Text>
 `;

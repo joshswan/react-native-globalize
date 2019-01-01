@@ -468,7 +468,7 @@ Globalize.loadMessages({
 ## License
 
 ```
- Copyright (c) 2015-2018 Josh Swan
+ Copyright (c) 2015-2019 Josh Swan
 
  Licensed under the The MIT License (MIT) (the "License");
  you may not use this file except in compliance with the License.
