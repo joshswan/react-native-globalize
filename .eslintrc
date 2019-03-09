@@ -7,6 +7,7 @@
     "node": true
   },
   "rules": {
+    "no-multi-spaces": ["error", { "ignoreEOLComments": true }],
     "no-param-reassign": ["error", { "props": false }],
     "no-underscore-dangle": "off",
     "import/extensions": "off",
