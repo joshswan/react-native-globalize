@@ -98,49 +98,52 @@ gulp.task('cldr', () => {
 
   return gulp.src(['./node_modules/cldr-data/supplemental/*.json', './node_modules/cldr-data/main/**/*.json'])
     .pipe(cldrFilter)
-    .pipe(merge('cldr.json', (obj) => {
-      if (obj.main) {
-        // For language files, grab the first language, and filter stuff out
-        const key = Object.keys(obj.main)[0];
-        const data = obj.main[key];
+    .pipe(merge({
+      fileName: 'cldr.json',
+      edit: (obj) => {
+        if (obj.main) {
+          // For language files, grab the first language, and filter stuff out
+          const key = Object.keys(obj.main)[0];
+          const data = obj.main[key];
 
-        // Cut out unused dates.timeZoneNames.zone and dates.timeZoneNames.metazone data
-        if (data && data.dates && data.dates.timeZoneNames) {
-          data.dates.timeZoneNames.zone = {};
-          data.dates.timeZoneNames.metazone = {};
+          // Cut out unused dates.timeZoneNames.zone and dates.timeZoneNames.metazone data
+          if (data && data.dates && data.dates.timeZoneNames) {
+            data.dates.timeZoneNames.zone = {};
+            data.dates.timeZoneNames.metazone = {};
+          }
+
+          // Only include above currencies in each language
+          if (data && data.numbers && data.numbers.currencies) {
+            Object.keys(data.numbers.currencies).forEach((code) => {
+              if (currencies.indexOf(code) === -1) {
+                delete data.numbers.currencies[code];
+              }
+            });
+          }
         }
 
-        // Only include above currencies in each language
-        if (data && data.numbers && data.numbers.currencies) {
-          Object.keys(data.numbers.currencies).forEach((code) => {
-            if (currencies.indexOf(code) === -1) {
-              delete data.numbers.currencies[code];
-            }
+        // Cut out unused languages from our supplemental files
+        if (obj.supplemental) {
+          const languageDictKeys = ['plurals-type-ordinal', 'plurals-type-cardinal'];
+
+          languageDictKeys.forEach((languageDictKey) => {
+            removeUnusedLanguages(obj.supplemental[languageDictKey]);
           });
+
+          // Only include currencies above
+          if (obj.supplemental.currencyData) {
+            delete obj.supplemental.currencyData.region;
+
+            Object.keys(obj.supplemental.currencyData.fractions).forEach((code) => {
+              if (currencies.indexOf(code) === -1 && code.toLowerCase() !== 'default') {
+                delete obj.supplemental.currencyData.fractions[code];
+              }
+            });
+          }
         }
-      }
 
-      // Cut out unused languages from our supplemental files
-      if (obj.supplemental) {
-        const languageDictKeys = ['plurals-type-ordinal', 'plurals-type-cardinal'];
-
-        languageDictKeys.forEach((languageDictKey) => {
-          removeUnusedLanguages(obj.supplemental[languageDictKey]);
-        });
-
-        // Only include currencies above
-        if (obj.supplemental.currencyData) {
-          delete obj.supplemental.currencyData.region;
-
-          Object.keys(obj.supplemental.currencyData.fractions).forEach((code) => {
-            if (currencies.indexOf(code) === -1 && code.toLowerCase() !== 'default') {
-              delete obj.supplemental.currencyData.fractions[code];
-            }
-          });
-        }
-      }
-
-      return obj;
+        return obj;
+      },
     }))
     .pipe(gulp.dest('lib'));
 });
