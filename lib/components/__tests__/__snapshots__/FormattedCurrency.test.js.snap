@@ -6,7 +6,6 @@ exports[`<FormattedCurrency /> renders correctly 1`] = `
   accessible={true}
   adjustsFontSizeToFit={false}
   allowFontScaling={true}
-  ellipsizeMode="tail"
   style={null}
 >
   $10.00

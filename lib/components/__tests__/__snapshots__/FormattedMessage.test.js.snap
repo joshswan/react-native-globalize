@@ -6,7 +6,6 @@ exports[`<FormattedMessage /> renders correctly 1`] = `
   accessible={true}
   adjustsFontSizeToFit={false}
   allowFontScaling={true}
-  ellipsizeMode="tail"
   style={null}
 >
   Test
@@ -19,15 +18,10 @@ exports[`<FormattedMessage /> values renders component values 1`] = `
   accessible={true}
   adjustsFontSizeToFit={false}
   allowFontScaling={true}
-  ellipsizeMode="tail"
   style={null}
 >
   Todays date is 
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
+  <Text>
     1/1/2019
   </Text>
 </Text>
@@ -39,7 +33,6 @@ exports[`<FormattedMessage /> values replaces variables using values prop 1`] = 
   accessible={true}
   adjustsFontSizeToFit={false}
   allowFontScaling={true}
-  ellipsizeMode="tail"
   style={null}
 >
   Hey Josh!
@@ -52,7 +45,6 @@ exports[`<FormattedMessage /> values uses props passed directly to component 1`]
   accessible={true}
   adjustsFontSizeToFit={false}
   allowFontScaling={true}
-  ellipsizeMode="tail"
   style={null}
 >
   Hey Josh!

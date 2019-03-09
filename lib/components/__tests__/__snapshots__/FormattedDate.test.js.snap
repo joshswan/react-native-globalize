@@ -6,7 +6,6 @@ exports[`<FormattedDate /> renders correctly 1`] = `
   accessible={true}
   adjustsFontSizeToFit={false}
   allowFontScaling={true}
-  ellipsizeMode="tail"
   style={null}
 >
   1/1/2019
