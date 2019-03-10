@@ -419,6 +419,60 @@ class MyComponent extends PureComponent {
 
 See [`FormattedDate`](#formatteddate). All props and functionality are identical.
 
+### FormattedUnit
+
+#### Props
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `value` | `Number` | | ***Required.*** The number you want to format. |
+| `unit` | `String` | | ***Required.*** The unit to be formatted (e.g. `day`, `mile-per-hour`). See `main.{locale}.units` in `cldr.json` for options. |
+| `form` | `Mixed`  | | One of: `long`, `short`, `narrow`. Change output type. |
+| `numberFormatter` | `Function` | | A custom number formatter function from `getNumberFormatter` for customizing how number is displayed in output. |
+| `style` | `TextStyle` | | Styles to apply to resulting `Text` node. |
+| `accessibilityLabel` | `String` | | Accessibility label for screen readers. |
+| `adjustsFontSizeToFit` | `Boolean` | `false` | Whether font size should be scaled down to fit. |
+| `allowFontScaling` | `Boolean` | `true` | Whether fonts should scale to respect Text Size accessibility settings. |
+
+```javascript
+// Example 1
+import { FormattedUnit } from 'react-native-globalize';
+
+class MyComponent extends PureComponent {
+  render() {
+    return (
+      <FormattedUnit
+        unit="mile-per-hour"
+        value={75}
+      />
+    )
+  }
+}
+// 75 miles per hour
+
+// Example 2
+import { FormattedUnit } from 'react-native-globalize';
+
+class MyComponent extends PureComponent {
+  render() {
+    // Requires `withGlobalize` HOC to inject globalize prop
+    const numberFormatter = this.props.globalize.getNumberFormatter({
+      minimumFractionDigits: 2,
+      useGrouping: false,
+    });
+
+    return (
+      <FormattedUnit
+        form="narrow"
+        numberFormatter={numberFormatter}
+        unit="area-square-mile"
+        value={5000}
+      />
+    )
+  }
+}
+// 5000.00mi²
+```
+
 ### withGlobalize
 You can access formatting functions directly should you need programmatic access to the results or if a component is not appropriate. The `withGlobalize` HOC will inject a `globalize` prop into your component, allowing you to access the same methods the `Formatted*` components use. For this to work, you must still have `FormattedProvider` at the root of you application.
 
