@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FormattedUnit /> renders correctly 1`] = `
+<Text
+  accessibilityLabel=""
+  accessible={true}
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  style={null}
+>
+  75 miles per hour
+</Text>
+`;
+
+exports[`<FormattedUnit /> uses a custom number formatter function 1`] = `
+<Text
+  accessibilityLabel=""
+  accessible={true}
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  style={null}
+>
+  5000.00mi²
+</Text>
+`;

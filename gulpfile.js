@@ -76,7 +76,7 @@ const currencies = [
   'USD',          // US Dollar
 ];
 
-const files = ['ca-gregorian', 'currencies', 'dateFields', 'numbers', 'timeZoneNames'];
+const files = ['ca-gregorian', 'currencies', 'dateFields', 'numbers', 'timeZoneNames', 'units'];
 const supplemental = ['currencyData', 'likelySubtags', 'numberingSystems', 'ordinals', 'plurals', 'timeData', 'weekData'];
 const cldrs = locales.map(x => new Cldr(x));
 const languages = cldrs.map(x => x.attributes.language);
