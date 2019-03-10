@@ -78,7 +78,7 @@ const currencies = [
 
 1. Fork this repo.
 2. Edit the `locales` and `currencies` arrays in `gulpfile.js` to suit your needs.
-3. Run `gulp cldr`.
+3. Run `npm run cldr` or `yarn run cldr`.
 4. The `lib/cldr.json` file is now your own customized version with only what you need.
 
 ## Installation
