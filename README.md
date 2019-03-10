@@ -1,17 +1,13 @@
 # React Native Globalize
 [![NPM Version][npm-image]][npm-url] [![Build Status][build-image]][build-url] [![Coverage Status][coverage-image]][coverage-url] [![Dependency Status][depstat-image]][depstat-url] [![Dev Dependency Status][devdepstat-image]][devdepstat-url]
 
-Simple globalization library for React Native. Provides access to all formatting options as well as easy-to-use React Native components.
+Simple globalization library for React Native. Provides various formatting functions as well as easy-to-use React Native components.
 
-## How does it work?
+## About React Native Globalize
 
-Because it's based on the jQuery Globalize project, React Native Globalize can format and parse numbers, format and parse dates, format currency, and format messages (using the ICU message pattern) using the correct plural rules for the language/locale.
+React Native Globalize can format (and parse) numbers, dates, currency, and messages (using the ICU message pattern) with the correct plural rules for the language/locale. This functionality depends on CLDR data for the languages/locales being used. By default, many (but not all) languages/locales and currencies are loaded by default and you can pass additional CLDR data in various ways. However, it is recommended to customize the CLDR data (see below) to only include what you need in order to minimize the bundle size and startup time.
 
-The important thing to note is all this functionality depends entirely on CLDR data. While a huge number of languages/locales and currencies are available in this data, only some are loaded by default. This is done for performance reasons as loading hundreds of megabytes of CLDR data would massively inflate app bundle sizes and startup times. The default languages and currencies are listed below, and you can always [pass additional CLDR data](#formattedprovider) directly if you need additional language/locale or currency support. Using the default configuration should only increase your bundle size slightly and negligibly affect startup time, but if you want more control, customize!
-
-**Want to customize the included locales and/or currencies?** Just fork the repo, edit the two arrays in `gulpfile.js` to suit your needs, run `gulp cldr`, and you've got your own custom version with only what you need.
-
-#### Default Locales & Currencies
+### Default Locales & Currencies
 ```javascript
 const locales = [
   'am',           // Amharic
@@ -78,11 +74,20 @@ const currencies = [
 ];
 ```
 
-## Usage
+### Customizing the included languages and/or currencies
 
-Place `FormattedProvider` at the root of your application to propagate the required context to all components. Then use any of the included components or access the formatting functions directly from the React Context (see below) anywhere in your application.
+1. Fork this repo.
+2. Edit the `locales` and `currencies` arrays in `gulpfile.js` to suit your needs.
+3. Run `gulp cldr`.
+4. The `lib/cldr.json` file is now your own customized version with only what you need.
+
+## Installation
+
+After installing using npm/yarn, place `FormattedProvider` at the root of your application to propagate the required context to all components. Then use any of the included `Formatted*` components anywhere in your application or access the formatting functions directly using the `withGlobalize` HOC.
 
 **NOTE:** Version 2.0.0 and up requires React `>= 16.3.1` & React Native `>= 0.55.0`!
+
+## Usage
 
 ### FormattedProvider
 #### Props
