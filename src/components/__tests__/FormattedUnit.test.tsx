@@ -7,13 +7,13 @@
  */
 
 import React from 'react';
-import createComponentWithGlobalize from '../../../utils/createComponentWithGlobalize';
-import Globalize from '../../globalize';
-import FormattedUnit from '../FormattedUnit';
+import createWithGlobalize from '../../../test/createWithGlobalize';
+import { Globalize } from '../../globalize';
+import { FormattedUnit } from '../FormattedUnit';
 
 describe('<FormattedUnit />', () => {
   test('renders correctly', () => {
-    const tree = createComponentWithGlobalize((
+    const tree = createWithGlobalize((
       <FormattedUnit
         unit="mile-per-hour"
         value={75}
@@ -30,7 +30,7 @@ describe('<FormattedUnit />', () => {
       useGrouping: false,
     });
 
-    const tree = createComponentWithGlobalize((
+    const tree = createWithGlobalize((
       <FormattedUnit
         form="narrow"
         numberFormatter={numberFormatter}

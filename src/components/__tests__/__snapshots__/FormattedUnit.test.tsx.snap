@@ -6,7 +6,6 @@ exports[`<FormattedUnit /> renders correctly 1`] = `
   accessible={true}
   adjustsFontSizeToFit={false}
   allowFontScaling={true}
-  style={null}
 >
   75 miles per hour
 </Text>
@@ -18,7 +17,6 @@ exports[`<FormattedUnit /> uses a custom number formatter function 1`] = `
   accessible={true}
   adjustsFontSizeToFit={false}
   allowFontScaling={true}
-  style={null}
 >
   5000.00mi²
 </Text>

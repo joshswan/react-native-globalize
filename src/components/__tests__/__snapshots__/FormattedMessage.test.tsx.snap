@@ -1,49 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<FormattedRelativeTime /> renders correctly 1`] = `
+exports[`<FormattedMessage /> renders correctly 1`] = `
 <Text
   accessibilityLabel=""
   accessible={true}
   adjustsFontSizeToFit={false}
   allowFontScaling={true}
-  style={null}
 >
-  in 5 minutes
+  Test
 </Text>
 `;
 
-exports[`<FormattedRelativeTime /> unit renders when best unit selected and non-date value used 1`] = `
+exports[`<FormattedMessage /> values renders component values 1`] = `
 <Text
   accessibilityLabel=""
   accessible={true}
   adjustsFontSizeToFit={false}
   allowFontScaling={true}
-  style={null}
 >
-  in 10 seconds
+  Todays date is 
+  <Text>
+    1/1/2019
+  </Text>
 </Text>
 `;
 
-exports[`<FormattedRelativeTime /> unit supports best unit option 1`] = `
+exports[`<FormattedMessage /> values replaces variables using values prop 1`] = `
 <Text
   accessibilityLabel=""
   accessible={true}
   adjustsFontSizeToFit={false}
   allowFontScaling={true}
-  style={null}
 >
-  3 years ago
+  Hey Josh!
 </Text>
 `;
 
-exports[`<FormattedRelativeTime /> value supports date instances for value 1`] = `
+exports[`<FormattedMessage /> values uses props passed directly to component 1`] = `
 <Text
   accessibilityLabel=""
   accessible={true}
   adjustsFontSizeToFit={false}
   allowFontScaling={true}
-  style={null}
 >
-  365 days ago
+  Hey Josh!
 </Text>
 `;

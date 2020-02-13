@@ -7,12 +7,12 @@
  */
 
 import React from 'react';
-import createComponentWithGlobalize from '../../../utils/createComponentWithGlobalize';
-import FormattedCurrency from '../FormattedCurrency';
+import createWithGlobalize from '../../../test/createWithGlobalize';
+import { FormattedPlural } from '../FormattedPlural';
 
-describe('<FormattedCurrency />', () => {
+describe('<FormattedPlural />', () => {
   test('renders correctly', () => {
-    const tree = createComponentWithGlobalize(<FormattedCurrency value={10} />).toJSON();
+    const tree = createWithGlobalize(<FormattedPlural value={1} zero=":(" other=":)" />).toJSON();
 
     expect(tree).toMatchSnapshot();
   });

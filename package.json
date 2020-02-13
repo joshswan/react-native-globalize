@@ -30,7 +30,7 @@
     "build": "tsc",
     "cldr": "gulp cldr",
     "coverage": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "lint": "tsc --noEmit && eslint src --ext .ts,.tsx",
+    "lint": "tsc --noEmit && eslint src test --ext .ts,.tsx",
     "test": "jest --coverage"
   },
   "dependencies": {
@@ -40,8 +40,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
+    "@babel/preset-typescript": "^7.8.3",
     "@types/cldrjs": "^0.4.22",
     "@types/globalize": "^0.0.35",
+    "@types/jest": "^25.1.2",
     "@types/react": "^16.9.19",
     "@types/react-native": "^0.61.14",
     "@typescript-eslint/eslint-plugin": "^2.19.2",

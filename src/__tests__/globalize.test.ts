@@ -6,11 +6,12 @@
  * https://github.com/joshswan/react-native-globalize/blob/master/LICENSE
  */
 
-import Globalize from '../globalize';
+import { Globalize } from '../globalize';
 
 describe('Globalize', () => {
   describe('static availableLocales()', () => {
     test('returns list of loaded locales', () => {
+      /* eslint-disable no-multi-spaces */
       expect(Globalize.availableLocales().sort()).toEqual([
         'am',           // Amharic
         'ar',           // Arabic
@@ -67,6 +68,7 @@ describe('Globalize', () => {
         'zh-Hans',      // Chinese (Simplified)
         'zh-Hant',      // Chinese (Traditional)
       ]);
+      /* eslint-enable */
     });
   });
 
@@ -101,8 +103,8 @@ describe('Globalize', () => {
       const spy = jest.spyOn(console, 'warn');
       const messageFormatter = globalize.getMessageFormatter('test');
 
-      expect(spy).toHaveBeenCalledWith('[Globalize] Missing message: test!');
-      expect(messageFormatter()).toEqual('test');
+      expect(spy).toHaveBeenCalledWith('[Globalize] Missing message: "test"!');
+      expect(messageFormatter()).toEqual('"test"');
 
       spy.mockRestore();
     });
@@ -114,7 +116,7 @@ describe('Globalize', () => {
       const messageFormatter = globalize.getMessageFormatter('test');
 
       expect(spy).not.toHaveBeenCalled();
-      expect(messageFormatter()).toEqual('test');
+      expect(messageFormatter()).toEqual('"test"');
 
       spy.mockRestore();
     });
@@ -134,7 +136,7 @@ describe('Globalize', () => {
       const globalize = new Globalize('en', 'USD', { warnOnMissingMessage: false });
       const messageFormatter = globalize.getMessageFormatter(['test', 'key']);
 
-      expect(messageFormatter()).toEqual('test/key');
+      expect(messageFormatter()).toEqual('["test","key"]');
     });
 
     test('outputs defaultMessage option if key does not exist', () => {

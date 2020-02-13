@@ -7,12 +7,14 @@
  */
 
 import React from 'react';
-import createComponentWithGlobalize from '../../../utils/createComponentWithGlobalize';
-import FormattedNumber from '../FormattedNumber';
+import createWithGlobalize from '../../../test/createWithGlobalize';
+import { FormattedDate } from '../FormattedDate';
 
-describe('<FormattedNumber />', () => {
+const date = new Date(2019, 0, 1);
+
+describe('<FormattedDate />', () => {
   test('renders correctly', () => {
-    const tree = createComponentWithGlobalize(<FormattedNumber value={1000} />).toJSON();
+    const tree = createWithGlobalize(<FormattedDate skeleton="yMd" value={date} />).toJSON();
 
     expect(tree).toMatchSnapshot();
   });

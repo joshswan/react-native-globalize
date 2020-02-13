@@ -1,13 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<FormattedPlural /> renders correctly 1`] = `
+exports[`<FormattedNumber /> renders correctly 1`] = `
 <Text
   accessibilityLabel=""
   accessible={true}
   adjustsFontSizeToFit={false}
   allowFontScaling={true}
-  style={null}
 >
-  :)
+  1,000
 </Text>
 `;

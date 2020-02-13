@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import createComponentWithGlobalize from '../../../utils/createComponentWithGlobalize';
-import FormattedRelativeTime from '../FormattedRelativeTime';
+import createWithGlobalize from '../../../test/createWithGlobalize';
+import { FormattedRelativeTime } from '../FormattedRelativeTime';
 
 describe('<FormattedRelativeTime />', () => {
   const dateNow = Date.now;
@@ -22,20 +22,20 @@ describe('<FormattedRelativeTime />', () => {
   });
 
   test('renders correctly', () => {
-    const tree = createComponentWithGlobalize(<FormattedRelativeTime value={5} unit="minute" />).toJSON();
+    const tree = createWithGlobalize(<FormattedRelativeTime value={5} unit="minute" />).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
   describe('unit', () => {
     test('supports best unit option', () => {
-      const tree = createComponentWithGlobalize(<FormattedRelativeTime value={new Date('2015-01-01T00:00:00Z')} unit="best" />).toJSON();
+      const tree = createWithGlobalize(<FormattedRelativeTime value={new Date('2015-01-01T00:00:00Z')} unit="best" />).toJSON();
 
       expect(tree).toMatchSnapshot();
     });
 
     test('renders when best unit selected and non-date value used', () => {
-      const tree = createComponentWithGlobalize(<FormattedRelativeTime value={10} unit="best" />).toJSON();
+      const tree = createWithGlobalize(<FormattedRelativeTime value={10} unit="best" />).toJSON();
 
       expect(tree).toMatchSnapshot();
     });
@@ -43,7 +43,7 @@ describe('<FormattedRelativeTime />', () => {
 
   describe('value', () => {
     test('supports date instances for value', () => {
-      const tree = createComponentWithGlobalize(<FormattedRelativeTime value={new Date('2017-01-01T00:00:00Z')} unit="day" />).toJSON();
+      const tree = createWithGlobalize(<FormattedRelativeTime value={new Date('2017-01-01T00:00:00Z')} unit="day" />).toJSON();
 
       expect(tree).toMatchSnapshot();
     });
