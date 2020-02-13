@@ -16,6 +16,7 @@ export * from './components/FormattedPlural';
 export * from './components/FormattedProvider';
 export * from './components/FormattedRelativeTime';
 export * from './components/FormattedUnit';
+export * from './components/withGlobalize';
 
 export {
   FormattedDate as FormattedTime,

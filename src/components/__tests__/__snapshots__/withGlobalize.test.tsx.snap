@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withGlobalize() injects Globalize instance 1`] = `
+<Text>
+  $10.00
+</Text>
+`;
