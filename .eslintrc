@@ -1,23 +1,40 @@
 {
-  "extends": "airbnb",
-  "parser": "babel-eslint",
-  "env": {
-    "browser": false,
-    "jest": true,
-    "node": true
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "airbnb"
+  ],
+  "plugins": ["@typescript-eslint"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
+      }
+    }
   },
   "rules": {
-    "no-multi-spaces": ["error", { "ignoreEOLComments": true }],
-    "no-param-reassign": ["error", { "props": false }],
-    "no-underscore-dangle": "off",
-    "import/extensions": "off",
-    "import/no-extraneous-dependencies": ["error", {
-      "devDependencies": ["gulpfile.js", "**/*.test.js"],
-      "optionalDependencies": false,
-      "peerDependencies": true
+    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
+    "no-underscore-dangle": ["error", { "allow": ["_raw"] }],
+    "import/extensions": ["error", "ignorePackages", {
+      "js": "never",
+      "mjs": "never",
+      "jsx": "never",
+      "ts": "never",
+      "tsx": "never"
     }],
-    "import/no-unresolved": "off",
-    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
-    "react/require-default-props": "off"
+    "import/prefer-default-export": "off",
+    "react/jsx-filename-extension": ["error", { "extensions": [".jsx", ".tsx"] }],
+    "react/prop-types": "off",
+    "react/static-property-placement": ["error", "static public field"],
+    "@typescript-eslint/ban-ts-ignore": "off",
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-non-null-assertion": "off"
   }
 }

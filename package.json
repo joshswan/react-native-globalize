@@ -2,8 +2,9 @@
   "name": "react-native-globalize",
   "version": "3.0.0",
   "description": "Globalization helper for React Native",
-  "author": "Josh Swan <josh@sportifik.com>",
-  "main": "lib/index.js",
+  "author": "Josh Swan <josh@disruptivelabs.io>",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/joshswan/react-native-globalize"
@@ -11,6 +12,7 @@
   "bugs": {
     "url": "https://github.com/joshswan/react-native-globalize/issues"
   },
+  "license": "MIT",
   "keywords": [
     "react native",
     "internationalization",
@@ -20,48 +22,53 @@
     "l10n"
   ],
   "files": [
-    "lib/",
+    "dist/",
     "LICENSE",
     "README.md"
   ],
   "scripts": {
+    "build": "tsc",
     "cldr": "gulp cldr",
     "coverage": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "lint": "eslint lib/**/*.js",
+    "lint": "tsc --noEmit && eslint src --ext .ts,.tsx",
     "test": "jest --coverage"
   },
   "dependencies": {
     "cldrjs": "^0.5.0",
     "globalize": "^1.4.2",
-    "moment": "^2.19.3",
-    "prop-types": "^15.5.10"
+    "moment": "^2.19.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "babel-eslint": "^10.0.1",
-    "babel-jest": "^24.3.1",
-    "cldr-data": "^34.0.0",
-    "coveralls": "^3.0.0",
-    "eslint": "^5.15.1",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.11.0",
-    "gulp": "^4.0.0",
-    "gulp-filter": "^5.0.0",
-    "gulp-merge-json": "^1.0.0",
-    "jest": "^24.3.1",
-    "metro-react-native-babel-preset": "^0.53.0",
-    "react": "16.6.3",
-    "react-native": "^0.58.6",
-    "react-test-renderer": "^16.3.1",
-    "rimraf": "^2.5.2"
+    "@babel/core": "^7.8.4",
+    "@types/cldrjs": "^0.4.22",
+    "@types/globalize": "^0.0.35",
+    "@types/react": "^16.9.19",
+    "@types/react-native": "^0.61.14",
+    "@typescript-eslint/eslint-plugin": "^2.19.2",
+    "@typescript-eslint/parser": "^2.19.2",
+    "cldr-data": "^36.0.0",
+    "coveralls": "^3.0.9",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "gulp": "^4.0.2",
+    "gulp-filter": "^6.0.0",
+    "gulp-merge-json": "^2.0.0",
+    "jest": "^25.1.0",
+    "metro-react-native-babel-preset": "^0.58.0",
+    "react": "16.9.0",
+    "react-native": "^0.61.5",
+    "react-test-renderer": "^16.12.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^3.7.5"
   },
   "peerDependencies": {
-    "react": ">=16.3.1",
-    "react-native": ">=0.55.0"
+    "react": ">=16.8.0",
+    "react-native": ">=0.59.0"
   },
-  "license": "MIT",
   "jest": {
     "preset": "react-native"
   }

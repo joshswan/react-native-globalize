@@ -7,7 +7,6 @@
  */
 
 import { createContext } from 'react';
+import { Globalize } from './globalize';
 
-const GlobalizeContext = createContext();
-
-export default GlobalizeContext;
+export const GlobalizeContext = createContext<Globalize>(null!);
