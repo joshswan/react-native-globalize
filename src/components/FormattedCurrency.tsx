@@ -18,6 +18,7 @@ export interface FormattedCurrencyProps extends Omit<NumberFormatterOptions, 'st
   currency?: string;
   numberStyle?: 'symbol' | 'accounting' | 'code' | 'name';
   style?: TextStyle;
+  symbolForm?: 'narrow';
   value: number;
 }
 

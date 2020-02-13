@@ -16,4 +16,18 @@ describe('<FormattedCurrency />', () => {
 
     expect(tree).toMatchSnapshot();
   });
+
+  describe('symbolForm', () => {
+    test('supports symbolForm prop to use alt narrow currency symbol', () => {
+      const tree = createWithGlobalize((
+        <FormattedCurrency
+          currency="CAD"
+          symbolForm="narrow"
+          value={10}
+        />
+      )).toJSON();
+
+      expect(tree).toMatchSnapshot();
+    });
+  });
 });

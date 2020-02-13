@@ -10,3 +10,14 @@ exports[`<FormattedCurrency /> renders correctly 1`] = `
   $10.00
 </Text>
 `;
+
+exports[`<FormattedCurrency /> symbolForm supports symbolForm prop to use alt narrow currency symbol 1`] = `
+<Text
+  accessibilityLabel=""
+  accessible={true}
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+>
+  $10.00
+</Text>
+`;
