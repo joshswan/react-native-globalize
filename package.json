@@ -23,6 +23,7 @@
   ],
   "files": [
     "dist/",
+    "types/",
     "LICENSE",
     "README.md"
   ],
@@ -34,6 +35,7 @@
     "test": "jest --coverage"
   },
   "dependencies": {
+    "@types/globalize": "file:types/globalize",
     "cldrjs": "^0.5.0",
     "globalize": "^1.4.2",
     "moment": "^2.19.3"
@@ -42,7 +44,6 @@
     "@babel/core": "^7.8.4",
     "@babel/preset-typescript": "^7.8.3",
     "@types/cldrjs": "^0.4.22",
-    "@types/globalize": "^0.0.35",
     "@types/jest": "^25.1.2",
     "@types/react": "^16.9.19",
     "@types/react-native": "^0.61.14",

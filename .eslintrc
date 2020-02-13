@@ -17,6 +17,7 @@
       }
     }
   },
+  "ignorePatterns": ["types/"],
   "rules": {
     "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
     "no-underscore-dangle": ["error", { "allow": ["_raw"] }],
