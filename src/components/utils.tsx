@@ -70,7 +70,7 @@ type Formatted = {
     value: Parameters<Globalize['formatDate']>[0];
   };
   formatMessage: MessageFormatterOptions & {
-    message: Parameters<Globalize['formatMessage']>[0];
+    id: Parameters<Globalize['formatMessage']>[0];
     values?: Parameters<Globalize['formatMessage']>[1];
     [value: string]: any;
   };
@@ -106,10 +106,14 @@ const extractArgs: {
   formatDate: createPropFilter(({ value, ...options }) => [value, options]),
   formatMessage: createPropFilter(({
     defaultMessage,
+    id,
+    /**
+     * @deprecated Use "id" - still works for backwards compatibility
+     */
     message,
     values = {},
     ...rest
-  }) => [message, { ...values, ...rest }, { defaultMessage }]),
+  }) => [id || message, { ...values, ...rest }, { defaultMessage }]),
   formatNumber: createPropFilter(({ numberStyle = 'decimal', value, ...options }) => [value, {
     useGrouping: true,
     ...options,

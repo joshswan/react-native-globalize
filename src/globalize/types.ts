@@ -83,7 +83,7 @@ export interface Formatters {
   getCurrencyFormatter(currency?: string, options?: CurrencyFormatterOptions): CurrencyFormatter;
   getDateFormatter(...args: Parameters<typeof dateFormatter>): DateFormatter;
   getDateParser(...args: Parameters<typeof dateParser>): DateParser;
-  getMessageFormatter(path: string | string[], options?: MessageFormatterOptions): MessageFormatter;
+  getMessageFormatter(id: string | string[], options?: MessageFormatterOptions): MessageFormatter;
   getNumberFormatter(...args: Parameters<typeof numberFormatter>): NumberFormatter;
   getNumberParser(...args: Parameters<typeof numberParser>): NumberParser;
   getPluralGenerator(...args: Parameters<typeof pluralGenerator>): PluralGenerator;
@@ -122,12 +122,12 @@ export interface Globalize extends GlobalizeConfig, GlobalizeHelpers, Formatters
     options?: DateFormatterOptions,
   ): string;
   formatMessage(
-    path: string | string[],
+    id: string | string[],
     values?: string[] | Record<string, string>,
     options?: MessageFormatterOptions,
   ): string;
   formatMessage(
-    path: string | string[],
+    id: string | string[],
     values?: Record<string, string | ReactElement>,
     options?: MessageFormatterOptions,
   ): string | ReactElement;

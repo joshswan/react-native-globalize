@@ -30,21 +30,22 @@ import {
 export function enhanceMessageFormatter(
   getMessageFormatter: typeof messageFormatter,
   config: GlobalizeConfig,
-): (path: string | string[], options?: MessageFormatterOptions) => MessageFormatter {
-  return (path: string | string[], options: MessageFormatterOptions = {}) => {
-    const id = Array.isArray(path) ? path.join('/') : path;
+): (id: string | string[], options?: MessageFormatterOptions) => MessageFormatter {
+  return (id: string | string[], options: MessageFormatterOptions = {}) => {
     let formatter: MessageFormatter;
 
     try {
-      formatter = getMessageFormatter(path);
+      formatter = getMessageFormatter(id);
     } catch (e) {
-      config.onError(`Error processing message ${id}.`, e);
+      const msgId = Array.isArray(id) ? id.join('/') : id;
+
+      config.onError(`Error processing message ${msgId}.`, e);
 
       if (typeof options.defaultMessage === 'string') {
         return () => options.defaultMessage;
       }
 
-      return () => id;
+      return () => msgId;
     }
 
     return (
@@ -89,24 +90,23 @@ export function enhanceMessageFormatter(
 export function formatMessage(
   config: GlobalizeConfig,
   getMessageFormatter: Formatters['getMessageFormatter'],
-  path: string | string[],
+  id: string | string[],
   values?: Record<string, string>,
   options?: MessageFormatterOptions,
 ): string;
 export function formatMessage(
   config: GlobalizeConfig,
   getMessageFormatter: Formatters['getMessageFormatter'],
-  path: string | string[],
+  id: string | string[],
   values: Record<string, string | ReactElement> = {},
   options?: MessageFormatterOptions,
 ): string | ReactElement {
-  const id = Array.isArray(path) ? path.join('/') : path;
-
   try {
-    return getMessageFormatter(path, options)(values);
+    return getMessageFormatter(id, options)(values);
   } catch (e) {
-    config.onError(`Error formatting message ${id}.`, e);
-  }
+    const msgId = Array.isArray(id) ? id.join('/') : id;
+    config.onError(`Error formatting message ${msgId}.`, e);
 
-  return String(id);
+    return String(msgId);
+  }
 }
