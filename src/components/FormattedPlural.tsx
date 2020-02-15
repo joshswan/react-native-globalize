@@ -6,49 +6,40 @@
  * https://github.com/joshswan/react-native-globalize/blob/master/LICENSE
  */
 
-import { PluralGeneratorOptions } from 'globalize';
-import React, { useContext } from 'react';
-import { Text, TextStyle } from 'react-native';
-import { GlobalizeContext } from '../context';
+import React from 'react';
+import { Text } from 'react-native';
+import { Globalize, PluralGeneratorOptions } from '../globalize';
+import { useGlobalize } from '../hooks';
+import { createPropFilter, TextProps } from './utils';
 
-export interface FormattedPluralProps extends PluralGeneratorOptions {
-  accessibilityLabel?: string;
-  adjustsFontSizeToFit?: boolean;
-  allowFontScaling?: boolean;
-  style?: TextStyle;
-  value: number;
-
+type Props = PluralGeneratorOptions & TextProps & {
+  value: Parameters<Globalize['formatPlural']>[0];
   other: React.ReactNode;
   zero?: React.ReactNode;
   one?: React.ReactNode;
   two?: React.ReactNode;
   few?: React.ReactNode;
   many?: React.ReactNode;
-}
+};
 
-export const FormattedPlural: React.FC<FormattedPluralProps> = ({
-  accessibilityLabel = '',
-  adjustsFontSizeToFit = false,
-  allowFontScaling = true,
-  style,
+const filterProps = createPropFilter<Props, Parameters<Globalize['formatPlural']>>(({
   type,
   value,
-  ...options
+}) => [value, { type }]);
+
+export const FormattedPlural: React.FC<Props> = ({
+  children,
+  ...props
 }) => {
-  const globalize = useContext(GlobalizeContext);
-  const formatPlural = globalize.getPluralGenerator({ type });
-  const pluralCategory = (typeof value === 'number') ? formatPlural(value) : 'other';
-  const formattedPlural = options[pluralCategory] || options.other;
+  const { formatPlural } = useGlobalize();
+  const [args, textProps] = filterProps(props);
+  const plural = formatPlural(...args);
+  const { [plural]: formatted, other } = props;
 
   return (
-    <Text
-      accessible
-      accessibilityLabel={accessibilityLabel}
-      adjustsFontSizeToFit={adjustsFontSizeToFit}
-      allowFontScaling={allowFontScaling}
-      style={style}
-    >
-      {formattedPlural}
+    <Text {...textProps}>
+      {formatted || other}
+      {children}
     </Text>
   );
 };

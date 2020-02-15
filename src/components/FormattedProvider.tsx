@@ -7,41 +7,31 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { Globalize } from '../globalize';
+import { createGlobalize } from '../globalize';
 import { GlobalizeContext } from '../context';
 
-export interface FormattedProviderProps {
-  cldr?: Object[];
+interface Props {
   children: React.ReactNode;
   currency?: string;
   locale?: string;
   localeFallback?: boolean;
-  messages?: Object;
-  warnOnMissingMessage?: boolean;
 }
 
-export const FormattedProvider: React.FC<FormattedProviderProps> = ({
-  cldr,
+export const FormattedProvider: React.FC<Props> = ({
   children,
-  currency = 'USD',
+  currency: currencyCode = 'USD',
   locale = 'en',
   localeFallback: fallback = false,
-  messages,
-  warnOnMissingMessage = true,
 }) => {
-  const [globalize, setGlobalize] = useState(() => {
-    if (cldr) Globalize.load(cldr);
-    if (messages) Globalize.loadMessages(messages);
-
-    return new Globalize(locale, currency, {
-      fallback,
-      warnOnMissingMessage,
-    });
-  });
+  const [globalize, setGlobalize] = useState(() => createGlobalize({
+    locale,
+    currencyCode,
+    fallback,
+  }));
 
   useEffect(() => {
-    setGlobalize(new Globalize(locale, currency, { fallback, warnOnMissingMessage }));
-  }, [currency, locale, fallback, warnOnMissingMessage]);
+    setGlobalize(createGlobalize({ locale, currencyCode, fallback }));
+  }, [currencyCode, locale, fallback]);
 
   return (
     <GlobalizeContext.Provider value={globalize}>

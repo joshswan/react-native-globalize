@@ -30,18 +30,30 @@
     }],
     "import/prefer-default-export": "off",
     "react/jsx-filename-extension": ["error", { "extensions": [".jsx", ".tsx"] }],
+    "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off",
     "react/static-property-placement": ["error", "static public field"],
     "@typescript-eslint/ban-ts-ignore": "off",
-    "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-non-null-assertion": "off"
   },
   "overrides": [
     {
-      "files": ["*.test.ts", "*.test.tsx"],
-      "env": { "jest": true, "node": true }
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "lines-between-class-members": "off",
+        "no-dupe-class-members": "off"
+      }
+    },
+    {
+      "files": ["*.test.*"],
+      "env": { "jest": true, "node": true },
+      "rules": {
+        "global-require": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/no-var-requires": "off"
+      }
     }
   ]
 }

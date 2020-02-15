@@ -6,7 +6,7 @@
  * https://github.com/joshswan/react-native-globalize/blob/master/LICENSE
  */
 
-export * from './components';
-export * from './context';
-export * from './globalize';
-export * from './hooks';
+import { useContext } from 'react';
+import { GlobalizeContext } from '../context';
+
+export const useGlobalize = () => useContext(GlobalizeContext);

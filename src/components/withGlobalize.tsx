@@ -10,8 +10,6 @@ import React, { useContext } from 'react';
 import { Globalize } from '../globalize';
 import { GlobalizeContext } from '../context';
 
-/* eslint-disable react/jsx-props-no-spreading */
-
 export interface WithGlobalizeProps {
   globalize: Globalize;
 }
