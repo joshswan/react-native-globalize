@@ -38,8 +38,8 @@
     "@types/react": "^16.9.19",
     "@types/react-native": "^0.61.15",
     "cldrjs": "^0.5.0",
-    "globalize": "^1.4.2",
-    "moment": "^2.19.3"
+    "dayjs": "^1.8.20",
+    "globalize": "^1.4.2"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

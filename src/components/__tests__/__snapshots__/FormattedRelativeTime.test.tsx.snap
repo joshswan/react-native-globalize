@@ -11,7 +11,7 @@ exports[`<FormattedRelativeTime /> renders correctly 1`] = `
 </Text>
 `;
 
-exports[`<FormattedRelativeTime /> unit renders when best unit selected and non-date value used 1`] = `
+exports[`<FormattedRelativeTime /> unit renders when auto unit selected and non-date value used 1`] = `
 <Text
   accessibilityLabel=""
   accessible={true}
@@ -22,7 +22,7 @@ exports[`<FormattedRelativeTime /> unit renders when best unit selected and non-
 </Text>
 `;
 
-exports[`<FormattedRelativeTime /> unit supports best unit option 1`] = `
+exports[`<FormattedRelativeTime /> unit supports auto unit option 1`] = `
 <Text
   accessibilityLabel=""
   accessible={true}

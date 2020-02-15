@@ -7,7 +7,7 @@
  */
 
 import Cldr from 'cldrjs';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { Unit } from './types';
 
 export function getLocaleId(locale: string): string {
@@ -64,8 +64,8 @@ const UNITS: Unit[] = ['year', 'month', 'week', 'day', 'hour', 'minute', 'second
 
 export function selectTimeUnit(value: any): [number, Unit] {
   if (value instanceof Date) {
-    const date = moment(value);
-    const now = moment();
+    const date = dayjs(value);
+    const now = dayjs();
 
     for (let i = 0, l = UNITS.length; i < l; i += 1) {
       const diff = date.diff(now, UNITS[i]);

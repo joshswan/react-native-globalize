@@ -6,19 +6,21 @@
  * https://github.com/joshswan/react-native-globalize/blob/master/LICENSE
  */
 
+import MockDate from 'mockdate';
 import React from 'react';
 import { createWithGlobalize } from '../../../test/createWithGlobalize';
 import { FormattedRelativeTime } from '..';
 
 describe('<FormattedRelativeTime />', () => {
-  const dateNow = Date.now;
+  const date1 = new Date('2017-01-01T00:00:00Z');
+  const date2 = new Date('2019-01-01T00:00:00Z');
 
   beforeEach(() => {
-    global.Date.now = () => 1514764800000;
+    MockDate.set('2020-01-01');
   });
 
   afterEach(() => {
-    global.Date.now = dateNow;
+    MockDate.reset();
   });
 
   test('renders correctly', () => {
@@ -28,14 +30,14 @@ describe('<FormattedRelativeTime />', () => {
   });
 
   describe('unit', () => {
-    test('supports best unit option', () => {
-      const tree = createWithGlobalize(<FormattedRelativeTime value={new Date('2015-01-01T00:00:00Z')} unit="best" />).toJSON();
+    test('supports auto unit option', () => {
+      const tree = createWithGlobalize(<FormattedRelativeTime value={date1} unit="auto" />).toJSON();
 
       expect(tree).toMatchSnapshot();
     });
 
-    test('renders when best unit selected and non-date value used', () => {
-      const tree = createWithGlobalize(<FormattedRelativeTime value={10} unit="best" />).toJSON();
+    test('renders when auto unit selected and non-date value used', () => {
+      const tree = createWithGlobalize(<FormattedRelativeTime value={10} unit="auto" />).toJSON();
 
       expect(tree).toMatchSnapshot();
     });
@@ -43,7 +45,7 @@ describe('<FormattedRelativeTime />', () => {
 
   describe('value', () => {
     test('supports date instances for value', () => {
-      const tree = createWithGlobalize(<FormattedRelativeTime value={new Date('2017-01-01T00:00:00Z')} unit="day" />).toJSON();
+      const tree = createWithGlobalize(<FormattedRelativeTime value={date2} unit="day" />).toJSON();
 
       expect(tree).toMatchSnapshot();
     });

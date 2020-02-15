@@ -6,7 +6,7 @@
  * https://github.com/joshswan/react-native-globalize/blob/master/LICENSE
  */
 
-import moment from 'moment';
+import dayjs from 'dayjs';
 import {
   Formatters,
   GlobalizeConfig,
@@ -28,7 +28,7 @@ export function formatRelativeTime(
   if (unit === 'auto' || unit === 'best') {
     [resolvedValue, resolvedUnit] = selectTimeUnit(value);
   } else {
-    resolvedValue = value instanceof Date ? moment(value).diff(moment(), unit) : value;
+    resolvedValue = value instanceof Date ? dayjs(value).diff(dayjs(), unit) : value;
     resolvedUnit = unit;
   }
 
