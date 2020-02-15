@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import createWithGlobalize from '../../../test/createWithGlobalize';
-import { FormattedNumber } from '../FormattedNumber';
+import { createWithGlobalize } from '../../../test/createWithGlobalize';
+import { FormattedNumber } from '..';
 
 describe('<FormattedNumber />', () => {
   test('renders correctly', () => {

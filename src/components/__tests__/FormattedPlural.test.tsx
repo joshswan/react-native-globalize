@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import createWithGlobalize from '../../../test/createWithGlobalize';
+import { createWithGlobalize } from '../../../test/createWithGlobalize';
 import { FormattedPlural } from '../FormattedPlural';
 
 describe('<FormattedPlural />', () => {

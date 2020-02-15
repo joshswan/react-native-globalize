@@ -10,12 +10,11 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { FormattedProvider, FormattedProviderProps } from '../src/components/FormattedProvider';
 
-export default function createComponentWithGlobalize(
+export function createWithGlobalize(
   children: React.ReactNode,
   props: Omit<FormattedProviderProps, 'children'> = { currency: 'USD', locale: 'en' },
 ) {
   return renderer.create((
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <FormattedProvider {...props}>
       {children}
     </FormattedProvider>

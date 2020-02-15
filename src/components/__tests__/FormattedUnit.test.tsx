@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import createWithGlobalize from '../../../test/createWithGlobalize';
-import { Globalize } from '../../globalize';
-import { FormattedUnit } from '../FormattedUnit';
+import { createWithGlobalize } from '../../../test/createWithGlobalize';
+import { createGlobalize } from '../../globalize';
+import { FormattedUnit } from '..';
 
 describe('<FormattedUnit />', () => {
   test('renders correctly', () => {
@@ -24,7 +24,7 @@ describe('<FormattedUnit />', () => {
   });
 
   test('uses a custom number formatter function', () => {
-    const globalize = new Globalize('en', 'USD');
+    const globalize = createGlobalize({ locale: 'en' });
     const numberFormatter = globalize.getNumberFormatter({
       minimumFractionDigits: 2,
       useGrouping: false,

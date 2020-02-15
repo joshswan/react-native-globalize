@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import createWithGlobalize from '../../../test/createWithGlobalize';
-import { FormattedDate } from '../FormattedDate';
+import { createWithGlobalize } from '../../../test/createWithGlobalize';
+import { FormattedDate } from '..';
 
 const date = new Date(2019, 0, 1);
 

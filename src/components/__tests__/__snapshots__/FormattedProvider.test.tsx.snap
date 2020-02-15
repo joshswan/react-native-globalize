@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FormattedProvider /> renders correctly 1`] = `
+<Text
+  accessibilityLabel=""
+  accessible={true}
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+>
+  75 miles per hour
+</Text>
+`;
+
+exports[`<FormattedProvider /> updates globalize when props change 1`] = `
+Array [
+  <Text
+    accessibilityLabel=""
+    accessible={true}
+    adjustsFontSizeToFit={false}
+    allowFontScaling={true}
+  >
+    $10.00
+  </Text>,
+  <Text
+    accessibilityLabel=""
+    accessible={true}
+    adjustsFontSizeToFit={false}
+    allowFontScaling={true}
+  >
+    75 miles per hour
+  </Text>,
+]
+`;
+
+exports[`<FormattedProvider /> updates globalize when props change 2`] = `
+Array [
+  <Text
+    accessibilityLabel=""
+    accessible={true}
+    adjustsFontSizeToFit={false}
+    allowFontScaling={true}
+  >
+    10,00 US$
+  </Text>,
+  <Text
+    accessibilityLabel=""
+    accessible={true}
+    adjustsFontSizeToFit={false}
+    allowFontScaling={true}
+  >
+    75 millas por hora
+  </Text>,
+]
+`;
+
+exports[`<FormattedProvider /> updates globalize when props change 3`] = `
+Array [
+  <Text
+    accessibilityLabel=""
+    accessible={true}
+    adjustsFontSizeToFit={false}
+    allowFontScaling={true}
+  >
+    10,00 €
+  </Text>,
+  <Text
+    accessibilityLabel=""
+    accessible={true}
+    adjustsFontSizeToFit={false}
+    allowFontScaling={true}
+  >
+    75 millas por hora
+  </Text>,
+]
+`;

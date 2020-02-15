@@ -8,14 +8,15 @@
 
 import React from 'react';
 import { Text } from 'react-native';
-import createWithGlobalize from '../../../test/createWithGlobalize';
-import { Globalize } from '../../globalize';
+import { createWithGlobalize } from '../../../test/createWithGlobalize';
 import { withGlobalize, WithGlobalizeProps } from '../withGlobalize';
 
 describe('withGlobalize()', () => {
   test('injects Globalize instance', () => {
     const Component: React.FC<WithGlobalizeProps> = ({ globalize }) => {
-      expect(globalize).toBeInstanceOf(Globalize);
+      expect(typeof globalize).toBe('object');
+      expect(globalize).toHaveProperty('getCurrencyFormatter');
+      expect(globalize).toHaveProperty('formatCurrency');
 
       const formatter = globalize.getCurrencyFormatter();
 

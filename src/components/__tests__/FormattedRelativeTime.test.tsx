@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import createWithGlobalize from '../../../test/createWithGlobalize';
-import { FormattedRelativeTime } from '../FormattedRelativeTime';
+import { createWithGlobalize } from '../../../test/createWithGlobalize';
+import { FormattedRelativeTime } from '..';
 
 describe('<FormattedRelativeTime />', () => {
   const dateNow = Date.now;
