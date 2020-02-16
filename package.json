@@ -24,7 +24,7 @@
   "files": [
     "dist/",
     "locale-data/",
-    "types/",
+    "patches/",
     "LICENSE",
     "README.md"
   ],
@@ -32,16 +32,19 @@
     "build": "tsc",
     "cldr": "gulp cldr",
     "lint": "tsc --noEmit && eslint src test --ext .ts,.tsx",
+    "postinstall": "patch-package",
     "test": "jest --coverage"
   },
   "dependencies": {
-    "@types/globalize": "file:types/globalize",
+    "@types/globalize": "^0.0.36",
     "@types/react": "^16.9.19",
     "@types/react-native": "^0.61.15",
     "cldrjs": "^0.5.0",
     "dayjs": "^1.8.20",
     "globalize": "^1.4.2",
-    "jsonpack": "^1.1.5"
+    "jsonpack": "^1.1.5",
+    "patch-package": "^6.2.0",
+    "postinstall-postinstall": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
