@@ -23,6 +23,7 @@
   ],
   "files": [
     "dist/",
+    "locale-data/",
     "types/",
     "LICENSE",
     "README.md"
@@ -39,7 +40,8 @@
     "@types/react-native": "^0.61.15",
     "cldrjs": "^0.5.0",
     "dayjs": "^1.8.20",
-    "globalize": "^1.4.2"
+    "globalize": "^1.4.2",
+    "jsonpack": "^1.1.5"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
@@ -51,6 +53,7 @@
     "@typescript-eslint/parser": "^2.19.2",
     "cldr-data": "^36.0.0",
     "coveralls": "^3.0.9",
+    "del": "^5.1.0",
     "eslint": "^6.1.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.18.2",
@@ -58,16 +61,17 @@
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
     "gulp": "^4.0.2",
-    "gulp-filter": "^6.0.0",
-    "gulp-merge-json": "^2.0.0",
+    "gulp-merge-json": "^2.1.0",
     "jest": "^25.1.0",
     "jest-junit": "^10.0.0",
+    "lodash": "^4.17.15",
+    "merge-stream": "^2.0.0",
     "metro-react-native-babel-preset": "^0.58.0",
     "mockdate": "^2.0.5",
     "react": "16.9.0",
     "react-native": "^0.61.5",
     "react-test-renderer": "^16.12.0",
-    "rimraf": "^3.0.2",
+    "through2": "^3.0.1",
     "typescript": "^3.7.5"
   },
   "peerDependencies": {
@@ -78,6 +82,9 @@
     "preset": "react-native",
     "roots": [
       "<rootDir>/src"
+    ],
+    "collectCoverageFrom": [
+      "<rootDir>/src/**/*.{ts,tsx}"
     ],
     "setupFilesAfterEnv": [
       "<rootDir>/test/setup.test.js"

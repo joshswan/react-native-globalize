@@ -10,6 +10,8 @@ import { loadCldr } from '../src';
 
 beforeAll(() => {
   loadCldr(
-    require('../src/cldr.json'),
+    require('../locale-data/de'),
+    require('../locale-data/en'),
+    require('../locale-data/es'),
   );
 });

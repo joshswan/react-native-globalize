@@ -16,73 +16,75 @@ import {
 } from '..';
 import { Globalize } from '../types';
 
-describe('createGlobalize()', () => {
-  test('create globalize object', () => {
-    const globalize = createGlobalize({ locale: 'en' });
+describe('core', () => {
+  describe('createGlobalize()', () => {
+    test('creates globalize object', () => {
+      const globalize = createGlobalize({ locale: 'en' });
 
-    expect(typeof globalize).toBe('object');
-    expect(globalize.locale).toBe('en');
-    expect(globalize.currencyCode).toBe('USD');
-    expect(globalize).toHaveProperty('getCurrencyFormatter');
-    expect(globalize).toHaveProperty('formatCurrency');
-  });
+      expect(typeof globalize).toBe('object');
+      expect(globalize.locale).toBe('en');
+      expect(globalize.currencyCode).toBe('USD');
+      expect(globalize).toHaveProperty('getCurrencyFormatter');
+      expect(globalize).toHaveProperty('formatCurrency');
+    });
 
-  test('memoizes formatter creators', () => {
-    const globalize = createGlobalize({ locale: 'en' });
-    const dateFormatter1 = globalize.getDateFormatter();
-    const dateFormatter2 = globalize.getDateFormatter();
+    test('memoizes formatter creators', () => {
+      const globalize = createGlobalize({ locale: 'en' });
+      const dateFormatter1 = globalize.getDateFormatter();
+      const dateFormatter2 = globalize.getDateFormatter();
 
-    expect(dateFormatter2).toBe(dateFormatter1);
-  });
+      expect(dateFormatter2).toBe(dateFormatter1);
+    });
 
-  test('selects closest locale match when fallback option enabled', () => {
-    const globalize = createGlobalize({ locale: 'en-AU', fallback: true });
+    test('selects closest locale match when fallback option enabled', () => {
+      const globalize = createGlobalize({ locale: 'en-AU', fallback: true });
 
-    expect(globalize.locale).toBe('en');
-  });
+      expect(globalize.locale).toBe('en');
+    });
 
-  test('throws locale not found', () => {
-    const message = '[RNGlobalize] CLDR data for the selected language/locale has not been loaded!';
+    test('throws locale not found', () => {
+      const message = '[RNGlobalize] CLDR data for the selected language/locale has not been loaded!';
 
-    expect(() => {
-      createGlobalize({ locale: 'ga' });
-    }).toThrowError(message);
+      expect(() => {
+        createGlobalize({ locale: 'ga' });
+      }).toThrowError(message);
 
-    expect(() => {
-      createGlobalize({ locale: 'ga', fallback: true });
-    }).toThrowError(message);
-  });
+      expect(() => {
+        createGlobalize({ locale: 'ga', fallback: true });
+      }).toThrowError(message);
+    });
 
-  test('logs errors to console', () => {
-    const globalize = createGlobalize({ locale: 'en' });
+    test('logs errors to console', () => {
+      const globalize = createGlobalize({ locale: 'en' });
 
-    const spy = jest.spyOn(console, 'error').mockImplementation(() => {});
-    // @ts-ignore
-    globalize.formatDate(0);
+      const spy = jest.spyOn(console, 'error').mockImplementation(() => {});
+      // @ts-ignore
+      globalize.formatDate(0);
 
-    expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy.mock.calls[0][0]).toMatch('[RNGlobalize] Error formatting date. Value must be a Date object.');
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy.mock.calls[0][0]).toMatch('[RNGlobalize] Error formatting date. Value must be a Date object.');
 
-    spy.mockRestore();
-  });
+      spy.mockRestore();
+    });
 
-  test('does not log errors if onError overridden', () => {
-    const globalize = createGlobalize({ locale: 'en', onError: () => {} });
+    test('does not log errors if onError overridden', () => {
+      const globalize = createGlobalize({ locale: 'en', onError: () => {} });
 
-    const spy = jest.spyOn(console, 'error');
-    // @ts-ignore
-    globalize.formatDate(0);
+      const spy = jest.spyOn(console, 'error');
+      // @ts-ignore
+      globalize.formatDate(0);
 
-    expect(spy).not.toHaveBeenCalled();
+      expect(spy).not.toHaveBeenCalled();
 
-    spy.mockRestore();
+      spy.mockRestore();
+    });
   });
 
   describe('getAvailableLocales()', () => {
     test('returns array of loaded locales', () => {
       const globalize = createGlobalize({ locale: 'en' });
 
-      expect(globalize.getAvailableLocales()).toHaveLength(54);
+      expect(globalize.getAvailableLocales()).toEqual(['de', 'en', 'es']);
       expect(getAvailableLocales()).toEqual(globalize.getAvailableLocales());
     });
   });
