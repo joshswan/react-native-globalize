@@ -6,6 +6,7 @@
  * https://github.com/joshswan/react-native-globalize/blob/master/LICENSE
  */
 
+import { UnitFormatterOptions as GlobalizeUnitFormatterOptions } from 'globalize';
 import { Formatters, GlobalizeConfig, UnitFormatterOptions } from '../types';
 
 export function formatUnit(
@@ -16,7 +17,7 @@ export function formatUnit(
   options?: UnitFormatterOptions,
 ) {
   try {
-    return getUnitFormatter(unit, options)(value);
+    return getUnitFormatter(unit, options as GlobalizeUnitFormatterOptions)(value);
   } catch (e) {
     config.onError('Error formatting unit. Unit must be a string and value must be a number.', e);
   }

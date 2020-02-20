@@ -7,7 +7,7 @@
  */
 
 import {
-  CurrencyFormatterOptions,
+  CurrencyFormatterOptions as GlobalizeCurrencyFormatterOptions,
   dateFormatter,
   DateFormatterOptions,
   dateParser,
@@ -20,18 +20,16 @@ import {
   relativeTimeFormatter,
   RelativeTimeFormatterOptions,
   unitFormatter,
-  UnitFormatterOptions,
+  UnitFormatterOptions as GlobalizeUnitFormatterOptions,
 } from 'globalize';
 import { ReactElement } from 'react';
 
 export {
-  CurrencyFormatterOptions,
   DateFormatterOptions,
   NumberFormatterOptions,
   NumberParserOptions,
   PluralGeneratorOptions,
   RelativeTimeFormatterOptions,
-  UnitFormatterOptions,
 };
 
 export type Messages = Record<string, string>;
@@ -40,6 +38,12 @@ export type Unit = 'year' | 'quarter' | 'month' | 'week' | 'day' | 'hour' | 'min
 
 export interface CurrencyFormatter {
   (value: number): string;
+}
+
+export interface CurrencyFormatterOptions extends GlobalizeCurrencyFormatterOptions {
+  // Add symbolForm option to enable alt-narrow currency symbol
+  // TODO: Submit PR to DT
+  symbolForm?: 'narrow';
 }
 
 export interface DateFormatter {
@@ -77,6 +81,12 @@ export interface RelativeTimeFormatter {
 
 export interface UnitFormatter {
   (value: number): string;
+}
+
+export interface UnitFormatterOptions extends Omit<GlobalizeUnitFormatterOptions, 'numberFormatter'> {
+  // Fix numberFormatter option definition
+  // TODO: Submit PR to DT
+  numberFormatter?: (value: number) => string;
 }
 
 export interface Formatters {

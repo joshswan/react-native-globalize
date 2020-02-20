@@ -1,7 +1,7 @@
 {
   "name": "react-native-globalize",
   "version": "4.0.0",
-  "description": "Globalization helper for React Native",
+  "description": "Internationalization (i18n) for React Native",
   "author": "Josh Swan <josh@disruptivelabs.io>",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -24,7 +24,6 @@
   "files": [
     "dist/",
     "locale-data/",
-    "patches/",
     "LICENSE",
     "README.md"
   ],
@@ -32,7 +31,6 @@
     "build": "tsc",
     "cldr": "gulp cldr",
     "lint": "tsc --noEmit && eslint src test --ext .ts,.tsx",
-    "postinstall": "patch-package",
     "release": "release-it",
     "test": "jest --coverage"
   },
@@ -43,9 +41,7 @@
     "cldrjs": "^0.5.0",
     "dayjs": "^1.8.20",
     "globalize": "^1.4.2",
-    "jsonpack": "^1.1.5",
-    "patch-package": "^6.2.0",
-    "postinstall-postinstall": "^2.0.0"
+    "jsonpack": "^1.1.5"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
