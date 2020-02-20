@@ -33,6 +33,7 @@
     "cldr": "gulp cldr",
     "lint": "tsc --noEmit && eslint src test --ext .ts,.tsx",
     "postinstall": "patch-package",
+    "release": "release-it",
     "test": "jest --coverage"
   },
   "dependencies": {
@@ -51,6 +52,7 @@
     "@babel/preset-typescript": "^7.8.3",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
+    "@release-it/conventional-changelog": "^1.1.0",
     "@types/cldrjs": "^0.4.22",
     "@types/jest": "^25.1.2",
     "@types/node": "^13.7.1",
@@ -77,6 +79,8 @@
     "react": "16.9.0",
     "react-native": "^0.61.5",
     "react-test-renderer": "^16.12.0",
+    "release-it": "^12.5.0",
+    "rimraf": "^3.0.2",
     "through2": "^3.0.1",
     "typescript": "^3.7.5"
   },
@@ -104,5 +108,26 @@
   "jest-junit": {
     "outputDirectory": "./artifacts/jest",
     "outputName": "results.xml"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release %s",
+      "tagName": "v%s"
+    },
+    "npm": {
+      "publish": true
+    },
+    "github": {
+      "release": true,
+      "releaseName": "${version}"
+    },
+    "hooks": {
+      "after:bump": "rimraf dist && yarn build"
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "conventionalcommits"
+      }
+    }
   }
 }
