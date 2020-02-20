@@ -12,7 +12,6 @@ import { loadCldr } from './globalize';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 loadCldr(require('../locale-data/core'));
 
-
 export * from './components';
 export * from './context';
 export * from './globalize';

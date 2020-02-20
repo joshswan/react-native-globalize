@@ -10,27 +10,35 @@ import React, { useEffect, useState } from 'react';
 import { createGlobalize } from '../globalize';
 import { GlobalizeContext } from '../context';
 
-interface Props {
+export interface Props {
   children: React.ReactNode;
   currency?: string;
   locale?: string;
   localeFallback?: boolean;
+  onError?(message: string, exception?: Error): void;
 }
 
-export const FormattedProvider: React.FC<Props> = ({
+export const GlobalizeProvider: React.FC<Props> = ({
   children,
   currency: currencyCode = 'USD',
   locale = 'en',
   localeFallback: fallback = false,
+  ...options
 }) => {
   const [globalize, setGlobalize] = useState(() => createGlobalize({
+    ...options,
     locale,
     currencyCode,
     fallback,
   }));
 
   useEffect(() => {
-    setGlobalize(createGlobalize({ locale, currencyCode, fallback }));
+    setGlobalize(createGlobalize({
+      ...options,
+      locale,
+      currencyCode,
+      fallback,
+    }));
   }, [currencyCode, locale, fallback]);
 
   return (

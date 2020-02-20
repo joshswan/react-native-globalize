@@ -7,6 +7,7 @@
  */
 
 import { createFormattedComponent } from './utils';
+import { GlobalizeProvider } from './GlobalizeProvider';
 
 export const FormattedCurrency = createFormattedComponent('formatCurrency');
 export const FormattedDate = createFormattedComponent('formatDate');
@@ -17,4 +18,4 @@ export const FormattedUnit = createFormattedComponent('formatUnit');
 export const FormattedTime = FormattedDate;
 
 export * from './FormattedPlural';
-export * from './FormattedProvider';
+export { GlobalizeProvider, GlobalizeProvider as FormattedProvider };

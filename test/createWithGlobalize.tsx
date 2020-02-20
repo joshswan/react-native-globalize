@@ -8,15 +8,15 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { FormattedProvider, FormattedProviderProps } from '../src/components/FormattedProvider';
+import { GlobalizeProvider, Props as GlobalizeProviderProps } from '../src/components/GlobalizeProvider';
 
 export function createWithGlobalize(
   children: React.ReactNode,
-  props: Omit<FormattedProviderProps, 'children'> = { currency: 'USD', locale: 'en' },
+  props: Omit<GlobalizeProviderProps, 'children'> = { currency: 'USD', locale: 'en' },
 ) {
   return renderer.create((
-    <FormattedProvider {...props}>
+    <GlobalizeProvider {...props}>
       {children}
-    </FormattedProvider>
+    </GlobalizeProvider>
   ));
 }

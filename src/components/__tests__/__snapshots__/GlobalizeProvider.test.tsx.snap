@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<FormattedProvider /> renders correctly 1`] = `
+exports[`<GlobalizeProvider /> renders correctly 1`] = `
 <Text
   accessibilityLabel=""
   accessible={true}
@@ -11,7 +11,7 @@ exports[`<FormattedProvider /> renders correctly 1`] = `
 </Text>
 `;
 
-exports[`<FormattedProvider /> updates globalize when props change 1`] = `
+exports[`<GlobalizeProvider /> updates globalize when props change 1`] = `
 Array [
   <Text
     accessibilityLabel=""
@@ -32,7 +32,7 @@ Array [
 ]
 `;
 
-exports[`<FormattedProvider /> updates globalize when props change 2`] = `
+exports[`<GlobalizeProvider /> updates globalize when props change 2`] = `
 Array [
   <Text
     accessibilityLabel=""
@@ -53,7 +53,7 @@ Array [
 ]
 `;
 
-exports[`<FormattedProvider /> updates globalize when props change 3`] = `
+exports[`<GlobalizeProvider /> updates globalize when props change 3`] = `
 Array [
   <Text
     accessibilityLabel=""

@@ -10,19 +10,19 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {
   FormattedCurrency,
-  FormattedProvider,
+  GlobalizeProvider,
   FormattedUnit,
 } from '..';
 
-describe('<FormattedProvider />', () => {
+describe('<GlobalizeProvider />', () => {
   test('renders correctly', () => {
     const tree = renderer.create((
-      <FormattedProvider locale="en">
+      <GlobalizeProvider locale="en">
         <FormattedUnit
           unit="mile-per-hour"
           value={75}
         />
-      </FormattedProvider>
+      </GlobalizeProvider>
     )).toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -33,10 +33,10 @@ describe('<FormattedProvider />', () => {
 
     renderer.act(() => {
       root = renderer.create((
-        <FormattedProvider locale="en" currency="USD">
+        <GlobalizeProvider locale="en" currency="USD">
           <FormattedCurrency value={10} />
           <FormattedUnit unit="mile-per-hour" value={75} />
-        </FormattedProvider>
+        </GlobalizeProvider>
       ));
     });
 
@@ -44,10 +44,10 @@ describe('<FormattedProvider />', () => {
 
     renderer.act(() => {
       root = renderer.create((
-        <FormattedProvider locale="es" currency="USD">
+        <GlobalizeProvider locale="es" currency="USD">
           <FormattedCurrency value={10} />
           <FormattedUnit unit="mile-per-hour" value={75} />
-        </FormattedProvider>
+        </GlobalizeProvider>
       ));
     });
 
@@ -55,10 +55,10 @@ describe('<FormattedProvider />', () => {
 
     renderer.act(() => {
       root = renderer.create((
-        <FormattedProvider locale="es" currency="EUR">
+        <GlobalizeProvider locale="es" currency="EUR">
           <FormattedCurrency value={10} />
           <FormattedUnit unit="mile-per-hour" value={75} />
-        </FormattedProvider>
+        </GlobalizeProvider>
       ));
     });
 
