@@ -30,10 +30,10 @@ const ExampleComponent = () => {
 
 ## Options
 
-- [form](#form)
-- [numberFormatter](#numberformatter)
+- [`form`](#form)
+- [`numberFormatter`](#numberformatter)
 
-### form
+### `form`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -44,7 +44,7 @@ formatUnit(50, 'mile-per-hour', { form: 'short' });
 // 50 mph
 ```
 
-### numberFormatter
+### `numberFormatter`
 
 |   Type   | Required |         Default        | Description |
 | :------: | :------: | :--------------------: | :---------: |

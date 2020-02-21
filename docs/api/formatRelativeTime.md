@@ -30,9 +30,9 @@ const ExampleComponent = () => {
 
 ## Options
 
-- [form](#form)
+- [`form`](#form)
 
-### form
+### `form`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |

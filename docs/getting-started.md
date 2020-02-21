@@ -92,7 +92,7 @@ const ExampleComponent = () => {
 };
 ```
 
-**Note:** For more information about messages, see [`formatMessage`](api/formatMessage.md) and [`loadMessages`](api/utilities/md#loadmessage).
+**Note:** For more information about messages, see [`formatMessage`](api/formatMessage.md) and [`loadMessages`](api/utilities.md#loadmessages).
 
 ### `Formatted` Components
 

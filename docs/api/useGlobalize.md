@@ -33,7 +33,7 @@ The following functions and utilities are available on the Globalize object retu
 - [`formatUnit`](docs/api/formatUnit.md)
 - [`parseDate`](docs/api/parseDate.md)
 - [`parseNumber`](docs/api/parseNumber.md)
-- Utilities
+- [Utilities](docs/api/utilities.md)
   - [`getAvailableLocales`](docs/api/utilities.md#getavailablelocales)
   - [`getCurrencySymbol`](docs/api/utilities.md#getcurrencysymbol)
   - [`loadCldr`](docs/api/utilities.md#loadcldr)

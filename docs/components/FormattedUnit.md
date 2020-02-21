@@ -26,17 +26,17 @@ const ExampleComponent2 = () => (
 
 ## Props
 
-- [accessible](https://facebook.github.io/react-native/docs/text#accessible)
-- [accessibilityLabel](https://facebook.github.io/react-native/docs/text#accessibilitylabel)
-- [adjustsFontSizeToFit](https://facebook.github.io/react-native/docs/text#adjustsfontsizetofit)
-- [allowFontScaling](https://facebook.github.io/react-native/docs/text#allowfontscaling)
-- [form](#form)
-- [numberFormatter](#numberformatter)
-- [style](https://facebook.github.io/react-native/docs/text#style)
-- [unit](#unit)
-- [value](#value)
+- [`accessible`](https://facebook.github.io/react-native/docs/text#accessible)
+- [`accessibilityLabel`](https://facebook.github.io/react-native/docs/text#accessibilitylabel)
+- [`adjustsFontSizeToFit`](https://facebook.github.io/react-native/docs/text#adjustsfontsizetofit)
+- [`allowFontScaling`](https://facebook.github.io/react-native/docs/text#allowfontscaling)
+- [`form`](#form)
+- [`numberFormatter`](#numberformatter)
+- [`style`](https://facebook.github.io/react-native/docs/text#style)
+- [`unit`](#unit)
+- [`value`](#value)
 
-### form
+### `form`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -51,7 +51,7 @@ const ExampleComponent2 = () => (
 // 50 mph
 ```
 
-### numberFormatter
+### `numberFormatter`
 
 |   Type   | Required |         Default        | Description |
 | :------: | :------: | :--------------------: | :---------: |
@@ -71,7 +71,7 @@ const { getNumberFormatter } = useGlobalize();
 // 5000.00 gigabytes
 ```
 
-### unit
+### `unit`
 
 |  Type   | Required | Default | Description |
 | :-----: | :------: | :-----: | :---------: |
@@ -79,7 +79,7 @@ const { getNumberFormatter } = useGlobalize();
 
 The `unit` argument can be a unit of time (e.g. `second`, `day`, etc.), a unit of measurement (e.g. `mile`, `meter`, `gigabyte`), or a compound unit (e.g. `mile-per-hour`, `kilowatt-hour`).
 
-### value
+### `value`
 
 |  Type   | Required | Default | Description |
 | :-----: | :------: | :-----: | :---------: |

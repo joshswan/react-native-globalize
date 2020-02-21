@@ -49,9 +49,9 @@ const ExampleComponent = () => {
 
 ## Options
 
-- [defaultMessage](#defaultMessage)
+- [`defaultMessage`](#defaultMessage)
 
-### defaultMessage
+### `defaultMessage`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |

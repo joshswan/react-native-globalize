@@ -15,24 +15,24 @@ const ExampleComponent = () => (
 
 ## Props
 
-- [accessible](https://facebook.github.io/react-native/docs/text#accessible)
-- [accessibilityLabel](https://facebook.github.io/react-native/docs/text#accessibilitylabel)
-- [adjustsFontSizeToFit](https://facebook.github.io/react-native/docs/text#adjustsfontsizetofit)
-- [allowFontScaling](https://facebook.github.io/react-native/docs/text#allowfontscaling)
-- [compact](#compact)
-- [maximumFractionDigits](#maximumfractiondigits)
-- [maximumSignificantDigits](#maximumsignificantdigits)
-- [minimumFractionDigits](#minimumfractiondigits)
-- [minimumIntegerDigits](#minimumintegerdigits)
-- [minimumSignificantDigits](#minimumsignificantdigits)
-- [numberStyle](#numberStyle)
-- [round](#round)
-- [style](https://facebook.github.io/react-native/docs/text#style)
-- [symbolForm](#symbolform)
-- [useGrouping](#usegrouping)
-- [value](#value)
+- [`accessible`](https://facebook.github.io/react-native/docs/text#accessible)
+- [`accessibilityLabel`](https://facebook.github.io/react-native/docs/text#accessibilitylabel)
+- [`adjustsFontSizeToFit`](https://facebook.github.io/react-native/docs/text#adjustsfontsizetofit)
+- [`allowFontScaling`](https://facebook.github.io/react-native/docs/text#allowfontscaling)
+- [`compact`](#compact)
+- [`maximumFractionDigits`](#maximumfractiondigits)
+- [`maximumSignificantDigits`](#maximumsignificantdigits)
+- [`minimumFractionDigits`](#minimumfractiondigits)
+- [`minimumIntegerDigits`](#minimumintegerdigits)
+- [`minimumSignificantDigits`](#minimumsignificantdigits)
+- [`numberStyle`](#numberStyle)
+- [`round`](#round)
+- [`style`](https://facebook.github.io/react-native/docs/text#style)
+- [`symbolForm`](#symbolform)
+- [`useGrouping`](#usegrouping)
+- [`value`](#value)
 
-### compact
+### `compact`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -46,7 +46,7 @@ const ExampleComponent = () => (
 // $1K
 ```
 
-### maximumFractionDigits
+### `maximumFractionDigits`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -60,7 +60,7 @@ const ExampleComponent = () => (
 // $1,001
 ```
 
-### maximumSignificantDigits
+### `maximumSignificantDigits`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -75,7 +75,7 @@ const ExampleComponent = () => (
 // $1,001
 ```
 
-### minimumFractionDigits
+### `minimumFractionDigits`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -89,7 +89,7 @@ const ExampleComponent = () => (
 // $1,000.9900
 ```
 
-### minimumIntegerDigits
+### `minimumIntegerDigits`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -103,7 +103,7 @@ const ExampleComponent = () => (
 // $001,000.99
 ```
 
-### minimumSignificantDigits
+### `minimumSignificantDigits`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -118,7 +118,7 @@ const ExampleComponent = () => (
 // $1,000.9900
 ```
 
-### numberStyle
+### `numberStyle`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -142,7 +142,7 @@ const ExampleComponent = () => (
 // 1,000.99 US dollars
 ```
 
-### round
+### `round`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -157,7 +157,7 @@ const ExampleComponent = () => (
 // $1,000
 ```
 
-### symbolForm
+### `symbolForm`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -177,7 +177,7 @@ const ExampleComponent = () => (
 // $1,000.99
 ```
 
-### useGrouping
+### `useGrouping`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -191,13 +191,8 @@ const ExampleComponent = () => (
 // $1000.99
 ```
 
-### value
+### `value`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
 | number |   Yes    |  none   | Number to be formatted. |
-
-```js
-<FormattedCurrency value={1000.99} />
-// $1000.99
-```

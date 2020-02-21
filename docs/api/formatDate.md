@@ -24,14 +24,14 @@ const ExampleComponent = () => {
 
 ## Options
 
-- [date](#date)
-- [datetime](#datetime)
-- [skeleton](#skeleton)
-- [time](#time)
+- [`date`](#date)
+- [`datetime`](#datetime)
+- [`skeleton`](#skeleton)
+- [`time`](#time)
 
 **Note**: Specify one of `date`, `datetime`, `skeleton`, or `time`.
 
-### date
+### `date`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -42,7 +42,7 @@ formatDate(new Date(2020, 0, 1), { date: 'full' });
 // Wednesday, January 1, 2020
 ```
 
-### datetime
+### `datetime`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -53,7 +53,7 @@ formatDate(new Date(2020, 0, 1), { datetime: 'full' });
 // Wednesday, January 1, 2020 at 12:00:00 AM GMT-08:00
 ```
 
-### skeleton
+### `skeleton`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -64,7 +64,7 @@ formatDate(new Date(2020, 0, 1), { skeleton: 'yMMMdhm' });
 // Jan 1, 2020, 12:00 AM
 ```
 
-### time
+### `time`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |

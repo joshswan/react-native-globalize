@@ -15,23 +15,23 @@ const ExampleComponent = () => (
 
 ## Props
 
-- [accessible](https://facebook.github.io/react-native/docs/text#accessible)
-- [accessibilityLabel](https://facebook.github.io/react-native/docs/text#accessibilitylabel)
-- [adjustsFontSizeToFit](https://facebook.github.io/react-native/docs/text#adjustsfontsizetofit)
-- [allowFontScaling](https://facebook.github.io/react-native/docs/text#allowfontscaling)
-- [compact](#compact)
-- [maximumFractionDigits](#maximumfractiondigits)
-- [maximumSignificantDigits](#maximumsignificantdigits)
-- [minimumFractionDigits](#minimumfractiondigits)
-- [minimumIntegerDigits](#minimumintegerdigits)
-- [minimumSignificantDigits](#minimumsignificantdigits)
-- [numberStyle](#numberstyle)
-- [round](#round)
-- [style](https://facebook.github.io/react-native/docs/text#style)
-- [useGrouping](#usegrouping)
-- [value](#value)
+- [`accessible`](https://facebook.github.io/react-native/docs/text#accessible)
+- [`accessibilityLabel`](https://facebook.github.io/react-native/docs/text#accessibilitylabel)
+- [`adjustsFontSizeToFit`](https://facebook.github.io/react-native/docs/text#adjustsfontsizetofit)
+- [`allowFontScaling`](https://facebook.github.io/react-native/docs/text#allowfontscaling)
+- [`compact`](#compact)
+- [`maximumFractionDigits`](#maximumfractiondigits)
+- [`maximumSignificantDigits`](#maximumsignificantdigits)
+- [`minimumFractionDigits`](#minimumfractiondigits)
+- [`minimumIntegerDigits`](#minimumintegerdigits)
+- [`minimumSignificantDigits`](#minimumsignificantdigits)
+- [`numberStyle`](#numberstyle)
+- [`round`](#round)
+- [`style`](https://facebook.github.io/react-native/docs/text#style)
+- [`useGrouping`](#usegrouping)
+- [`value`](#value)
 
-### compact
+### `compact`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -45,7 +45,7 @@ const ExampleComponent = () => (
 // 100K
 ```
 
-### maximumFractionDigits
+### `maximumFractionDigits`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -59,7 +59,7 @@ const ExampleComponent = () => (
 // 10
 ```
 
-### maximumSignificantDigits
+### `maximumSignificantDigits`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -74,7 +74,7 @@ const ExampleComponent = () => (
 // 10.5
 ```
 
-### minimumFractionDigits
+### `minimumFractionDigits`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -88,7 +88,7 @@ const ExampleComponent = () => (
 // 10.4500
 ```
 
-### minimumIntegerDigits
+### `minimumIntegerDigits`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -102,7 +102,7 @@ const ExampleComponent = () => (
 // 010.45
 ```
 
-### minimumSignificantDigits
+### `minimumSignificantDigits`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -117,7 +117,7 @@ const ExampleComponent = () => (
 // 10.4500
 ```
 
-### numberStyle
+### `numberStyle`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -136,7 +136,7 @@ const ExampleComponent = () => (
 // 45%
 ```
 
-### round
+### `round`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -151,7 +151,7 @@ const ExampleComponent = () => (
 // 11
 ```
 
-### useGrouping
+### `useGrouping`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -165,13 +165,8 @@ const ExampleComponent = () => (
 // 100000
 ```
 
-### value
+### `value`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
 | number |   Yes    |   none  | Number to be formatted. |
-
-```js
-<FormattedNumber value={1000} />
-// 1,000
-```

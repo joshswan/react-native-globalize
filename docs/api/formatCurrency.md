@@ -25,18 +25,18 @@ const ExampleComponent = () => {
 
 ## Options
 
-- [compact](#compact)
-- [maximumFractionDigits](#maximumfractiondigits)
-- [maximumSignificantDigits](#maximumsignificantdigits)
-- [minimumFractionDigits](#minimumfractiondigits)
-- [minimumIntegerDigits](#minimumintegerdigits)
-- [minimumSignificantDigits](#minimumsignificantdigits)
-- [round](#round)
-- [style](#style)
-- [symbolForm](#symbolform)
-- [useGrouping](#usegrouping)
+- [`compact`](#compact)
+- [`maximumFractionDigits`](#maximumfractiondigits)
+- [`maximumSignificantDigits`](#maximumsignificantdigits)
+- [`minimumFractionDigits`](#minimumfractiondigits)
+- [`minimumIntegerDigits`](#minimumintegerdigits)
+- [`minimumSignificantDigits`](#minimumsignificantdigits)
+- [`round`](#round)
+- [`style`](#style)
+- [`symbolForm`](#symbolform)
+- [`useGrouping`](#usegrouping)
 
-### compact
+### `compact`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -47,7 +47,7 @@ formatCurrency(1000.99, 'USD', { compact: 'short' });
 // $1K
 ```
 
-### maximumFractionDigits
+### `maximumFractionDigits`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -58,7 +58,7 @@ formatCurrency(1000.99, 'USD', { maximumFractionDigits: 0 });
 // $1,001
 ```
 
-### maximumSignificantDigits
+### `maximumSignificantDigits`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -69,7 +69,7 @@ formatCurrency(1000.99, 'USD', { minimumSignificantDigits: 2, maximumSignificant
 // $1,001
 ```
 
-### minimumFractionDigits
+### `minimumFractionDigits`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -80,7 +80,7 @@ formatCurrency(1000.99, 'USD', { minimumFractionDigits: 4 });
 // $1,000.9900
 ```
 
-### minimumIntegerDigits
+### `minimumIntegerDigits`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -91,7 +91,7 @@ formatCurrency(1000.99, 'USD', { minimumIntegerDigits: 6 });
 // $001,000.99
 ```
 
-### minimumSignificantDigits
+### `minimumSignificantDigits`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -102,7 +102,7 @@ formatCurrency(1000.99, 'USD', { minimumSignificantDigits: 8, maximumSignificant
 // $1,000.9900
 ```
 
-### round
+### `round`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -113,7 +113,7 @@ formatCurrency(1000.99, 'USD', { maximumFractionDigits: 0, round: 'floor' });
 // $1,000
 ```
 
-### style
+### `style`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -128,7 +128,7 @@ formatCurrency(1000.99, 'USD', { style: 'name' });
 // 1,000.99 US dollars
 ```
 
-### symbolForm
+### `symbolForm`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -141,7 +141,7 @@ formatCurrency(1000.99, 'CAD', { symbolForm: 'narrow' });
 // $1,000.99
 ```
 
-### useGrouping
+### `useGrouping`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |

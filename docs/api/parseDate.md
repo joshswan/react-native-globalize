@@ -24,14 +24,14 @@ const ExampleComponent = () => {
 
 ## Options
 
-- [date](#date)
-- [datetime](#datetime)
-- [skeleton](#skeleton)
-- [time](#time)
+- [`date`](#date)
+- [`datetime`](#datetime)
+- [`skeleton`](#skeleton)
+- [`time`](#time)
 
 **Note**: Specify one of `date`, `datetime`, `skeleton`, or `time`.
 
-### date
+### `date`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -42,7 +42,7 @@ parseDate('January 1, 2020', { date: 'long' });
 // Date(2020, 0, 1)
 ```
 
-### datetime
+### `datetime`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -53,7 +53,7 @@ parseDate('1/1/20, 12:00 AM', { datetime: 'short' });
 // Date(2020, 0, 1)
 ```
 
-### skeleton
+### `skeleton`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -64,7 +64,7 @@ parseDate('Jan 1, 2020, 12:00 AM', { skeleton: 'yMMMdhm' });
 // Date(2020, 0, 1)
 ```
 
-### time
+### `time`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |

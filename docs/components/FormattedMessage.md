@@ -39,18 +39,18 @@ const ExampleComponent = () => (
 
 ## Props
 
-- [accessible](https://facebook.github.io/react-native/docs/text#accessible)
-- [accessibilityLabel](https://facebook.github.io/react-native/docs/text#accessibilitylabel)
-- [adjustsFontSizeToFit](https://facebook.github.io/react-native/docs/text#adjustsfontsizetofit)
-- [allowFontScaling](https://facebook.github.io/react-native/docs/text#allowfontscaling)
-- [defaultMessage](#defaultMessage)
-- [id](#id)
-- [style](https://facebook.github.io/react-native/docs/text#style)
-- [values](#values)
+- [`accessible`](https://facebook.github.io/react-native/docs/text#accessible)
+- [`accessibilityLabel`](https://facebook.github.io/react-native/docs/text#accessibilitylabel)
+- [`adjustsFontSizeToFit`](https://facebook.github.io/react-native/docs/text#adjustsfontsizetofit)
+- [`allowFontScaling`](https://facebook.github.io/react-native/docs/text#allowfontscaling)
+- [`defaultMessage`](#defaultMessage)
+- [`id`](#id)
+- [`style`](https://facebook.github.io/react-native/docs/text#style)
+- [`values`](#values)
 
 **Note**: All other props are treated as variables and are merged into `values`. However, using `values` is recommended in case props change in the future. For now, `<FormattedMessage id="welcome" date="awesome" />` is equivalent to `<FormattedMessage id="welcome" values={{ date: 'awesome' }} />`.
 
-### defaultMessage
+### `defaultMessage`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -66,25 +66,17 @@ const ExampleComponent = () => (
 
 **Note:** By default, a error is emitted and logged to the console in development mode, so you may still see a React Native error/red screen when developing. However, if you dismiss the error screen, you'll see the `defaultMessage` value used as expected. You can override the default error logging behavior with the `onError` prop on [`GlobalizeProvider`](../components/GlobalizeProvider.md#onerror).
 
-### id
+### `id`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
 | string |   Yes    |   none  | Message identifier. |
 
-### values
+### `values`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
 | object |    No    |   `{}`  | Variables for replacement in message. |
-
-```js
-<FormattedMessage
-  id="welcome"
-  values={{ date: 'awesome' }}
-/>
-// Hello, today is awesome
-```
 
 ## Advanced Examples
 

@@ -24,17 +24,17 @@ const ExampleComponent = () => {
 
 ## Options
 
-- [compact](#compact)
-- [maximumFractionDigits](#maximumfractiondigits)
-- [maximumSignificantDigits](#maximumsignificantdigits)
-- [minimumFractionDigits](#minimumfractiondigits)
-- [minimumIntegerDigits](#minimumintegerdigits)
-- [minimumSignificantDigits](#minimumsignificantdigits)
-- [round](#round)
-- [style](#style)
-- [useGrouping](#usegrouping)
+- [`compact`](#compact)
+- [`maximumFractionDigits`](#maximumfractiondigits)
+- [`maximumSignificantDigits`](#maximumsignificantdigits)
+- [`minimumFractionDigits`](#minimumfractiondigits)
+- [`minimumIntegerDigits`](#minimumintegerdigits)
+- [`minimumSignificantDigits`](#minimumsignificantdigits)
+- [`round`](#round)
+- [`style`](#style)
+- [`useGrouping`](#usegrouping)
 
-### compact
+### `compact`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -45,7 +45,7 @@ formatNumber(100000, { compact: 'short' });
 // 100K
 ```
 
-### maximumFractionDigits
+### `maximumFractionDigits`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -56,7 +56,7 @@ formatNumber(10.45, { maximumFractionDigits: 0 });
 // 10
 ```
 
-### maximumSignificantDigits
+### `maximumSignificantDigits`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -67,7 +67,7 @@ formatNumber(10.45, { minimumSignificantDigits: 1, maximumSignificantDigits: 3 }
 // 10.5
 ```
 
-### minimumFractionDigits
+### `minimumFractionDigits`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -78,7 +78,7 @@ formatNumber(10.45, { minimumFractionDigits: 4 });
 // 10.4500
 ```
 
-### minimumIntegerDigits
+### `minimumIntegerDigits`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -89,7 +89,7 @@ formatNumber(10.45, { minimumIntegerDigits: 3 });
 // 010.45
 ```
 
-### minimumSignificantDigits
+### `minimumSignificantDigits`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -100,7 +100,7 @@ formatNumber(10.45, { minimumSignificantDigits: 6, maximumSignificantDigits: 8 }
 // 10.4500
 ```
 
-### round
+### `round`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -111,7 +111,7 @@ formatNumber(10.45, { maximumFractionDigits: 0, round: 'ceil' });
 // 11
 ```
 
-### style
+### `style`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -124,7 +124,7 @@ formatNumber(0.45, { style: 'percent' });
 // 45%
 ```
 
-### useGrouping
+### `useGrouping`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |

@@ -26,16 +26,16 @@ const ExampleComponent2 = () => (
 
 ## Props
 
-- [accessible](https://facebook.github.io/react-native/docs/text#accessible)
-- [accessibilityLabel](https://facebook.github.io/react-native/docs/text#accessibilitylabel)
-- [adjustsFontSizeToFit](https://facebook.github.io/react-native/docs/text#adjustsfontsizetofit)
-- [allowFontScaling](https://facebook.github.io/react-native/docs/text#allowfontscaling)
-- [form](#form)
-- [style](https://facebook.github.io/react-native/docs/text#style)
-- [unit](#unit)
-- [value](#value)
+- [`accessible`](https://facebook.github.io/react-native/docs/text#accessible)
+- [`accessibilityLabel`](https://facebook.github.io/react-native/docs/text#accessibilitylabel)
+- [`adjustsFontSizeToFit`](https://facebook.github.io/react-native/docs/text#adjustsfontsizetofit)
+- [`allowFontScaling`](https://facebook.github.io/react-native/docs/text#allowfontscaling)
+- [`form`](#form)
+- [`style`](https://facebook.github.io/react-native/docs/text#style)
+- [`unit`](#unit)
+- [`value`](#value)
 
-### form
+### `form`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -50,7 +50,7 @@ const ExampleComponent2 = () => (
 // 30 min. ago
 ```
 
-### unit
+### `unit`
 
 |  Type   | Required | Default | Description |
 | :-----: | :------: | :-----: | :---------: |
@@ -58,7 +58,7 @@ const ExampleComponent2 = () => (
 
 When `value` is a number, unit can be: `second`, `minute`, `hour`, `day`, `week`, `month`, `quarter`, `year`. When `value` is a Date, `auto` is also supported, which will determine the best unit automatically.
 
-### value
+### `value`
 
 |       Type      | Required | Default | Description |
 | :-------------: | :------: | :-----: | :---------: |

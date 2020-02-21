@@ -18,20 +18,20 @@ const ExampleComponent = () => (
 
 ## Props
 
-- [accessible](https://facebook.github.io/react-native/docs/text#accessible)
-- [accessibilityLabel](https://facebook.github.io/react-native/docs/text#accessibilitylabel)
-- [adjustsFontSizeToFit](https://facebook.github.io/react-native/docs/text#adjustsfontsizetofit)
-- [allowFontScaling](https://facebook.github.io/react-native/docs/text#allowfontscaling)
-- [date](#date)
-- [datetime](#datetime)
-- [skeleton](#skeleton)
-- [style](https://facebook.github.io/react-native/docs/text#style)
-- [time](#time)
-- [value](#value)
+- [`accessible`](https://facebook.github.io/react-native/docs/text#accessible)
+- [`accessibilityLabel`](https://facebook.github.io/react-native/docs/text#accessibilitylabel)
+- [`adjustsFontSizeToFit`](https://facebook.github.io/react-native/docs/text#adjustsfontsizetofit)
+- [`allowFontScaling`](https://facebook.github.io/react-native/docs/text#allowfontscaling)
+- [`date`](#date)
+- [`datetime`](#datetime)
+- [`skeleton`](#skeleton)
+- [`style`](https://facebook.github.io/react-native/docs/text#style)
+- [`time`](#time)
+- [`value`](#value)
 
 **Note**: Specify one of `date`, `datetime`, `skeleton`, or `time`.
 
-### date
+### `date`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -45,7 +45,7 @@ const ExampleComponent = () => (
 // Wednesday, January 1, 2020
 ```
 
-### datetime
+### `datetime`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -59,7 +59,7 @@ const ExampleComponent = () => (
 // Wednesday, January 1, 2020 at 12:00:00 AM GMT-08:00
 ```
 
-### skeleton
+### `skeleton`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -73,7 +73,7 @@ const ExampleComponent = () => (
 // Jan 1, 2020, 12:00 AM
 ```
 
-### time
+### `time`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
@@ -87,13 +87,8 @@ const ExampleComponent = () => (
 // 12:00:00 AM GMT-08:00
 ```
 
-### value
+### `value`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
 |  Date  |    Yes   |   none  | Date object to be formatted. |
-
-```js
-<FormattedDate value={new Date(2020, 0, 1)} />
-// 1/1/2020
-```

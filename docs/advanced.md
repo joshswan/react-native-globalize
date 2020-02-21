@@ -17,8 +17,8 @@ import { loadCldr } from 'react-native-globalize';
 
 const localeLoaders = {
   de: () => loadCldr(require('react-native-globalize/locale-data/de')),
-  en: () => loadCldr(require('react-native-globalize/locale-data/de')),
-  ds: () => loadCldr(require('react-native-globalize/locale-data/de')),
+  en: () => loadCldr(require('react-native-globalize/locale-data/en')),
+  es: () => loadCldr(require('react-native-globalize/locale-data/es')),
 };
 
 const LocaleSwitcher = () => (

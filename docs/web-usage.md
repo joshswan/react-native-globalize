@@ -71,8 +71,8 @@ For web usage, it is recommended to load locale (CLDR) data only as needed rathe
 ```js
 const localeLoaders = {
   de: () => import('react-native-globalize/locale-data/de'),
-  en: () => import('react-native-globalize/locale-data/de'),
-  ds: () => import('react-native-globalize/locale-data/de'),
+  en: () => import('react-native-globalize/locale-data/en'),
+  es: () => import('react-native-globalize/locale-data/es'),
 };
 
 const onChangeLocale = async (locale) => {

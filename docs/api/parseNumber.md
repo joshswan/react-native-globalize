@@ -24,9 +24,9 @@ const ExampleComponent = () => {
 
 ## Options
 
-- [style](#style)
+- [`style`](#style)
 
-### style
+### `style`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |

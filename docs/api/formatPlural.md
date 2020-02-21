@@ -26,9 +26,9 @@ const ExampleComponent = () => {
 
 ## Options
 
-- [type](#type)
+- [`type`](#type)
 
-### type
+### `type`
 
 |  Type  | Required |  Default   | Description |
 | :----: | :------: | :--------: | :---------: |

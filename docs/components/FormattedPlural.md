@@ -20,17 +20,17 @@ const ExampleComponent = () => (
 
 ## Props
 
-- [accessible](https://facebook.github.io/react-native/docs/text#accessible)
-- [accessibilityLabel](https://facebook.github.io/react-native/docs/text#accessibilitylabel)
-- [adjustsFontSizeToFit](https://facebook.github.io/react-native/docs/text#adjustsfontsizetofit)
-- [allowFontScaling](https://facebook.github.io/react-native/docs/text#allowfontscaling)
-- [style](https://facebook.github.io/react-native/docs/text#style)
-- [type](#type)
-- [value](#value)
+- [`accessible`](https://facebook.github.io/react-native/docs/text#accessible)
+- [`accessibilityLabel`](https://facebook.github.io/react-native/docs/text#accessibilitylabel)
+- [`adjustsFontSizeToFit`](https://facebook.github.io/react-native/docs/text#adjustsfontsizetofit)
+- [`allowFontScaling`](https://facebook.github.io/react-native/docs/text#allowfontscaling)
+- [`style`](https://facebook.github.io/react-native/docs/text#style)
+- [`type`](#type)
+- [`value`](#value)
 
 **Note**: The `other` prop is *required*. All other groups are optional. All accept a string or a React component.
 
-### type
+### `type`
 
 |  Type  | Required |  Default   | Description |
 | :----: | :------: | :--------: | :---------: |
@@ -46,7 +46,7 @@ const ExampleComponent = () => (
 // Show this for 2
 ```
 
-### value
+### `value`
 
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
