@@ -19,4 +19,5 @@ export const FormattedTime = FormattedDate;
 
 export * from './FormattedPlural';
 export { GlobalizeProvider, GlobalizeProvider as FormattedProvider };
-export { withGlobalize } from './withGlobalize';
+export * from './withGlobalize';
+export { TextProps } from './utils';
