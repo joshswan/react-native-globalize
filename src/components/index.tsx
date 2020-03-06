@@ -7,7 +7,6 @@
  */
 
 import { createFormattedComponent } from './utils';
-import { GlobalizeProvider } from './GlobalizeProvider';
 
 export const FormattedCurrency = createFormattedComponent('formatCurrency');
 export const FormattedDate = createFormattedComponent('formatDate');
@@ -18,6 +17,7 @@ export const FormattedUnit = createFormattedComponent('formatUnit');
 export const FormattedTime = FormattedDate;
 
 export * from './FormattedPlural';
-export { GlobalizeProvider, GlobalizeProvider as FormattedProvider };
+export * from './GlobalizeProvider';
 export * from './withGlobalize';
+export { GlobalizeProvider as FormattedProvider } from './GlobalizeProvider';
 export { TextProps } from './utils';
