@@ -7,6 +7,7 @@
  */
 
 import React, { useContext } from 'react';
+import hoistStatics from 'hoist-non-react-statics';
 import { Globalize } from '../globalize';
 import { GlobalizeContext } from '../context';
 
@@ -16,8 +17,8 @@ export interface WithGlobalizeProps {
 
 export const withGlobalize = <P extends WithGlobalizeProps>(
   Component: React.ComponentType<P>,
-): React.FC<Omit<P, keyof WithGlobalizeProps>> => (props) => {
+): React.FC<Omit<P, keyof WithGlobalizeProps>> => hoistStatics((props) => {
     const globalize = useContext(GlobalizeContext);
 
     return <Component {...props as P} globalize={globalize} />;
-  };
+  }, Component);

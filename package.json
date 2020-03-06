@@ -41,6 +41,7 @@
     "cldrjs": "^0.5.0",
     "dayjs": "^1.8.20",
     "globalize": "^1.4.2",
+    "hoist-non-react-statics": "^3.3.2",
     "jsonpack": "^1.1.5"
   },
   "devDependencies": {
@@ -50,6 +51,7 @@
     "@commitlint/config-conventional": "^8.3.4",
     "@release-it/conventional-changelog": "^1.1.0",
     "@types/cldrjs": "^0.4.22",
+    "@types/hoist-non-react-statics": "^3.3.1",
     "@types/jest": "^25.1.2",
     "@types/node": "^13.7.1",
     "@typescript-eslint/eslint-plugin": "^2.19.2",
