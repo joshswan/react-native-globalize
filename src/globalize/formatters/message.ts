@@ -49,7 +49,7 @@ export function enhanceMessageFormatter(
     }
 
     return (
-      values: string[] | Record<string, string | ReactElement> = {},
+      values: string[] | Record<string, string | number | ReactElement> = {},
     ): any => {
       const uid = Math.floor(Math.random() * 0x10000000000).toString(16);
       const tokenRegexp = new RegExp(`(@__ELEMENT-${uid}-\\d+__@)`, 'g');

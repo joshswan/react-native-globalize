@@ -55,8 +55,8 @@ export interface DateParser {
 }
 
 export interface MessageFormatter {
-  (values?: string[] | Record<string, string>): string;
-  (values: Record<string, string | ReactElement>): string | ReactElement;
+  (values?: string[] | Record<string, string | number>): string;
+  (values: Record<string, string | number | ReactElement>): string | ReactElement;
 }
 
 export interface MessageFormatterOptions {
@@ -133,12 +133,12 @@ export interface Globalize extends GlobalizeConfig, GlobalizeHelpers, Formatters
   ): string;
   formatMessage(
     id: string | string[],
-    values?: string[] | Record<string, string>,
+    values?: string[] | Record<string, string | number>,
     options?: MessageFormatterOptions,
   ): string;
   formatMessage(
     id: string | string[],
-    values?: Record<string, string | ReactElement>,
+    values?: Record<string, string | number | ReactElement>,
     options?: MessageFormatterOptions,
   ): string | ReactElement;
   formatNumber(
