@@ -33,7 +33,6 @@ export {
 };
 
 export type Messages = Record<string, string>;
-export type MessageData = Record<string, Record<string, string | Messages>>;
 export type PluralGroup = 'zero' | 'one' | 'two' | 'few' | 'many' | 'other';
 export type Unit = 'year' | 'quarter' | 'month' | 'week' | 'day' | 'hour' | 'minute' | 'second';
 
@@ -118,13 +117,11 @@ export interface GlobalizeHelpers {
     altNarrow?: boolean,
   ): string | null;
   loadCldr(...cldrData: Record<string, any>[]): void;
-  loadMessages(messageData: MessageData): void;
+  loadMessages(messageData: Record<string, Record<string, string | Messages>>): void;
   localeIsLoaded(locale: string): boolean;
 }
 
-export interface Globalize<
-  MessageId extends string = string
-> extends GlobalizeConfig, GlobalizeHelpers, Formatters {
+export interface Globalize extends GlobalizeConfig, GlobalizeHelpers, Formatters {
   formatCurrency(
     value: number,
     currencyCode?: string,
@@ -135,12 +132,12 @@ export interface Globalize<
     options?: DateFormatterOptions,
   ): string;
   formatMessage(
-    id: MessageId | MessageId[],
+    id: string | string[],
     values?: string[] | Record<string, string | number>,
     options?: MessageFormatterOptions,
   ): string;
   formatMessage(
-    id: MessageId | MessageId[],
+    id: string | string[],
     values?: Record<string, string | number | ReactElement>,
     options?: MessageFormatterOptions,
   ): string | ReactElement;
