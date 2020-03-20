@@ -7,6 +7,7 @@
  */
 
 import { useContext } from 'react';
+import { Globalize } from '../globalize';
 import { GlobalizeContext } from '../context';
 
-export const useGlobalize = () => useContext(GlobalizeContext);
+export const useGlobalize = <M extends string>(): Globalize<M> => useContext(GlobalizeContext);
