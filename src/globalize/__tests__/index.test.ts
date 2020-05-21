@@ -109,7 +109,12 @@ describe('core', () => {
     test('returns currency symbol based on instance locale', () => {
       const globalize = createGlobalize({ locale: 'en' });
 
-      expect(globalize.getCurrencySymbol('USD')).toBe('$');
+      expect(globalize.getCurrencySymbol('CAD')).toBe('CA$');
+    });
+
+    test('returns currency symbol based on instance currency if no argument passed', () => {
+      const globalize = createGlobalize({ locale: 'en' });
+      expect(globalize.getCurrencySymbol()).toBe('$');
     });
 
     test('returns currency symbol based on supplied locale', () => {

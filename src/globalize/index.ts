@@ -61,7 +61,16 @@ export function createGlobalize(config: Config): Globalize {
     ...formatters,
     ...loaders,
     getAvailableLocales,
-    getCurrencySymbol: getCurrencySymbol.bind(null, cfg.locale),
+    getCurrencySymbol(
+      currencyCode?: string,
+      altNarrow?: boolean,
+    ) {
+      return getCurrencySymbol(
+        cfg.locale,
+        currencyCode || cfg.currencyCode,
+        altNarrow,
+      );
+    },
     localeIsLoaded,
     formatCurrency: formatCurrency.bind(
       null,

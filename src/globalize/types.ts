@@ -114,7 +114,7 @@ export interface GlobalizeConfig {
 export interface GlobalizeHelpers {
   getAvailableLocales(): string[];
   getCurrencySymbol(
-    currencyCode: string,
+    currencyCode?: string,
     altNarrow?: boolean,
   ): string | null;
   loadCldr(...cldrData: Record<string, any>[]): void;
