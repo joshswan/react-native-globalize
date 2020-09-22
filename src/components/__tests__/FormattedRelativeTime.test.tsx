@@ -31,7 +31,9 @@ describe('<FormattedRelativeTime />', () => {
 
   describe('unit', () => {
     test('supports auto unit option', () => {
-      const tree = createWithGlobalize(<FormattedRelativeTime value={date1} unit="auto" />).toJSON();
+      const tree = createWithGlobalize(
+        <FormattedRelativeTime value={date1} unit="auto" />,
+      ).toJSON();
 
       expect(tree).toMatchSnapshot();
     });

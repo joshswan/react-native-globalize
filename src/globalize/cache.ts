@@ -57,18 +57,21 @@ export function createCache(): Cache {
 }
 
 function orderedProps(obj: Record<string, any>) {
-  return Object.keys(obj).sort().map((key) => ({ [key]: obj[key] }));
+  return Object.keys(obj)
+    .sort()
+    .map((key) => ({ [key]: obj[key] }));
 }
 
 function getCacheKey(args: any[]) {
-  return JSON.stringify(args.map((arg) => (!!arg && typeof arg === 'object' ? orderedProps(arg) : arg)));
+  return JSON.stringify(
+    args.map((arg) => (!!arg && typeof arg === 'object' ? orderedProps(arg) : arg)),
+  );
 }
 
 interface MemoizeFormatterFn {
-  <T extends {(...args: any[]): any}>(
-    builder: T,
-    cache: Record<string, CacheValue>,
-  ): (...args: Parameters<T>) => any;
+  <T extends { (...args: any[]): any }>(builder: T, cache: Record<string, CacheValue>): (
+    ...args: Parameters<T>
+  ) => any;
 }
 
 export const memoizeFormatter: MemoizeFormatterFn = (

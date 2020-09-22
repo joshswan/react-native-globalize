@@ -8,22 +8,17 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {
-  FormattedCurrency,
-  GlobalizeProvider,
-  FormattedUnit,
-} from '..';
+import { FormattedCurrency, GlobalizeProvider, FormattedUnit } from '..';
 
 describe('<GlobalizeProvider />', () => {
   test('renders correctly', () => {
-    const tree = renderer.create((
-      <GlobalizeProvider locale="en">
-        <FormattedUnit
-          unit="mile-per-hour"
-          value={75}
-        />
-      </GlobalizeProvider>
-    )).toJSON();
+    const tree = renderer
+      .create(
+        <GlobalizeProvider locale="en">
+          <FormattedUnit unit="mile-per-hour" value={75} />
+        </GlobalizeProvider>,
+      )
+      .toJSON();
 
     expect(tree).toMatchSnapshot();
   });
@@ -32,34 +27,34 @@ describe('<GlobalizeProvider />', () => {
     let root;
 
     renderer.act(() => {
-      root = renderer.create((
+      root = renderer.create(
         <GlobalizeProvider locale="en" currency="USD">
           <FormattedCurrency value={10} />
           <FormattedUnit unit="mile-per-hour" value={75} />
-        </GlobalizeProvider>
-      ));
+        </GlobalizeProvider>,
+      );
     });
 
     expect(root.toJSON()).toMatchSnapshot();
 
     renderer.act(() => {
-      root = renderer.create((
+      root = renderer.create(
         <GlobalizeProvider locale="es" currency="USD">
           <FormattedCurrency value={10} />
           <FormattedUnit unit="mile-per-hour" value={75} />
-        </GlobalizeProvider>
-      ));
+        </GlobalizeProvider>,
+      );
     });
 
     expect(root.toJSON()).toMatchSnapshot();
 
     renderer.act(() => {
-      root = renderer.create((
+      root = renderer.create(
         <GlobalizeProvider locale="es" currency="EUR">
           <FormattedCurrency value={10} />
           <FormattedUnit unit="mile-per-hour" value={75} />
-        </GlobalizeProvider>
-      ));
+        </GlobalizeProvider>,
+      );
     });
 
     expect(root.toJSON()).toMatchSnapshot();

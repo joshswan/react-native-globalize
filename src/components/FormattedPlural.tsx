@@ -12,25 +12,22 @@ import { Globalize, PluralGeneratorOptions } from '../globalize';
 import { useGlobalize } from '../hooks';
 import { createPropFilter, TextProps } from './utils';
 
-type Props = PluralGeneratorOptions & TextProps & {
-  value: Parameters<Globalize['formatPlural']>[0];
-  other: React.ReactNode;
-  zero?: React.ReactNode;
-  one?: React.ReactNode;
-  two?: React.ReactNode;
-  few?: React.ReactNode;
-  many?: React.ReactNode;
-};
+type Props = PluralGeneratorOptions &
+  TextProps & {
+    value: Parameters<Globalize['formatPlural']>[0];
+    other: React.ReactNode;
+    zero?: React.ReactNode;
+    one?: React.ReactNode;
+    two?: React.ReactNode;
+    few?: React.ReactNode;
+    many?: React.ReactNode;
+  };
 
-const filterProps = createPropFilter<Props, Parameters<Globalize['formatPlural']>>(({
-  type,
-  value,
-}) => [value, { type }]);
+const filterProps = createPropFilter<Props, Parameters<Globalize['formatPlural']>>(
+  ({ type, value }) => [value, { type }],
+);
 
-export const FormattedPlural: React.FC<Props> = ({
-  children,
-  ...props
-}) => {
+export const FormattedPlural: React.FC<Props> = ({ children, ...props }) => {
   const { formatPlural } = useGlobalize();
   const [args, textProps] = filterProps(props);
   const plural = formatPlural(...args);

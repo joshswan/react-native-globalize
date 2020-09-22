@@ -13,12 +13,7 @@ import { FormattedUnit } from '..';
 
 describe('<FormattedUnit />', () => {
   test('renders correctly', () => {
-    const tree = createWithGlobalize((
-      <FormattedUnit
-        unit="mile-per-hour"
-        value={75}
-      />
-    )).toJSON();
+    const tree = createWithGlobalize(<FormattedUnit unit="mile-per-hour" value={75} />).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
@@ -30,14 +25,14 @@ describe('<FormattedUnit />', () => {
       useGrouping: false,
     });
 
-    const tree = createWithGlobalize((
+    const tree = createWithGlobalize(
       <FormattedUnit
         form="narrow"
         numberFormatter={numberFormatter}
         unit="area-square-mile"
         value={5000}
-      />
-    )).toJSON();
+      />,
+    ).toJSON();
 
     expect(tree).toMatchSnapshot();
   });

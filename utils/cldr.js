@@ -38,29 +38,26 @@ exports.reduceLocale = ({ main }) => {
             CURRENCY_CODES.map((code) => omit(numbers.currencies[code], ['displayName'])),
           ),
         },
-        units: zipObject(UNIT_FORMS, UNIT_FORMS.map((form) => {
-          const keys = Object.keys(units[form]);
+        units: zipObject(
+          UNIT_FORMS,
+          UNIT_FORMS.map((form) => {
+            const keys = Object.keys(units[form]);
 
-          return zipObject(keys, keys.map((key) => omit(units[form][key], ['displayName'])));
-        })),
+            return zipObject(
+              keys,
+              keys.map((key) => omit(units[form][key], ['displayName'])),
+            );
+          }),
+        ),
       },
     },
   };
 };
 
-exports.reduceSupplemental = ({
-  supplemental: {
-    currencyData,
-    version,
-    ...rest
-  },
-}) => ({
+exports.reduceSupplemental = ({ supplemental: { currencyData, version, ...rest } }) => ({
   supplemental: {
     currencyData: {
-      fractions: pick(currencyData.fractions, [
-        'DEFAULT',
-        ...CURRENCY_CODES,
-      ]),
+      fractions: pick(currencyData.fractions, ['DEFAULT', ...CURRENCY_CODES]),
     },
     ...rest,
   },

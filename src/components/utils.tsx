@@ -19,13 +19,10 @@ import {
 } from '../globalize';
 import { GlobalizeContext } from '../context';
 
-export type TextProps = Pick<RNTextProps,
-  | 'accessible'
-  | 'accessibilityLabel'
-  | 'adjustsFontSizeToFit'
-  | 'allowFontScaling'
-  | 'style'
->
+export type TextProps = Pick<
+  RNTextProps,
+  'accessible' | 'accessibilityLabel' | 'adjustsFontSizeToFit' | 'allowFontScaling' | 'style'
+>;
 
 export const filterTextProps: <T extends RNTextProps>(
   props: T,
@@ -36,13 +33,16 @@ export const filterTextProps: <T extends RNTextProps>(
   allowFontScaling = true,
   style,
   ...props
-}) => [props, {
-  accessible,
-  accessibilityLabel,
-  adjustsFontSizeToFit,
-  allowFontScaling,
-  style,
-}];
+}) => [
+  props,
+  {
+    accessible,
+    accessibilityLabel,
+    adjustsFontSizeToFit,
+    allowFontScaling,
+    style,
+  },
+];
 
 export const createPropFilter: <T extends RNTextProps, P>(
   fn: (props: Omit<T, keyof TextProps>) => P,
@@ -51,6 +51,7 @@ export const createPropFilter: <T extends RNTextProps, P>(
   return [fn(filtered), textProps];
 };
 
+// eslint-disable-next-line no-shadow
 enum DisplayName {
   formatCurrency = 'FormattedCurrency',
   formatDate = 'FormattedDate',
@@ -91,43 +92,41 @@ type Formatted = {
 const extractArgs: {
   [Name in keyof Formatted]: (
     props: Formatted[Name] & TextProps & { value: Parameters<Globalize[Name]>[0] },
-  ) => [Parameters<Globalize[Name]>, TextProps]
+  ) => [Parameters<Globalize[Name]>, TextProps];
 } = {
-  formatCurrency: createPropFilter(({
-    currency,
-    numberStyle = 'symbol',
+  formatCurrency: createPropFilter(({ currency, numberStyle = 'symbol', value, ...options }) => [
     value,
-    ...options
-  }) => [value, currency, {
-    useGrouping: true,
-    ...options,
-    style: numberStyle as CurrencyFormatterOptions['style'],
-  }]),
+    currency,
+    {
+      useGrouping: true,
+      ...options,
+      style: numberStyle as CurrencyFormatterOptions['style'],
+    },
+  ]),
   formatDate: createPropFilter(({ value, ...options }) => [value, options]),
-  formatMessage: createPropFilter(({
-    defaultMessage,
-    id,
+  formatMessage: createPropFilter(({ defaultMessage, id, message, values = {}, ...rest }) => [
     /**
-     * @deprecated Use "id" - still works for backwards compatibility
+     * @deprecated Use "id" - "message" still works for backwards compatibility
      */
-    message,
-    values = {},
-    ...rest
-  }) => [id || message, { ...values, ...rest }, { defaultMessage }]),
-  formatNumber: createPropFilter(({ numberStyle = 'decimal', value, ...options }) => [value, {
-    useGrouping: true,
-    ...options,
-    style: numberStyle as NumberFormatterOptions['style'],
-  }]),
+    id || message,
+    { ...values, ...rest },
+    { defaultMessage },
+  ]),
+  formatNumber: createPropFilter(({ numberStyle = 'decimal', value, ...options }) => [
+    value,
+    {
+      useGrouping: true,
+      ...options,
+      style: numberStyle as NumberFormatterOptions['style'],
+    },
+  ]),
   formatRelativeTime: createPropFilter(({ form, unit, value }) => [value, unit, { form }]),
   formatUnit: createPropFilter(({ unit, value, ...options }) => [value, unit, options]),
 };
 
 export function createFormattedComponent<Name extends keyof Formatted>(
   name: Name,
-): React.FC<
-  Formatted[Name] & TextProps
-> {
+): React.FC<Formatted[Name] & TextProps> {
   type Props = Formatted[Name] & TextProps;
 
   const Component: React.FC<Props> = ({ children, ...props }) => {

@@ -27,27 +27,27 @@ export const GlobalizeProvider: React.FC<Props> = ({
   localeFallback: fallback = false,
   ...options
 }) => {
-  const [globalize, setGlobalize] = useState(() => createGlobalize({
-    ...options,
-    locale,
-    currencyCode,
-    defaultLocale,
-    fallback,
-  }));
-
-  useEffect(() => {
-    setGlobalize(createGlobalize({
+  const [globalize, setGlobalize] = useState(() =>
+    createGlobalize({
       ...options,
       locale,
       currencyCode,
       defaultLocale,
       fallback,
-    }));
-  }, [currencyCode, defaultLocale, locale, fallback]);
-
-  return (
-    <GlobalizeContext.Provider value={globalize}>
-      {children}
-    </GlobalizeContext.Provider>
+    }),
   );
+
+  useEffect(() => {
+    setGlobalize(
+      createGlobalize({
+        ...options,
+        locale,
+        currencyCode,
+        defaultLocale,
+        fallback,
+      }),
+    );
+  }, [currencyCode, defaultLocale, locale, fallback]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  return <GlobalizeContext.Provider value={globalize}>{children}</GlobalizeContext.Provider>;
 };

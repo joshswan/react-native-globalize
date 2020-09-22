@@ -7,18 +7,8 @@
  */
 
 import { messageFormatter } from 'globalize';
-import {
-  Fragment,
-  ReactElement,
-  createElement,
-  isValidElement,
-} from 'react';
-import {
-  Formatters,
-  GlobalizeConfig,
-  MessageFormatter,
-  MessageFormatterOptions,
-} from '../types';
+import { Fragment, ReactElement, createElement, isValidElement } from 'react';
+import { Formatters, GlobalizeConfig, MessageFormatter, MessageFormatterOptions } from '../types';
 
 /**
  * The globalize core library only supports number/string replacement values when formatting
@@ -48,9 +38,7 @@ export function enhanceMessageFormatter(
       return () => msgId;
     }
 
-    return (
-      values: string[] | Record<string, string | number | ReactElement> = {},
-    ): any => {
+    return (values: string[] | Record<string, string | number | ReactElement> = {}): any => {
       const uid = Math.floor(Math.random() * 0x10000000000).toString(16);
       const tokenRegexp = new RegExp(`(@__ELEMENT-${uid}-\\d+__@)`, 'g');
       const generateToken = (() => {

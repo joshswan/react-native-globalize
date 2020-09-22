@@ -7,16 +7,15 @@
  */
 
 import React from 'react';
-import renderer from 'react-test-renderer';
-import { GlobalizeProvider, Props as GlobalizeProviderProps } from '../src/components/GlobalizeProvider';
+import { render } from '@testing-library/react-native';
+import {
+  GlobalizeProvider,
+  Props as GlobalizeProviderProps,
+} from '../src/components/GlobalizeProvider';
 
 export function createWithGlobalize(
   children: React.ReactNode,
   props: Omit<GlobalizeProviderProps, 'children'> = { currency: 'USD', locale: 'en' },
 ) {
-  return renderer.create((
-    <GlobalizeProvider {...props}>
-      {children}
-    </GlobalizeProvider>
-  ));
+  return render(<GlobalizeProvider {...props}>{children}</GlobalizeProvider>);
 }

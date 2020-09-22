@@ -18,47 +18,23 @@ export function createFormatters(config: GlobalizeConfig, cache: Cache): Formatt
 
   return {
     getCurrencyFormatter: memoizeFormatter(
-      enhanceCurrencyFormatter(
-        instance.currencyFormatter.bind(instance),
-        config,
-      ),
+      enhanceCurrencyFormatter(instance.currencyFormatter.bind(instance), config),
       cache.currency,
     ),
-    getDateFormatter: memoizeFormatter(
-      instance.dateFormatter.bind(instance),
-      cache.date,
-    ),
-    getDateParser: memoizeFormatter(
-      instance.dateParser.bind(instance),
-      cache.dateParsers,
-    ),
+    getDateFormatter: memoizeFormatter(instance.dateFormatter.bind(instance), cache.date),
+    getDateParser: memoizeFormatter(instance.dateParser.bind(instance), cache.dateParsers),
     getMessageFormatter: memoizeFormatter(
-      enhanceMessageFormatter(
-        instance.messageFormatter.bind(instance),
-        config,
-      ),
+      enhanceMessageFormatter(instance.messageFormatter.bind(instance), config),
       cache.message,
     ),
-    getNumberFormatter: memoizeFormatter(
-      instance.numberFormatter.bind(instance),
-      cache.number,
-    ),
-    getNumberParser: memoizeFormatter(
-      instance.numberParser.bind(instance),
-      cache.numberParsers,
-    ),
-    getPluralGenerator: memoizeFormatter(
-      instance.pluralGenerator.bind(instance),
-      cache.plural,
-    ),
+    getNumberFormatter: memoizeFormatter(instance.numberFormatter.bind(instance), cache.number),
+    getNumberParser: memoizeFormatter(instance.numberParser.bind(instance), cache.numberParsers),
+    getPluralGenerator: memoizeFormatter(instance.pluralGenerator.bind(instance), cache.plural),
     getRelativeTimeFormatter: memoizeFormatter(
       instance.relativeTimeFormatter.bind(instance),
       cache.relativeTime,
     ),
-    getUnitFormatter: memoizeFormatter(
-      instance.unitFormatter.bind(instance),
-      cache.unit,
-    ),
+    getUnitFormatter: memoizeFormatter(instance.unitFormatter.bind(instance), cache.unit),
   };
 }
 

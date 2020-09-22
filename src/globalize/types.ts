@@ -83,7 +83,8 @@ export interface UnitFormatter {
   (value: number): string;
 }
 
-export interface UnitFormatterOptions extends Omit<GlobalizeUnitFormatterOptions, 'numberFormatter'> {
+export interface UnitFormatterOptions
+  extends Omit<GlobalizeUnitFormatterOptions, 'numberFormatter'> {
   // Fix numberFormatter option definition
   // TODO: Submit PR to DT
   numberFormatter?: (value: number) => string;
@@ -113,25 +114,15 @@ export interface GlobalizeConfig {
 
 export interface GlobalizeHelpers {
   getAvailableLocales(): string[];
-  getCurrencySymbol(
-    currencyCode?: string,
-    altNarrow?: boolean,
-  ): string | null;
+  getCurrencySymbol(currencyCode?: string, altNarrow?: boolean): string | null;
   loadCldr(...cldrData: Record<string, any>[]): void;
   loadMessages(messageData: Record<string, Record<string, string | Messages>>): void;
   localeIsLoaded(locale: string): boolean;
 }
 
 export interface Globalize extends GlobalizeConfig, GlobalizeHelpers, Formatters {
-  formatCurrency(
-    value: number,
-    currencyCode?: string,
-    options?: CurrencyFormatterOptions,
-  ): string;
-  formatDate(
-    value: Date,
-    options?: DateFormatterOptions,
-  ): string;
+  formatCurrency(value: number, currencyCode?: string, options?: CurrencyFormatterOptions): string;
+  formatDate(value: Date, options?: DateFormatterOptions): string;
   formatMessage(
     id: string | string[],
     values?: string[] | Record<string, string | number>,
@@ -142,35 +133,15 @@ export interface Globalize extends GlobalizeConfig, GlobalizeHelpers, Formatters
     values?: Record<string, string | number | ReactElement>,
     options?: MessageFormatterOptions,
   ): string | ReactElement;
-  formatNumber(
-    value: number,
-    options?: NumberFormatterOptions,
-  ): string;
-  formatPlural(
-    value: number,
-    options?: PluralGeneratorOptions,
-  ): PluralGroup;
-  formatRelativeTime(
-    value: number,
-    unit: Unit,
-    options?: RelativeTimeFormatterOptions,
-  ): string;
+  formatNumber(value: number, options?: NumberFormatterOptions): string;
+  formatPlural(value: number, options?: PluralGeneratorOptions): PluralGroup;
+  formatRelativeTime(value: number, unit: Unit, options?: RelativeTimeFormatterOptions): string;
   formatRelativeTime(
     value: Date,
     unit: 'auto' | 'best' | Unit,
     options?: RelativeTimeFormatterOptions,
   ): string;
-  formatUnit(
-    value: number,
-    unit: string,
-    options?: UnitFormatterOptions,
-  ): string;
-  parseDate(
-    value: string,
-    options?: DateFormatterOptions,
-  ): Date;
-  parseNumber(
-    value: string,
-    options?: NumberParserOptions,
-  ): number;
+  formatUnit(value: number, unit: string, options?: UnitFormatterOptions): string;
+  parseDate(value: string, options?: DateFormatterOptions): Date;
+  parseNumber(value: string, options?: NumberParserOptions): number;
 }

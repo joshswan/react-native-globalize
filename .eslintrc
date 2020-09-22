@@ -1,51 +1,58 @@
 {
   "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module",
+    "useJSXTextNode": true
+  },
   "extends": [
+    "airbnb",
+    "airbnb/hooks",
     "plugin:@typescript-eslint/recommended",
-    "airbnb"
+    "prettier",
+    "prettier/react",
+    "prettier/@typescript-eslint"
   ],
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["prettier", "@typescript-eslint"],
   "settings": {
     "import/resolver": {
       "node": {
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx"
-        ]
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     }
   },
-  "ignorePatterns": ["types/"],
   "rules": {
+    "prettier/prettier": ["error"],
     "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
     "no-underscore-dangle": ["error", { "allow": ["_raw"] }],
-    "import/extensions": ["error", "ignorePackages", {
-      "js": "never",
-      "mjs": "never",
-      "jsx": "never",
-      "ts": "never",
-      "tsx": "never"
-    }],
+    "no-use-before-define": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "mjs": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
     "import/prefer-default-export": "off",
     "react/jsx-filename-extension": ["error", { "extensions": [".jsx", ".tsx"] }],
     "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off",
-    "react/static-property-placement": ["error", "static public field"],
-    "@typescript-eslint/ban-ts-ignore": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-member-accessibility": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/no-non-null-assertion": "off"
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-unused-vars": "error"
   },
   "overrides": [
-    {
-      "files": ["*.ts", "*.tsx"],
-      "rules": {
-        "lines-between-class-members": "off",
-        "no-dupe-class-members": "off"
-      }
-    },
     {
       "files": ["*.test.*"],
       "env": { "jest": true, "node": true },

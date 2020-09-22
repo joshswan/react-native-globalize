@@ -46,10 +46,12 @@ export function createGlobalize(config: Config): Globalize {
   };
 
   if (!localeIsLoaded(cfg.locale)) {
-    cfg.locale = (cfg.fallback && findFallbackLocale(cfg.locale)) || cfg.defaultLocale as string;
+    cfg.locale = (cfg.fallback && findFallbackLocale(cfg.locale)) || (cfg.defaultLocale as string);
 
     if (!cfg.locale) {
-      throw new Error('[RNGlobalize] CLDR data for the selected language/locale has not been loaded!');
+      throw new Error(
+        '[RNGlobalize] CLDR data for the selected language/locale has not been loaded!',
+      );
     }
   }
 
@@ -61,62 +63,19 @@ export function createGlobalize(config: Config): Globalize {
     ...formatters,
     ...loaders,
     getAvailableLocales,
-    getCurrencySymbol(
-      currencyCode?: string,
-      altNarrow?: boolean,
-    ) {
-      return getCurrencySymbol(
-        cfg.locale,
-        currencyCode || cfg.currencyCode,
-        altNarrow,
-      );
+    getCurrencySymbol(currencyCode?: string, altNarrow?: boolean) {
+      return getCurrencySymbol(cfg.locale, currencyCode || cfg.currencyCode, altNarrow);
     },
     localeIsLoaded,
-    formatCurrency: formatCurrency.bind(
-      null,
-      cfg,
-      formatters.getCurrencyFormatter,
-    ),
-    formatDate: formatDate.bind(
-      null,
-      cfg,
-      formatters.getDateFormatter,
-    ),
-    formatMessage: formatMessage.bind(
-      null,
-      cfg,
-      formatters.getMessageFormatter,
-    ),
-    formatNumber: formatNumber.bind(
-      null,
-      cfg,
-      formatters.getNumberFormatter,
-    ),
-    formatPlural: formatPlural.bind(
-      null,
-      cfg,
-      formatters.getPluralGenerator,
-    ),
-    formatRelativeTime: formatRelativeTime.bind(
-      null,
-      cfg,
-      formatters.getRelativeTimeFormatter,
-    ),
-    formatUnit: formatUnit.bind(
-      null,
-      cfg,
-      formatters.getUnitFormatter,
-    ),
-    parseDate: parseDate.bind(
-      null,
-      cfg,
-      formatters.getDateParser,
-    ),
-    parseNumber: parseNumber.bind(
-      null,
-      cfg,
-      formatters.getNumberParser,
-    ),
+    formatCurrency: formatCurrency.bind(null, cfg, formatters.getCurrencyFormatter),
+    formatDate: formatDate.bind(null, cfg, formatters.getDateFormatter),
+    formatMessage: formatMessage.bind(null, cfg, formatters.getMessageFormatter),
+    formatNumber: formatNumber.bind(null, cfg, formatters.getNumberFormatter),
+    formatPlural: formatPlural.bind(null, cfg, formatters.getPluralGenerator),
+    formatRelativeTime: formatRelativeTime.bind(null, cfg, formatters.getRelativeTimeFormatter),
+    formatUnit: formatUnit.bind(null, cfg, formatters.getUnitFormatter),
+    parseDate: parseDate.bind(null, cfg, formatters.getDateParser),
+    parseNumber: parseNumber.bind(null, cfg, formatters.getNumberParser),
   };
 }
 

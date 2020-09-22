@@ -20,11 +20,7 @@ describe('withGlobalize()', () => {
 
       const formatter = globalize.getCurrencyFormatter();
 
-      return (
-        <Text>
-          {formatter(10)}
-        </Text>
-      );
+      return <Text>{formatter(10)}</Text>;
     };
 
     const WrappedComponent = withGlobalize(Component);

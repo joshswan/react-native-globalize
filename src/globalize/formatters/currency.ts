@@ -7,21 +7,14 @@
  */
 
 import { currencyFormatter } from 'globalize';
-import {
-  CurrencyFormatter,
-  CurrencyFormatterOptions,
-  Formatters,
-  GlobalizeConfig,
-} from '../types';
+import { CurrencyFormatter, CurrencyFormatterOptions, Formatters, GlobalizeConfig } from '../types';
 
 export function enhanceCurrencyFormatter(
   getCurrencyFormatter: typeof currencyFormatter,
   config: GlobalizeConfig,
 ): (currency: string, options?: CurrencyFormatterOptions) => CurrencyFormatter {
-  return (
-    currency?: string,
-    options?: CurrencyFormatterOptions,
-  ) => getCurrencyFormatter(currency || config.currencyCode, options);
+  return (currency?: string, options?: CurrencyFormatterOptions) =>
+    getCurrencyFormatter(currency || config.currencyCode, options);
 }
 
 export function formatCurrency(

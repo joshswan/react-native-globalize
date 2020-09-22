@@ -20,7 +20,7 @@ export function getAvailableLocales(): string[] {
 }
 
 export function localeIsLoaded(locale: string): boolean {
-  return !!((Cldr as any)._raw?.main?.[getLocaleId(locale)]);
+  return !!(Cldr as any)._raw?.main?.[getLocaleId(locale)];
 }
 
 export function findFallbackLocale(locale: string): string | null {

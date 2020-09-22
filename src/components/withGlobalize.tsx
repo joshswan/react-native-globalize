@@ -17,8 +17,9 @@ export interface WithGlobalizeProps {
 
 export const withGlobalize = <P extends WithGlobalizeProps>(
   Component: React.ComponentType<P>,
-): React.FC<Omit<P, keyof WithGlobalizeProps>> => hoistStatics((props) => {
+): React.FC<Omit<P, keyof WithGlobalizeProps>> =>
+  hoistStatics((props) => {
     const globalize = useContext(GlobalizeContext);
 
-    return <Component {...props as P} globalize={globalize} />;
+    return <Component {...(props as P)} globalize={globalize} />;
   }, Component);

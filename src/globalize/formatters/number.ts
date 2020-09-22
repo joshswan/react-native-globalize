@@ -6,12 +6,7 @@
  * https://github.com/joshswan/react-native-globalize/blob/master/LICENSE
  */
 
-import {
-  Formatters,
-  GlobalizeConfig,
-  NumberFormatterOptions,
-  NumberParserOptions,
-} from '../types';
+import { Formatters, GlobalizeConfig, NumberFormatterOptions, NumberParserOptions } from '../types';
 
 export function formatNumber(
   config: GlobalizeConfig,

@@ -6,12 +6,7 @@
  * https://github.com/joshswan/react-native-globalize/blob/master/LICENSE
  */
 
-import {
-  Formatters,
-  GlobalizeConfig,
-  PluralGeneratorOptions,
-  PluralGroup,
-} from '../types';
+import { Formatters, GlobalizeConfig, PluralGeneratorOptions, PluralGroup } from '../types';
 
 export function formatPlural(
   config: GlobalizeConfig,

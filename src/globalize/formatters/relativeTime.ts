@@ -7,12 +7,7 @@
  */
 
 import dayjs from 'dayjs';
-import {
-  Formatters,
-  GlobalizeConfig,
-  RelativeTimeFormatterOptions,
-  Unit,
-} from '../types';
+import { Formatters, GlobalizeConfig, RelativeTimeFormatterOptions, Unit } from '../types';
 import { selectTimeUnit } from '../utils';
 
 export function formatRelativeTime(
@@ -35,7 +30,10 @@ export function formatRelativeTime(
   try {
     return getRelativeTimeFormatter(resolvedUnit, options)(resolvedValue);
   } catch (e) {
-    config.onError('Error formatting relative time. Unit must be a valid time unit and value must be a number', e);
+    config.onError(
+      'Error formatting relative time. Unit must be a valid time unit and value must be a number',
+      e,
+    );
   }
 
   return `${String(value)} ${String(unit)}`;

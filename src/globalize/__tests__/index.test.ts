@@ -52,7 +52,8 @@ describe('core', () => {
     });
 
     test('throws when locale not found and no defaultLocale specified', () => {
-      const message = '[RNGlobalize] CLDR data for the selected language/locale has not been loaded!';
+      const message =
+        '[RNGlobalize] CLDR data for the selected language/locale has not been loaded!';
 
       expect(() => {
         createGlobalize({ locale: 'ga' });
@@ -71,7 +72,9 @@ describe('core', () => {
       globalize.formatDate(0);
 
       expect(spy).toHaveBeenCalledTimes(1);
-      expect(spy.mock.calls[0][0]).toMatch('[RNGlobalize] Error formatting date. Value must be a Date object.');
+      expect(spy.mock.calls[0][0]).toMatch(
+        '[RNGlobalize] Error formatting date. Value must be a Date object.',
+      );
 
       spy.mockRestore();
     });
@@ -208,7 +211,9 @@ describe('core', () => {
       });
 
       test('returns defaultMessage if supplied and key undefined', () => {
-        expect(globalize.formatMessage('unknown/key', {}, { defaultMessage: 'Uh oh!' })).toBe('Uh oh!');
+        expect(globalize.formatMessage('unknown/key', {}, { defaultMessage: 'Uh oh!' })).toBe(
+          'Uh oh!',
+        );
         expect(consoleError).toHaveBeenCalled();
       });
     });
