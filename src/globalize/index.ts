@@ -46,7 +46,7 @@ export function createGlobalize(config: Config): Globalize {
   };
 
   if (!localeIsLoaded(cfg.locale)) {
-    cfg.locale = (cfg.fallback && findFallbackLocale(cfg.locale)) as string;
+    cfg.locale = (cfg.fallback && findFallbackLocale(cfg.fallback)) as string;
 
     if (!cfg.locale) {
       throw new Error('[RNGlobalize] CLDR data for the selected language/locale has not been loaded!');
