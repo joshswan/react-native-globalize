@@ -106,6 +106,7 @@ export interface Formatters {
 export interface GlobalizeConfig {
   locale: string;
   currencyCode: string;
+  defaultLocale?: string;
   fallback: boolean;
   onError(message: string, exception?: Error): void;
 }

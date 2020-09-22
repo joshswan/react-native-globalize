@@ -42,7 +42,16 @@ describe('core', () => {
       expect(globalize.locale).toBe('en');
     });
 
-    test('throws locale not found', () => {
+    test('uses defaultLocale if specified and locale not found', () => {
+      expect(() => {
+        createGlobalize({ locale: 'ga', defaultLocale: 'en' });
+      }).not.toThrow();
+
+      const globalize = createGlobalize({ locale: 'ga', defaultLocale: 'en' });
+      expect(globalize.locale).toBe('en');
+    });
+
+    test('throws when locale not found and no defaultLocale specified', () => {
       const message = '[RNGlobalize] CLDR data for the selected language/locale has not been loaded!';
 
       expect(() => {

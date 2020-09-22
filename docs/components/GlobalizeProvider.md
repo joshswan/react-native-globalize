@@ -27,6 +27,7 @@ export default Root;
 ## Props
 
 - [`currency`](#currency)
+- [`defaultLocale`](#defaultLocale)
 - [`locale`](#locale)
 - [`localeFallback`](#localeFallback)
 - [`onError`](#onerror)
@@ -36,6 +37,12 @@ export default Root;
 |  Type  | Required | Default | Description |
 | :----: | :------: | :-----: | :---------: |
 | string |    No    |  `USD`  | Default currency to use when formatting. |
+
+### `defaultLocale`
+
+|  Type  | Required | Default | Description |
+| :----: | :------: | :-----: | :---------: |
+| string |    No    |  none   | Default locale to use when specified locale not available. |
 
 ### `locale`
 

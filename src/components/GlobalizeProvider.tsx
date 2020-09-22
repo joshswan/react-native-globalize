@@ -13,6 +13,7 @@ import { GlobalizeContext } from '../context';
 export interface Props {
   children: React.ReactNode;
   currency?: string;
+  defaultLocale?: string;
   locale?: string;
   localeFallback?: boolean;
   onError?(message: string, exception?: Error): void;
@@ -21,6 +22,7 @@ export interface Props {
 export const GlobalizeProvider: React.FC<Props> = ({
   children,
   currency: currencyCode = 'USD',
+  defaultLocale,
   locale = 'en',
   localeFallback: fallback = false,
   ...options
@@ -29,6 +31,7 @@ export const GlobalizeProvider: React.FC<Props> = ({
     ...options,
     locale,
     currencyCode,
+    defaultLocale,
     fallback,
   }));
 
@@ -37,9 +40,10 @@ export const GlobalizeProvider: React.FC<Props> = ({
       ...options,
       locale,
       currencyCode,
+      defaultLocale,
       fallback,
     }));
-  }, [currencyCode, locale, fallback]);
+  }, [currencyCode, defaultLocale, locale, fallback]);
 
   return (
     <GlobalizeContext.Provider value={globalize}>
