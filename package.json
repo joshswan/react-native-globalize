@@ -55,6 +55,7 @@
     "@types/hoist-non-react-statics": "^3.3.1",
     "@types/jest": "^26.0.14",
     "@types/node": "^14.11.2",
+    "@types/react-test-renderer": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
     "cldr-data": "^36.0.0",
@@ -113,8 +114,8 @@
   },
   "release-it": {
     "git": {
-      "commitMessage": "chore: release %s",
-      "tagName": "v%s"
+      "commitMessage": "chore: release ${version}",
+      "tagName": "v${version}"
     },
     "npm": {
       "publish": true

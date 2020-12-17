@@ -6,8 +6,8 @@
  * https://github.com/joshswan/react-native-globalize/blob/master/LICENSE
  */
 
-import React, { useEffect, useState } from 'react';
-import { createGlobalize } from '../globalize';
+import React, { useEffect, useImperativeHandle, useState } from 'react';
+import { createGlobalize, Globalize } from '../globalize';
 import { GlobalizeContext } from '../context';
 
 export interface Props {
@@ -19,26 +19,19 @@ export interface Props {
   onError?(message: string, exception?: Error): void;
 }
 
-export const GlobalizeProvider: React.FC<Props> = ({
-  children,
-  currency: currencyCode = 'USD',
-  defaultLocale,
-  locale = 'en',
-  localeFallback: fallback = false,
-  ...options
-}) => {
-  const [globalize, setGlobalize] = useState(() =>
-    createGlobalize({
-      ...options,
-      locale,
-      currencyCode,
+export const GlobalizeProvider = React.forwardRef<Globalize, Props>(
+  (
+    {
+      children,
+      currency: currencyCode = 'USD',
       defaultLocale,
-      fallback,
-    }),
-  );
-
-  useEffect(() => {
-    setGlobalize(
+      locale = 'en',
+      localeFallback: fallback = false,
+      ...options
+    },
+    ref,
+  ) => {
+    const [globalize, setGlobalize] = useState(() =>
       createGlobalize({
         ...options,
         locale,
@@ -47,7 +40,21 @@ export const GlobalizeProvider: React.FC<Props> = ({
         fallback,
       }),
     );
-  }, [currencyCode, defaultLocale, locale, fallback]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return <GlobalizeContext.Provider value={globalize}>{children}</GlobalizeContext.Provider>;
-};
+    useEffect(() => {
+      setGlobalize(
+        createGlobalize({
+          ...options,
+          locale,
+          currencyCode,
+          defaultLocale,
+          fallback,
+        }),
+      );
+    }, [currencyCode, defaultLocale, locale, fallback]); // eslint-disable-line react-hooks/exhaustive-deps
+
+    useImperativeHandle(ref, () => globalize);
+
+    return <GlobalizeContext.Provider value={globalize}>{children}</GlobalizeContext.Provider>;
+  },
+);
