@@ -123,12 +123,7 @@ const ExampleComponent = () => {
       <FormattedMessage
         id="welcome"
         values={{
-          date: (
-            <FormattedDate
-              value={new Date()}
-              date="long"
-            />
-          )
+          date: <FormattedDate value={new Date()} date="long" />,
         }}
       />
     </View>
@@ -136,4 +131,4 @@ const ExampleComponent = () => {
 };
 ```
 
-Now you know the basics for using React Native Globalize. Check out the rest of docs for details on each function and component. If you want to keep reading, the next topic is [performance](performance.md).
+Now you know the basics for using React Native Globalize. Check out the rest of docs for details on each function and component. If you want to keep reading, check out the details on [performance](performance.md) or learn how to use formatting functions outside the component hierarchy [using refs](ref-usage.md).
