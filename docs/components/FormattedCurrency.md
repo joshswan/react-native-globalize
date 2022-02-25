@@ -20,6 +20,7 @@ const ExampleComponent = () => (
 - [`adjustsFontSizeToFit`](https://facebook.github.io/react-native/docs/text#adjustsfontsizetofit)
 - [`allowFontScaling`](https://facebook.github.io/react-native/docs/text#allowfontscaling)
 - [`compact`](#compact)
+- [`currency`](#currency)
 - [`maximumFractionDigits`](#maximumfractiondigits)
 - [`maximumSignificantDigits`](#maximumsignificantdigits)
 - [`minimumFractionDigits`](#minimumfractiondigits)
@@ -31,6 +32,27 @@ const ExampleComponent = () => (
 - [`symbolForm`](#symbolform)
 - [`useGrouping`](#usegrouping)
 - [`value`](#value)
+
+### `currency`
+
+|  Type  | Required | Default | Description |
+| :----: | :------: | :-----: | :---------: |
+| string |    No    |   GlobalizeProvider, fallback to USD  | Provides currency code for formatter. |
+
+```js
+<FormattedCurrency
+  value={1000.99}
+  currency='JPY'
+/>
+// ¥1000.99
+
+<FormattedCurrency
+  value={1000.99}
+  currency='USD'
+/>
+// $1000.99
+
+```
 
 ### `compact`
 

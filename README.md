@@ -31,7 +31,7 @@ Using a `Formatted` component:
 import { FormattedCurrency } from 'react-native-globalize';
 
 export const ComponentExample = () => (
-  <FormattedCurrency currencyCode="USD" maximumFractionDigits={0} useGrouping value={1000} />
+  <FormattedCurrency currency="USD" maximumFractionDigits={0} useGrouping value={1000} />
 );
 ```
 
